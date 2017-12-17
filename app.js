@@ -48,7 +48,10 @@ require('./config/passport')(passport);
 
 
  app.use('/',users);
- app.use('/',(journals,genjourist,quotation,article));
+ app.use('/',article);
+ app.use('/',quotation);
+ app.use('/',journals);
+ app.use('/',genjourist);
 
 //Index Route
 app.get('/',(req,res)=>

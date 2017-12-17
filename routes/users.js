@@ -13,7 +13,7 @@ router.post('/register',(req,res,next)=>{
 		username : req.body.username,
 		password : req.body.password,
 		gender   : req.body.gender,
-		genjouristId: "90"+uniqueId(),
+		genjouristId: "10"+uniqueId(),
 		createdOn: Date(),
 
 	});
@@ -46,7 +46,7 @@ router.post('/authenticate',(req, res, next)=>{
 
 				res.json({
 					success:true,
-					token: 'JWT '+token,
+					token: token,
 					user:{
 						id: user._id,
 						name: user.name,
