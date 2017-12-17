@@ -8,7 +8,7 @@ const Promise = require("bluebird");
 var morgan       = require('morgan');
 const config = require('./config/database');
 
-	mongoose.Promise = require('bluebird');
+mongoose.Promise = require('bluebird');
 
 mongoose.connect(config.database, {useMongoClient: true});
 
@@ -23,7 +23,10 @@ mongoose.connection.on('Error', (err)=>{
 const app = express();
 
 const users = require('./routes/users');
-
+const article = require('./routes/article');
+const quotation = require('./routes/quotation');
+const journals = require('./routes/journals');
+const genjourist = require('./routes/genjourist');
 // Port Number
 const port = 3000;
 
@@ -31,6 +34,9 @@ const port = 3000;
 app.use(cors());
 
 app.use(express.static(path.join(__dirname,'public')));
+
+//Express Session Middleware
+
 
 //Body Parser Middleware
 app.use(bodyParser.json());
@@ -42,7 +48,7 @@ require('./config/passport')(passport);
 
 
  app.use('/',users);
-// require('./routes/users')(app);
+ app.use('/',(journals,genjourist,quotation,article));
 
 //Index Route
 app.get('/',(req,res)=>

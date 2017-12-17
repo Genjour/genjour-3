@@ -13,6 +13,7 @@
     "body-parser": "*",
     "cors": "*",
     "express": "*",
+    "express-sessions": "^1.0.6",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "morgan": "^1.9.0",
