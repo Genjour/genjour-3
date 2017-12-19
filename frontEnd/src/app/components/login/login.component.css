@@ -1,0 +1,8 @@
+.m-grid.m-grid--hor:not(.m-grid--desktop):not(.m-grid--desktop-and-tablet):not(.m-grid--tablet):not(.m-grid--tablet-and-mobile):not(.m-grid--mobile).m-grid--root {
+
+    height: 100vh;
+}
+
+.m-login.m-login--1 .m-login__wrapper{
+    padding : 10% 2rem 2rem 2rem;
+}
