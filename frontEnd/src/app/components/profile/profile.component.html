@@ -2,7 +2,7 @@
 
 
 
-<div class="profileContainer">
+<div  *ngIf="user" class="profileContainer">
   <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- BEGIN: Subheader -->
     <div class="m-subheader">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="m-card-profile__details">
                     <span class="m-card-profile__name">
-                      Genjourist Mark Andre
+                      Genjourist {{user.name}}
                     </span>
                   </div>
                   <br>
@@ -116,7 +116,7 @@
                             Email
                           </span>
                           <span class="m--pull-right p-details">
-                              qwertyuio@qwetyio.com
+                              {{user.email}}
                           </span>
                       </span>
                   </a>
