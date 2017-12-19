@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 import { Observable } from "rxjs/Rx"
@@ -15,8 +15,8 @@ username: String;
 password: String;
 
   constructor(
-    private loginService:LoginService,
-    private router:Router
+    private authService : AuthService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -28,9 +28,9 @@ password: String;
       password : this.password
     }
 
-  this.loginService.authenticateUser(user).subscribe(data=>{
+  this.authService.authenticateUser(user).subscribe(data=>{
     if(data.success){
-      this.loginService.storeUserData(data.token,data.user);
+      this.authService.storeUserData(data.token,data.user);
       this.router.navigate(['feeds']);
     }else{
       console.log("Inncoret Username or password");

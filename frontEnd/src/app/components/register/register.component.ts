@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from './register.service'
+import { ValidateService } from '../../services/validate.service';
+import { AuthService } from '../../services/auth.service';
 import {Router } from '@angular/router';
  
 @Component({
@@ -10,7 +11,8 @@ import {Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   constructor( 
-    private registerService : RegisterService,
+    private validateService : ValidateService,
+    private authService : AuthService,
     private router : Router
      ) { }
 
@@ -36,21 +38,21 @@ export class RegisterComponent implements OnInit {
 
     // check required fields
 
-    if(!this.registerService.checkRegister(user)){
+    if(!this.validateService.checkRegister(user)){
       console.log("please fill all fields");
       return false;
     }
   
     // check email 
 
-    if(!this.registerService.validateEmail(user.email)){
+    if(!this.validateService.validateEmail(user.email)){
       console.log("Email is not valid");
       return false;
     }
 
     //register new user here api from services
 
-    this.registerService.registerUser(user).subscribe(data=>{
+    this.authService.registerUser(user).subscribe(data=>{
       if(data.success){
         console.log('user is register');
         this.router.navigate(['/login']);
