@@ -1,0 +1,12 @@
+.m-header-search .m-header-search__wrapper{
+    background-color:transparent;
+    border:1px solid #e8e7f4;
+}
+
+
+@media all and (max-width: 479px) {
+.m-header-search__form{
+    visibility:hidden;
+}
+
+}

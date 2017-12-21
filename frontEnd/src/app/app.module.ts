@@ -14,20 +14,27 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './components/article/article.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-
 import { RegisterComponent } from './components/register/register.component';
-
 import { JournalsComponent } from './components/journals/journals.component';
 import { ArticlesComponent } from './components/journals/articles/articles.component';
+
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
+import { PostService } from './services/post.service';
+
+import { AuthGaurd } from './gaurds/auth.gaurd';
+import { WriteArticleComponent } from './components/write-article/write-article.component';
+import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
+
 const appRoutes: Routes = [
   {path: '', component: JournalsComponent },
   {path: 'login', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
-  {path: 'feeds', component: FeedsComponent },
-  {path: 'genjourist', component: ProfileComponent },
+  {path: 'feeds', component: FeedsComponent, canActivate:[AuthGaurd] },
+  {path: 'genjourist', component: ProfileComponent, canActivate:[AuthGaurd] },
   {path: 'article', component:ArticleComponent},
+  {path: 'write-article', component:WriteArticleComponent, canActivate:[AuthGaurd]},
+  {path: 'write-quotation', component:WriteQuotationComponent, canActivate:[AuthGaurd]},
 ]
 
 @NgModule({
@@ -41,7 +48,9 @@ const appRoutes: Routes = [
     SidenavComponent,
     RegisterComponent,
     JournalsComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    WriteArticleComponent,
+    WriteQuotationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
   ],
-  providers: [ValidateService,AuthService],
+  providers: [ValidateService,PostService,AuthService,AuthGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

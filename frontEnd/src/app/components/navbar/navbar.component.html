@@ -1,4 +1,4 @@
-<header class="m-grid__item    m-header "  data-minimize-offset="200" data-minimize-mobile-offset="200" >
+<header class="m-grid__item m-header "  data-minimize-offset="200" data-minimize-mobile-offset="200" >
   <div class="m-container m-container--fluid m-container--full-height">
     <div class="m-stack m-stack--ver m-stack--desktop">
       <!-- BEGIN: Brand -->
@@ -427,7 +427,7 @@
         </div>
         <!-- END: Horizontal Menu -->								<!-- BEGIN: Topbar -->
         <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-            <div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
+            <div class="m-stack__item m-stack__item--middle m-dropdown--skin-light m-header-search m-header-search--expandable" id="m_quicksearch" data-search-type="default">
               <!--BEGIN: Search Form -->
               <form class="m-header-search__form">
                 <div class="m-header-search__wrapper">
@@ -435,7 +435,7 @@
                     <i class="flaticon-search"></i>
                   </span>
                   <span class="m-header-search__input-wrapper">
-                    <input autocomplete="off" type="text" name="q" class="m-header-search__input" value="" placeholder="Search..." id="m_quicksearch_input">
+                    <input autocomplete="off" type="text" name="search" class="m-header-search__input" value="" placeholder="Search..." id="m_quicksearch_input">
                   </span>
                   <span class="m-header-search__icon-close" id="m_quicksearch_close">
                     <i class="la la-remove"></i>
@@ -695,7 +695,7 @@
                             </span>
                           </li>
                           <li class="m-nav__item">
-                            <a href="header/profile.html" class="m-nav__link">
+                            <a [routerLink]="['/genjourist']" class="m-nav__link">
                               <i class="m-nav__link-icon flaticon-profile-1"></i>
                               <span class="m-nav__link-title">
                                 <span class="m-nav__link-wrap">
@@ -760,7 +760,6 @@
                 <span class="m--margin-top-5 m-nav__link">
                   <a [routerLink]="['/login']" class="btn btn-secondary m-btn m-btn--icon m-btn--pill">
                       <span>
-                        <i class="la la-archive"></i>
                         <span>
                           Login
                         </span>
@@ -772,7 +771,6 @@
                 <span class="m--margin-top-5 m-nav__link">
                   <a [routerLink]="['/register']"  class="btn btn-secondary m-btn m-btn--icon m-btn--pill">
                       <span>
-                        <i class="la la-archive"></i>
                         <span>
                           Sign Up
                         </span>

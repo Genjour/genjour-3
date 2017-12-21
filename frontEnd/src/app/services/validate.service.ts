@@ -17,4 +17,12 @@ export class ValidateService {
     return re.test(email.toLowerCase());
     }
 
+    checkQuotation(quotation){
+      if(quotation.title == undefined || quotation.category == " " || quotation.quote == undefined){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
 }

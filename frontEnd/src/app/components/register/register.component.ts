@@ -57,10 +57,10 @@ export class RegisterComponent implements OnInit {
         console.log('user is register');
         this.router.navigate(['/login']);
       }else{
-        console.log('not registered')
+        console.log('not registered');
         this.router.navigate(['/feeds']);
       }
-    })
+    });
 
   }
 

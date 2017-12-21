@@ -7,12 +7,12 @@ const jwt = require('jsonwebtoken');
 
 router.post('/quotation', passport.authenticate('jwt', {session:false}), function(req,res){
     let newQuotation = new Quotation({
-        articleId     : uniqid(),
+        quotationId   : uniqid(),
         genjouristId  : req.user.genjouristId,
         genjourist    : req.user.name,
         category      : req.body.category,
-        title         : req.body.title,
-        content       : req.body.content,
+        quote         : req.body.content,
+        tags          : req.body.tags,
         date          : Date()
 
     });

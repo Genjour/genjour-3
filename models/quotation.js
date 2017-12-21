@@ -5,10 +5,11 @@ var mongoose = require('mongoose');
 var quotationSchema = mongoose.Schema({
 
         id            : String,
+        quotationId   : String,
         genjouristId  : String,
         genjourist    : String,
         category      : String,
-        title         : String,
+        tags          : String,
         content       : String,
         date          : String
 
