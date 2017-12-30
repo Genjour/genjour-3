@@ -21,10 +21,12 @@ import { ArticlesComponent } from './components/journals/articles/articles.compo
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { PostService } from './services/post.service';
+import { JournalsService } from './services/journals.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { WriteArticleComponent } from './components/write-article/write-article.component';
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
+import { SummaryPipe } from './components/journals/articles/summary.pipe';
 
 const appRoutes: Routes = [
   {path: '', component: JournalsComponent },
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     JournalsComponent,
     ArticlesComponent,
     WriteArticleComponent,
-    WriteQuotationComponent
+    WriteQuotationComponent,
+    SummaryPipe,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
   ],
-  providers: [ValidateService,PostService,AuthService,AuthGaurd],
+  providers: [ValidateService,PostService,AuthService,AuthGaurd,JournalsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,8 @@ var articleSchema = mongoose.Schema({
         content       : String,
         date          : String,
         tags          : String,
-        image         : String
+        imgUrl        : String
+
 
 
 });

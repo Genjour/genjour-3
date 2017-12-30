@@ -3,6 +3,9 @@ import { ValidateService } from '../../services/validate.service';
 import { PostService } from '../../services/post.service'; 
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
+
+
+
 @Component({
   selector: 'app-write-quotation',
   templateUrl: './write-quotation.component.html',
@@ -18,6 +21,7 @@ export class WriteQuotationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
 
   quote         : String;

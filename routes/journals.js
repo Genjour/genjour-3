@@ -6,9 +6,9 @@ const uniqid     = require('uniqid');
 
 router.get('/journals',   function(req,res){
 
-    Article.find({}).exec(function(err, users) {   
+    Article.find({}).exec(function(err, articles) {   
         if (err) throw err;
-        res.json(users);
+        res.json(articles);
     });
 });
 

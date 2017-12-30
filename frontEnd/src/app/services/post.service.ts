@@ -13,6 +13,11 @@ export class PostService {
     private authService : AuthService
   ) { }
 
+  PostImage(formData){
+    return this.http.post('http://localhost:3000/articleImage', formData)
+    .map((res:any)=> res);
+  }
+
   postQuotation(quotation){
     let headers = new Headers();
     this.authService.loadToken();
