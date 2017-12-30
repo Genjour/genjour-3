@@ -28,6 +28,7 @@ import { WriteArticleComponent } from './components/write-article/write-article.
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
 
+
 const appRoutes: Routes = [
   {path: '', component: JournalsComponent },
   {path: 'login', component:LoginComponent},

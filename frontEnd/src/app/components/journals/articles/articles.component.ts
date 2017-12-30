@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { JournalsService } from '../../../services/journals.service'; 
 
+
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',

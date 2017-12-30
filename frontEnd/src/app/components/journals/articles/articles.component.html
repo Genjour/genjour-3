@@ -22,7 +22,7 @@
                       <div class="m-widget19">
                           <a [routerLink]="['/journals',article.articleId]">
                             <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
-                              <img [src]="article.imgUrl" alt="">
+                              <img src= "assets/{{article.imgUrl}}" alt="">
                               <h3 class="m-widget19__title m--font-light">
                                 {{article.title}}
                               </h3>
@@ -46,7 +46,7 @@
                               </div>
                             <a href="post">
                               <div class="m-widget19__body m-nav__link-text">
-                                  {{article.content}}
+                                  {{article.content | summary}}
                               </div>
                             </a>
                             </div>
@@ -91,10 +91,7 @@
           </div>
             <!--End::Main Portlet-->
       
-            <!--End::Main Portlet-->
-
-
-          
+            <!--End::Main Portlet-->         
         </div>
       </div>
       <!-- END: Subheader -->
