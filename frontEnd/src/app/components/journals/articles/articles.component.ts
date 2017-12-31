@@ -26,6 +26,10 @@ articles : object;
 
     }
 
+    support(articleId){
+      console.log('support button'+articleId);
+    }
+
   }
 
   
