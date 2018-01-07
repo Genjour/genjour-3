@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { JournalsService } from '../../../services/journals.service'; 
-
-
+import { AuthService } from '../../../services/auth.service';
+import { SupportService } from '../../../services/support.service';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -11,24 +11,44 @@ import { JournalsService } from '../../../services/journals.service';
 export class ArticlesComponent implements OnInit {
 
   constructor(
-    private http: Http,
-    private journalsService : JournalsService
+    private journalsService : JournalsService,
+    private authService : AuthService,
+    private router: Router,
+    private supportService: SupportService,
   ) { }
 
-articles : object;
-
+articles : any[] = [];
+user : any[] = [];
 
   ngOnInit() {
-
+      if(this.authService.loggedIn()){
+          this.authService.getGenjourist().subscribe(profile=>{
+          this.user = profile.user;
+          })
+        }
       this.journalsService.getJournals().subscribe(data=>{
       this.articles=data;
       })
 
     }
 
-    support(articleId){
-      console.log('support button'+articleId);
+    support(articleId, genjouristId){
+        if(this.authService.loggedIn()){
+          // this.authService.getGenjourist().subscribe(profile=>{
+          // this.user = profile.user;
+          // })
+          this.supportService.supportArticle(articleId, genjouristId);
+          console.log('user is logged in article id - '+articleId+' userId - ' genjouristId);
+
+        }
+        else{
+            this.router.navigate(['/login']);
+            console.log('first logged in then support us');
+        }
+
+      
     }
+
 
   }
 

@@ -30,17 +30,17 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                              1895
+                              {{user.supporters}}
                             </h3>
                             <span class="m-widget19__comment">
-                              Support
+                              Supporters
                             </span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                                995
+                                {{user.supporting}}
                               </h3>
                             <span class="m-widget19__comment">
                               Supporting
@@ -59,7 +59,7 @@
                   </span>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-profile-1"></i>
                     <span class="m-nav__link-title">
                       <span class="m-nav__link-wrap">
@@ -76,7 +76,7 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-share"></i>
                     <span class="m-nav__link-title">
                       <span class="m-nav__link-wrap">
@@ -93,7 +93,7 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a  class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-chat-1"></i>
                     <span class="m-nav_link-wrap">
                       <span class="m-nav__link-text">
@@ -106,7 +106,7 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-graphic-2"></i>
                     <span class="m-nav_link-wrap">
                         <span class="m-nav__link-text">
@@ -119,7 +119,7 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a  class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-time-3"></i>
                     <span class="m-nav__link-text">
                       Events
@@ -127,7 +127,7 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
-                  <a href="header/profile&amp;demo=default.html" class="m-nav__link">
+                  <a  class="m-nav__link">
                     <i class="m-nav__link-icon flaticon-lifebuoy"></i>
                     <span class="m-nav__link-text">
                       Support
@@ -135,60 +135,6 @@
                   </a>
                 </li>
               </ul>
-              <div class="m-portlet__body-separator"></div>
-              <div class="m-widget1 m-widget1--paddingless">
-                <div class="m-widget1__item">
-                  <div class="row m-row--no-padding align-items-center">
-                    <div class="col">
-                      <h3 class="m-widget1__title">
-                        Member Profit
-                      </h3>
-                      <span class="m-widget1__desc">
-                        Awerage Weekly Profit
-                      </span>
-                    </div>
-                    <div class="col m--align-right">
-                      <span class="m-widget1__number m--font-brand">
-                        +$17,800
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="m-widget1__item">
-                  <div class="row m-row--no-padding align-items-center">
-                    <div class="col">
-                      <h3 class="m-widget1__title">
-                        Orders
-                      </h3>
-                      <span class="m-widget1__desc">
-                        Weekly Customer Orders
-                      </span>
-                    </div>
-                    <div class="col m--align-right">
-                      <span class="m-widget1__number m--font-danger">
-                        +1,800
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="m-widget1__item">
-                  <div class="row m-row--no-padding align-items-center">
-                    <div class="col">
-                      <h3 class="m-widget1__title">
-                        Issue Reports
-                      </h3>
-                      <span class="m-widget1__desc">
-                        System bugs and issues
-                      </span>
-                    </div>
-                    <div class="col m--align-right">
-                      <span class="m-widget1__number m--font-success">
-                        -27,49%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -276,38 +222,26 @@
                               </ul>
                             </div>
                             <div class="m-widget5">
-                              <div class="m-widget5__item">
+                              <div class="m-widget5__item" *ngFor="let journal of journals">
                                 <div class="m-widget5__pic">
                                   <img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
                                 </div>
                                 <div class="m-widget5__content">
                                   <h4 class="m-widget5__title">
-                                    Great Logo Designn
+                                    {{journal.title}}
                                   </h4>
                                   <span class="m-widget5__desc">
-                                    Make Metronic Great  Again.Lorem Ipsum Amet
+                                    {{journal.content | summary}}
                                   </span>
                                   <div class="m-widget5__info">
-                                    <span class="m-widget5__author">
-                                      Author:
-                                    </span>
-                                    <span class="m-widget5__info-label">
-                                      author:
-                                    </span>
-                                    <span class="m-widget5__info-author-name">
-                                      Fly themes
-                                    </span>
-                                    <span class="m-widget5__info-label">
-                                      Released:
-                                    </span>
                                     <span class="m-widget5__info-date m--font-info">
-                                      23.08.17
+                                      {{journal.date | date:'medium' }}
                                     </span>
                                   </div>
                                 </div>
                                 <div class="m-widget5__stats1">
                                   <span class="m-widget5__number">
-                                    19,200
+                                    {{journal.supportNumber}}
                                   </span>
                                   <br>
                                   <span class="m-widget5__sales">
@@ -316,101 +250,11 @@
                                 </div>
                                 <div class="m-widget5__stats2">
                                   <span class="m-widget5__number">
-                                    1046
+                                    {{journal.replicateNumber}}
                                   </span>
                                   <br>
                                   <span class="m-widget5__votes">
                                     replicates
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="m-widget5__item">
-                                <div class="m-widget5__pic">
-                                  <img class="m-widget7__img" src="assets/app/media/img//products/product10.jpg" alt="">
-                                </div>
-                                <div class="m-widget5__content">
-                                  <h4 class="m-widget5__title">
-                                    Branding Mockup
-                                  </h4>
-                                  <span class="m-widget5__desc">
-                                    Make Metronic Great  Again.Lorem Ipsum Amet
-                                  </span>
-                                  <div class="m-widget5__info">
-                                    <span class="m-widget5__author">
-                                      Author:
-                                    </span>
-                                    <span class="m-widget5__info-author m--font-info">
-                                      Fly themes
-                                    </span>
-                                    <span class="m-widget5__info-label">
-                                      Released:
-                                    </span>
-                                    <span class="m-widget5__info-date m--font-info">
-                                      23.08.17
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="m-widget5__stats1">
-                                  <span class="m-widget5__number">
-                                    24,583
-                                  </span>
-                                  <br>
-                                  <span class="m-widget5__sales">
-                                    supports
-                                  </span>
-                                </div>
-                                <div class="m-widget5__stats2">
-                                  <span class="m-widget5__number">
-                                    3809
-                                  </span>
-                                  <br>
-                                  <span class="m-widget5__votes">
-                                    replicates
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="m-widget5__item">
-                                <div class="m-widget5__pic">
-                                  <img class="m-widget7__img" src="assets/app/media/img//products/product11.jpg" alt="">
-                                </div>
-                                <div class="m-widget5__content">
-                                  <h4 class="m-widget5__title">
-                                    Awesome Mobile App
-                                  </h4>
-                                  <span class="m-widget5__desc">
-                                    Make Metronic Great  Again.Lorem Ipsum Amet
-                                  </span>
-                                  <div class="m-widget5__info">
-                                    <span class="m-widget5__author">
-                                      Author:
-                                    </span>
-                                    <span class="m-widget5__info-author m--font-info">
-                                      Fly themes
-                                    </span>
-                                    <span class="m-widget5__info-label">
-                                      Released:
-                                    </span>
-                                    <span class="m-widget5__info-date m--font-info">
-                                      23.08.17
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="m-widget5__stats1">
-                                  <span class="m-widget5__number">
-                                    10,054
-                                  </span>
-                                  <br>
-                                  <span class="m-widget5__sales">
-                                    sales
-                                  </span>
-                                </div>
-                                <div class="m-widget5__stats2">
-                                  <span class="m-widget5__number">
-                                    1103
-                                  </span>
-                                  <br>
-                                  <span class="m-widget5__votes">
-                                    votes
                                   </span>
                                 </div>
                               </div>

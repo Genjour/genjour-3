@@ -22,6 +22,8 @@ import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { PostService } from './services/post.service';
 import { JournalsService } from './services/journals.service';
+import { ProfileService } from './services/profile.service';
+import { SupportService } from './services/support.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { WriteArticleComponent } from './components/write-article/write-article.component';
@@ -62,7 +64,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
   ],
-  providers: [ValidateService,PostService,AuthService,AuthGaurd,JournalsService],
+  providers: [
+    ValidateService,
+    PostService,
+    AuthService,
+    AuthGaurd,
+    JournalsService,
+    ProfileService,
+    SupportService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

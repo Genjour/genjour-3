@@ -7,7 +7,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
   authToken : any;
-  user : any;
+  user : any = false;
+
+  
 
   constructor(
     private http:Http, 

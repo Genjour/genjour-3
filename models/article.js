@@ -4,19 +4,20 @@ var mongoose = require('mongoose');
 
 var articleSchema = mongoose.Schema({
 
-        id            : String,
-        articleId     : String,
-        genjouristId  : String,
-        genjourist    : String,
-        category      : String,
-        title         : String,
-        content       : String,
-        date          : String,
-        tags          : String,
-        imgUrl        : String,
-        support       : Number,
-
-
+        id               : String,
+        articleId        : String,
+        genjouristId     : String,
+        genjourist       : String,
+        category         : String,
+        title            : String,
+        content          : String,
+        date             : String,
+        tags             : String,
+        imgUrl           : String,
+        supportNumber    : Number,
+        supporters       : Array,
+        repilicateNumber : Number,
+        status           : Boolean,
 
 });
 
@@ -24,5 +25,19 @@ var articleSchema = mongoose.Schema({
 const Article = module.exports = mongoose.model('Article',articleSchema);
 
 module.exports.addArticle = function(newArticle, callback){
-   newArticle.save(callback);
-  }
+        newArticle.save(callback);
+}
+
+module.exports.findArticle = function(articleId, callback){
+        const query = {articleId: articleId}
+        Article.findOne(query, callback);
+}
+
+
+module.exports.addSupporter = function(articleId, supporters, callback){ 
+        Article.findOneAndUpdate({articleId:articleId}, {$push:{supporters:supporters}}, callback);
+}
+
+module.exports.removeSupporter = function(articleId, supporters, callback){
+        Article.findOneAndUpdate({articleId:articleId}, {$pop:{supporters:supporters}}, callback);
+}

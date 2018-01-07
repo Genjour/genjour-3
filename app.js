@@ -27,6 +27,7 @@ const article = require('./routes/article');
 const quotation = require('./routes/quotation');
 const journals = require('./routes/journals');
 const genjourist = require('./routes/genjourist');
+const support = require('./routes/support');
 // Port Number
 const port = 3000;
 
@@ -59,6 +60,7 @@ require('./config/passport')(passport);
  app.use('/',quotation);
  app.use('/',journals);
  app.use('/',genjourist);
+ app.use('/',support);
 
 //Index Route
 app.get('/',(req,res)=>

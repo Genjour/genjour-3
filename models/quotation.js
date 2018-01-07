@@ -11,8 +11,8 @@ var quotationSchema = mongoose.Schema({
         category      : String,
         tags          : String,
         content       : String,
-        date          : String
-
+        date          : String,
+        status        : Boolean,
 
 });
 
@@ -20,4 +20,4 @@ const Quotation = module.exports = mongoose.model('Quotation', quotationSchema);
 
 module.exports.addQuotation = function(newQuotation, callback){
         newQuotation.save(callback);
-       }
+}
