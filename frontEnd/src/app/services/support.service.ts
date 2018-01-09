@@ -11,14 +11,23 @@ export class SupportService {
   ) { }
 
 
-  supportArticle(articleId, genjouristId){
-    let headers = new Headers();
-    headers.append('Content-Type','Application/json');
-    const URL = `http://localhost:3000/support/${articleId}/${genjouristId}`;
-    console.log(URL);
-    return this.http.post(URL)
-    .map(res=>res.json());
+    supportArticle(articleId, genjouristId){
+      // let headers = new Headers();
+      // headers.append('Content-Type','Application/json');
+      const URL = `http://localhost:3000/support/${articleId}/${genjouristId}`;
+      // console.log(URL);
+      return this.http.post(URL).map(res=>res.json());
 
-}
+    }
+
+    supportGenjourist(userId, genjouristId){
+      // let headers = new Headers();
+      // headers.append('Content-Type','Application/json');
+      const URL = `http://localhost:3000/support/genjourist/${userId}/${genjouristId}`;
+      // console.log(URL);
+      return this.http.post(URL).map(res=>res.json());
+
+    }
+
 
   }

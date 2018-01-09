@@ -17,6 +17,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { JournalsComponent } from './components/journals/journals.component';
 import { ArticlesComponent } from './components/journals/articles/articles.component';
+import { GenjouristComponent } from './components/genjourist/genjourist.component';
 
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
@@ -24,6 +25,7 @@ import { PostService } from './services/post.service';
 import { JournalsService } from './services/journals.service';
 import { ProfileService } from './services/profile.service';
 import { SupportService } from './services/support.service';
+import { GenjouristService } from './services/genjourist.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { WriteArticleComponent } from './components/write-article/write-article.component';
@@ -31,11 +33,13 @@ import { WriteQuotationComponent } from './components/write-quotation/write-quot
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
 
 
+
 const appRoutes: Routes = [
   {path: '', component: JournalsComponent },
   {path: 'login', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
   {path: 'feeds', component: FeedsComponent, canActivate:[AuthGaurd] },
+  {path: 'genjourist/:id', component:GenjouristComponent},
   {path: 'genjourist', component: ProfileComponent, canActivate:[AuthGaurd] },
   {path: 'article', component:ArticleComponent},
   {path: 'write-article', component:WriteArticleComponent, canActivate:[AuthGaurd]},
@@ -57,6 +61,7 @@ const appRoutes: Routes = [
     WriteArticleComponent,
     WriteQuotationComponent,
     SummaryPipe,
+    GenjouristComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,8 @@ const appRoutes: Routes = [
     AuthGaurd,
     JournalsService,
     ProfileService,
-    SupportService
+    SupportService,
+    GenjouristService
   ],
   bootstrap: [AppComponent]
 })

@@ -26,18 +26,52 @@ router.post('/support/:articleId/:genjouristId',function(req,res) {
                         if(err) throw err;
                         if(!status){
                             return res.json({success:false, msg:"cannot pop"});
-                        } else return res.json({success:true, msg:"pop"})
+                        } else {    
+
+                                    return res.json({success:true, msg:"pop"})
+                                }
                     });
+                    
                 }
                 else{
                     Article.addSupporter(articleId, genjouristId , (err,status)=>{
                         if(err) throw err;
                         if(!status){
                             return res.json({success:false, msg:"cannot push"});
-                        } else return res.json({success:true, msg:"pushed"})
+                        } else 
+                                {
+
+                                    return res.json({success:true, msg:"push"})
+                                    
+                                }
+                                
                     });
+                    
                 }
 
+            } 
+    })
+
+})
+
+//================================================================================================
+//---------------------------------- Total Supports on Article -----------------------------------
+//================================================================================================
+
+router.get('/support/:articleId',function(req,res){
+    const articleId = req.params.articleId;
+    const genjouristId = req.params.genjouristId;
+
+        Article.findArticle(articleId, (err,article)=>{
+        if(err) throw err;
+        if(!article){
+            return res.json({success:false, msg:"article not found"});
+        }
+        else 
+            {
+                const supportersNumber = article.supporters.length;
+                console.log(supportersNumber);
+                res.json({success:true, msg:supportersNumber});
             } 
     })
 

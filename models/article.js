@@ -41,3 +41,7 @@ module.exports.addSupporter = function(articleId, supporters, callback){
 module.exports.removeSupporter = function(articleId, supporters, callback){
         Article.findOneAndUpdate({articleId:articleId}, {$pop:{supporters:supporters}}, callback);
 }
+
+module.exports.updateSupporters = function(articleId, supportersNumber, callback){
+        Article.updateOne({articleId:articleId},{$set:{ supportNumber : supportersNumber }}, callback);  
+}

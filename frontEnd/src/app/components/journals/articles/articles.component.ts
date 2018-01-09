@@ -17,7 +17,7 @@ export class ArticlesComponent implements OnInit {
     private supportService: SupportService,
   ) { }
 
-articles : any[] = [];
+articles : Object;
 user : any[] = [];
 
   ngOnInit() {
@@ -34,12 +34,9 @@ user : any[] = [];
 
     support(articleId, genjouristId){
         if(this.authService.loggedIn()){
-          // this.authService.getGenjourist().subscribe(profile=>{
-          // this.user = profile.user;
-          // })
-          this.supportService.supportArticle(articleId, genjouristId);
-          console.log('user is logged in article id - '+articleId+' userId - ' genjouristId);
-
+          this.supportService.supportArticle(articleId, genjouristId).subscribe(data=>{
+            console.log(data);
+          });
         }
         else{
             this.router.navigate(['/login']);

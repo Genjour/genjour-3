@@ -13,7 +13,13 @@ const  UserSchema = mongoose.Schema({
   genjouristId:String,
   gender      :String,
   dob         :String,
-  createdOn   :String
+  createdOn   :String,
+  supporters  :Array,
+  supportersNumber : Number,
+  supporting  :Array,
+  supportingNumber  : Number,
+  status: Boolean,
+  
   
 });
 

@@ -11,9 +11,14 @@ export class ProfileService {
   ) { }
 
   articles(genjouristId){
-    console.log(genjouristId);
+    //console.log(genjouristId);
       return this.http.get('http://localhost:3000/genjourist/article/'+genjouristId)
       .map(response=>response.json())
   }
+  
+  quotation(genjouristId){
+    return this.http.get('http://localhost:3000/genjourist/quotation/'+genjouristId)
+    .map(response=>response.json())
+}
 
 }

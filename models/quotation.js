@@ -4,15 +4,18 @@ var mongoose = require('mongoose');
 
 var quotationSchema = mongoose.Schema({
 
-        id            : String,
-        quotationId   : String,
-        genjouristId  : String,
-        genjourist    : String,
-        category      : String,
-        tags          : String,
-        content       : String,
-        date          : String,
-        status        : Boolean,
+        id               : String,
+        quotationId      : String,
+        genjouristId     : String,
+        genjourist       : String,
+        category         : String,
+        tags             : String,
+        quote            : String,
+        date             : String,
+        supportNumber    : Number,
+        supporters       : Array,
+        repilicateNumber : Number,
+        status           : Boolean,
 
 });
 
