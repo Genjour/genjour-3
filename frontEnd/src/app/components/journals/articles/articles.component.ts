@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { JournalsService } from '../../../services/journals.service'; 
 import { AuthService } from '../../../services/auth.service';
 import { SupportService } from '../../../services/support.service';
+import { ArticleComponent } from '../../article/article.component';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -17,7 +18,10 @@ export class ArticlesComponent implements OnInit {
     private supportService: SupportService,
   ) { }
 
-articles : Object;
+  
+articleId: String;
+userId :String;
+articles : any[] = [];
 user : any[] = [];
 
   ngOnInit() {
@@ -29,26 +33,8 @@ user : any[] = [];
       this.journalsService.getJournals().subscribe(data=>{
       this.articles=data;
       })
-
     }
-
-    support(articleId, genjouristId){
-        if(this.authService.loggedIn()){
-          this.supportService.supportArticle(articleId, genjouristId).subscribe(data=>{
-            console.log(data);
-          });
-        }
-        else{
-            this.router.navigate(['/login']);
-            console.log('first logged in then support us');
-        }
-
-      
-    }
-
 
   }
 
   
-
-

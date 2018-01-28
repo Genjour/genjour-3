@@ -53,3 +53,38 @@ module.exports.comparePassword = function(candiadatePassword, hash, callback){
     callback(null,isMatch);
   });
 }
+
+module.exports.findUser = function(userId, callback){
+        const query = {genjouristId: userId}
+        User.findOne(query, callback);
+}
+
+//=============================================================================
+//============================== SUPPORTERS ===================================
+//=============================================================================
+
+module.exports.addSupporter = function(userId, supporters, callback){ 
+  User.findOneAndUpdate({genjouristId:supporters}, {$push:{supporters:userId}}, callback);
+}
+
+module.exports.removeSupporter = function(userId, supporters, callback){
+  User.findOneAndUpdate({genjouristId:supporters}, {$pop:{supporters:userId}}, callback);
+}
+
+
+//=============================================================================
+//============================== SUPPORTING ===================================
+//=============================================================================
+
+
+module.exports.addSupporting = function(userId, supporting, callback){ 
+  User.findOneAndUpdate({genjouristId:userId}, {$push:{supporting:supporting}}, callback);
+}
+
+module.exports.removeSupporting = function(userId, supporting, callback){
+  User.findOneAndUpdate({genjouristId:userId}, {$pop:{supporting:supporting}}, callback);
+}
+
+module.exports.updateSupporters = function(userId, supportersNumber, callback){
+        User.updateOne({genjouristId:userId},{$set:{ supportNumber : supportersNumber }}, callback);  
+}

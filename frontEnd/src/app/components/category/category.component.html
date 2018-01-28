@@ -1,0 +1,234 @@
+<app-navbar></app-navbar>
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+
+  <div class="m-subheader">
+
+  </div> 
+
+  <div class="m-content ">
+      <div class="row">
+          <div class="col-xl-8 m--margin-20">
+              <!--begin:: Widgets/Best Sellers-->
+              <div class="m-portlet m-portlet--full-height ">
+                  <div class="m-portlet__head">
+                      <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                          <h3 class="m-portlet__head-text">
+                            Articles
+                          </h3>
+                        </div>
+                      </div>
+                      <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                          <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+                            <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
+                              <i class="la la-ellipsis-h m--font-brand"></i>
+                            </a>
+                            <div class="m-dropdown__wrapper">
+                              <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                              <div class="m-dropdown__inner">
+                                <div class="m-dropdown__body">
+                                  <div class="m-dropdown__content">
+                                    <ul class="m-nav">
+                                      <li class="m-nav__item">
+                                        <a href="" class="m-nav__link">
+                                          <i class="m-nav__link-icon flaticon-share"></i>
+                                          <span class="m-nav__link-text">
+                                            Genjour Trending
+                                          </span>
+                                        </a>
+                                      </li>
+                                      <li class="m-nav__item">
+                                        <a href="" class="m-nav__link">
+                                          <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                          <span class="m-nav__link-text">
+                                            Latest
+                                          </span>
+                                        </a>
+                                      </li>
+                                      <li class="m-nav__item">
+                                        <a href="" class="m-nav__link">
+                                          <i class="m-nav__link-icon flaticon-info"></i>
+                                          <span class="m-nav__link-text">
+                                            Top
+                                          </span>
+                                        </a>
+                                      </li>
+                                      <li class="m-nav__item">
+                                        <a href="" class="m-nav__link">
+                                          <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                          <span class="m-nav__link-text">
+                                            Sort
+                                          </span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                <div class="m-portlet__body">
+                  <!--begin::Content-->
+                  <div *ngFor="let articleContent of articleContents"> 
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
+                        <!--begin::m-widget5-->
+                        <div class="m-widget5">
+                          <div class="m-widget5__item">
+                            <div class="m-widget5__pic">
+                              <img class="m-widget7__img" src="assets/{{articleContent.imgUrl}}" alt="">
+                            </div>
+                            <div class="m-widget5__content">
+                              <h4 class="m-widget5__title">
+                                  <a [routerLink]="['/journal',articleContent.articleId]"> {{articleContent.content | summary}} </a>
+                              </h4>
+                              <div class="m-widget5__info">
+                                <span class="m-widget5__author">
+                                  Genjourist:
+                                </span>
+                                <span class="m-widget5__info-label">
+                                    <a [routerLink]="['/genjourist',articleContent.genjouristId]"> {{articleContent.genjourist}} </a>
+                                </span>
+                                <span class="m-widget5__info-date m--font-info">
+                                  {{articleContent.date | date:'medium'}}
+                                </span>
+                              </div>
+                            </div>
+                            <div class="m-widget5__stats1">
+                              <span class="m-widget5__number">
+                                {{articleContent.supportNumber}}
+                              </span>
+                              <br>
+                              <span class="m-widget5__sales">
+                                Supporters
+                              </span>
+                            </div>
+                            <div class="m-widget5__stats2">
+                              <span class="m-widget5__number">
+                                1046
+                              </span>
+                              <br>
+                              <span class="m-widget5__votes">
+                                Replicates
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end::m-widget5-->
+                      </div>
+                    </div>
+                  </div>
+                  <!--end::Content-->
+                  <div class="m--align-center">
+                      <div class=" m-loader m-loader--brand m-loader--lg" style="width: 30px; display: inline-block;"></div> 
+                  </div>
+                  
+                </div>
+              </div>
+              <!--end:: Widgets/Best Sellers-->
+          </div>
+          
+          <div class="col-xl-3 m--margin-20">
+              <!--begin:: Widgets/Support Tickets -->
+              <div class="m-portlet m-portlet--full-height ">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">
+                        Quotations
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+                          <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
+                            <i class="la la-ellipsis-h m--font-brand"></i>
+                          </a>
+                          <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                            <div class="m-dropdown__inner">
+                              <div class="m-dropdown__body">
+                                <div class="m-dropdown__content">
+                                  <ul class="m-nav">
+                                    <li class="m-nav__item">
+                                      <a href="" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-share"></i>
+                                        <span class="m-nav__link-text">
+                                          Genjour Trending
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                      <a href="" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                        <span class="m-nav__link-text">
+                                          Latest
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                      <a href="" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-info"></i>
+                                        <span class="m-nav__link-text">
+                                          Top
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                      <a href="" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                        <span class="m-nav__link-text">
+                                          Sort
+                                        </span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-widget3">
+                    <div *ngFor = "let quotationContent of quotationContents">
+                        <div class="m-widget3__item">
+                            <div class="m-widget3__header">
+                              <div class="m-widget3__user-img">
+                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                              </div>
+                              <div class="m-widget3__info">
+                                <span class="m-widget3__username">
+                                  {{quotationContent.genjourist}}
+                                </span>
+                                <br>
+                                <span class="m-widget3__time">
+                                  2 day ago
+                                </span>
+                              </div>
+                            </div>
+                            <div class="m-widget3__body">
+                              <p class="m-widget3__text">
+                                {{quotationContent.quote}}
+                              </p>
+                            </div>
+                          </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!--end:: Widgets/Support Tickets -->
+          </div>
+      </div>
+  </div>
+
+</div>

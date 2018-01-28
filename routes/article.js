@@ -88,4 +88,17 @@ router.post('/article',  passport.authenticate('jwt', {session:false}),  functio
 
 });
 
+router.get('/articles/:category', (req,res)=>{
+  Article.findArticleByCategory(req.params.category, (err,data)=>{
+    if(err) throw err;
+    if(!data){
+      res.json({success:false, msg:"No data found"});
+    }else{
+      res.json(data);
+    }
+  })
+})
+
+
+
 module.exports = router;

@@ -30,7 +30,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                              {{user.supporters}}
+                              {{user.supporterNumber}}
                             </h3>
                             <span class="m-widget19__comment">
                               Supporters
@@ -40,7 +40,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                                {{user.supporting}}
+                                {{user.supportingNumber}}
                               </h3>
                             <span class="m-widget19__comment">
                               Supporting
@@ -241,7 +241,7 @@
                                   </div>
                                 </div>
                                 <div class="m-widget5__stats1">
-                                  <span class="m-widget5__number">
+                                  <span class="m-widget5__number"> 
                                     {{journal.supportNumber}}
                                   </span>
                                   <br>
@@ -262,7 +262,93 @@
                             </div>
                       </div>
                       <div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          <div class="m--pull-right">
+                              <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+                                  <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
+                                    Sort
+                                  </a>
+                                  <div class="m-dropdown__wrapper">
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 36.5px;"></span>
+                                    <div class="m-dropdown__inner">
+                                      <div class="m-dropdown__body">
+                                        <div class="m-dropdown__content">
+                                          <ul class="m-nav">
+                                            <li class="m-nav__item">
+                                              <a href="" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-share"></i>
+                                                <span class="m-nav__link-text">
+                                                  Yesterday
+                                                </span>
+                                              </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                              <a href="" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                <span class="m-nav__link-text">
+                                                  Week
+                                                </span>
+                                              </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                              <a href="" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-info"></i>
+                                                <span class="m-nav__link-text">
+                                                  Month
+                                                </span>
+                                              </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                              <a href="" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                <span class="m-nav__link-text">
+                                                  Year
+                                                </span>
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                          </div>
+                          <div class="m-widget5">
+                            <div class="m-widget5__item" *ngFor="let quotation of quotations">
+                              <div class="m-widget5__content m-widget2__item m-widget2__item--primary">
+                                <h4 class="m-widget5__title">
+                                  {{quotation.title}}
+                                </h4>
+                                <span class="m-widget5__title">
+                                  {{quotation.quote}}
+                                </span>
+                                <div class="m-widget5__info">
+                                  <span class="m-widget5__info-date m--font-info">
+                                    {{quotation.date | date:'medium' }}
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="m-widget5__stats1">
+                                <span class="m-widget5__number">
+                                  {{quotation.supportNumber}}
+                                </span>
+                                <br>
+                                <span class="m-widget5__sales">
+                                  supports
+                                </span>
+                              </div>
+                              <div class="m-widget5__stats2">
+                                <span class="m-widget5__number">
+                                  {{quotation.replicateNumber}}
+                                </span>
+                                <br>
+                                <span class="m-widget5__votes">
+                                  replicates
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                       </div>
                       <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
                         hello  tab 3

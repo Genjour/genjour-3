@@ -2,8 +2,8 @@ import { Component, OnInit, TemplateRef, ElementRef  } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
-
-
+import { ScriptLoaderService } from '../../services/script-loader.service';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-write-article',
@@ -17,7 +17,9 @@ export class WriteArticleComponent implements OnInit {
     private authService : AuthService,
     private router : Router,
     private postService : PostService,
-    private el : ElementRef    
+    private el : ElementRef ,
+    private script: ScriptLoaderService,
+       
   ) { }
 
   imgUrl   : String;
@@ -31,6 +33,12 @@ export class WriteArticleComponent implements OnInit {
   ngOnInit() {
     
   }
+
+  ngAfterViewInit() {
+    this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
+        'assets/demo/default/custom/components/forms/widgets/summernote.js');
+
+}
 
  upload() {
     let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
@@ -52,24 +60,27 @@ export class WriteArticleComponent implements OnInit {
   }
 
   articleSubmit(){
+    var markup = $('.summernote')//.summernote('code');
 
     const article = {
       title    : this.title,
       tags     : this.tags,
       category : this.category,
       imgUrl   : this.imgUrl,
-      content  : this.content
+      content  : markup
     }
 
-    this.authService.postArticle(article).subscribe(data=>{
-      if(data.success){ 
-        console.log('article is posted');
-        this.router.navigate(['/write-article']);
-      }else{
-        console.log('unable to post this article');
-        this.router.navigate(['/write-article']);
-      }
-    });
+    console.log(article)
+    
+    // this.authService.postArticle(article).subscribe(data=>{
+    //   if(data.success){ 
+    //     console.log('article is posted');
+    //     this.router.navigate(['/write-article']);
+    //   }else{
+    //     console.log('unable to post this article');
+    //     this.router.navigate(['/write-article']);
+    //   }
+    // });
 
 
     

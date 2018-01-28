@@ -27,4 +27,15 @@ Quotation.addQuotation(newQuotation, (err,Quotation)=>{
 
 });
 
+router.get('/quotations/:category', (req,res)=>{
+    Quotation.findQuotationByCategory(req.params.category, (err,data)=>{
+      if(err) throw err;
+      if(!data){
+        res.json({success:false, msg:"No data found"});
+      }else{
+        res.json(data);
+      }
+    })
+  })
+
 module.exports = router;

@@ -1,12 +1,16 @@
-const express = require('express');
-const path = require('path');
+const express	 = require('express');
+const http 		 = require('http');
+const path 		 = require('path');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose')
-const Promise = require("bluebird");
-var morgan       = require('morgan');
-const config = require('./config/database');
+const cors 		 = require('cors');
+const passport   = require('passport');
+const mongoose   = require('mongoose')
+const Promise    = require("bluebird");
+const morgan     = require('morgan');
+const config	 = require('./config/database');
+const app		 = express();
+const server	 = http.createServer(app);
+var io			 = require('socket.io').listen(server);
 
 mongoose.Promise = require('bluebird');
 
@@ -20,7 +24,7 @@ mongoose.connection.on('Error', (err)=>{
 	console.log('failed to database '+err);
 });
 
-const app = express();
+
 
 const users = require('./routes/users');
 const article = require('./routes/article');
@@ -28,8 +32,6 @@ const quotation = require('./routes/quotation');
 const journals = require('./routes/journals');
 const genjourist = require('./routes/genjourist');
 const support = require('./routes/support');
-// Port Number
-const port = 3000;
 
 // Cors Middleware
 app.use(cors());
@@ -41,7 +43,7 @@ app.use(function(req, res, next) {
 		next();
 	});
 
-app.use(express.static(path.join(__dirname,'public')));
+//app.use(express.static(path.join(__dirname,'public')));
 
 //Express Session Middleware
 
@@ -63,13 +65,50 @@ require('./config/passport')(passport);
  app.use('/',support);
 
 //Index Route
-app.get('/',(req,res)=>
-{
+app.get('/',(req,res)=>{
 	res.send('Invalid Endpoint');
 });
 
+
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+server.listen(port, () => console.log(`APIs are running on localhost:${port}`));
+
+const Article    = require('./models/article');
+
+io.on('connection', function (socket){
+
+	console.log('user is connected');
+	socket.emit('test1', {test:'hello test'});
+	socket.on('test2', (data)=>{
+		console.log(data);
+	});
+
+	socket.on('getArticleIdForSupport',(articleId)=>{
+		Article.findArticle(articleId,(err,data)=>{
+			if(err) throw err;
+			if(!data){
+				io.emit('getArticleSupportNumber',{supporters:"Article not found"});
+			}else{
+				Article.updateSupporters(articleId,data.supporters.length,(err,data)=>{
+					if(err) throw err;
+					if(!data){
+						console.log("cannot update");
+					}else{
+						console.log("update");
+					}
+				});
+				io.emit('getArticleSupportNumber',data.supporters.length);
+			}
+		});
+	});
+
+});
+
 //Server Start
- app.listen(port,() =>
- {
- 	console.log('Server runnig on port '+port);
- });
+//  app.listen(http,() =>
+//  {
+//  	console.log('Server runnig on port '+port);
+//  });
+

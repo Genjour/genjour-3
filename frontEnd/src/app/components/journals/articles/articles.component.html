@@ -12,7 +12,7 @@
                     <div class="m-portlet__head m-portlet__head--fit">
                       <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-action">
-                        <a [routerLink]="['/journals',article.category]">
+                        <a [routerLink]="['/category',article.category]">
                           <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
                             {{article.category}}
                           </button>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="m-portlet__body">
                       <div class="m-widget19">
-                          <a [routerLink]="['/journals',article.articleId]">
+                          <a [routerLink]="['/journal',article.articleId]">
                             <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
                               <img src= "assets/{{article.imgUrl}}" alt="">
                               <h3 class="m-widget19__title m--font-light">
@@ -46,49 +46,29 @@
                                   </span>
                                 </div>
                               </div>
-                            <a [routerLink]="['/journals',article.articleId]">
-                              <div class="m-widget19__body m-nav__link-text">
-                                  {{article.content | summary}}
-                              </div>
-                            </a>
+                              <a [routerLink]="['/journal',article.articleId]">
+                                <div class="m-widget19__body m-nav__link-text">
+                                    {{article.content | summary}}
+                                </div>
+                              </a>
                             </div>
                           
                         <div class="m-widget19__action">
                             <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_modal_1">
-                              Launch Modal
-                            </button>
-                                <div class="m-btn-group m-btn-group--pill btn-group" role="group" aria-label="Button group with nested dropdown">
-                                  <button type="button" data-toggle="modal" data-target="#m_modal_1"  (click)="support(article?.articleId,user?.genjouristId)"  class="m-btn btn btn-secondary">
-                                    <i class="la la-file-text-o"></i> {{article.supportNumber}} Supporters 
-                                  </button>
-                                  <div class="m-btn-group btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary m-btn m-btn--pill-last dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="flaticon-network"></i> Replicate
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -176px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                      <a class="dropdown-item" href="#">
-                                        Dropdown link
-                                      </a>
-                                      <a class="dropdown-item" href="#">
-                                        Dropdown link
-                                      </a>
-                                      <a class="dropdown-item" href="#">
-                                        Dropdown link
-                                      </a>
-                                      <a class="dropdown-item" href="#">
-                                        Dropdown link
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_modal_1">
+                                Launch Modal
+                              </button>
+                              <div>
+                                <app-support-article [articleId]="article.articleId" [userId]="user.genjouristId">
+                                
+                                </app-support-article>   
+                              </div>
                             </div>
                         </div>
                       </div>
-                    </div>
-                </div> 
+                    </div> 
+                </div>
               </div>
-            </div>
 
               <!--begin::Modal-->
               <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

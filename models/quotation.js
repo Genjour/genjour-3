@@ -24,3 +24,8 @@ const Quotation = module.exports = mongoose.model('Quotation', quotationSchema);
 module.exports.addQuotation = function(newQuotation, callback){
         newQuotation.save(callback);
 }
+
+module.exports.findQuotationByCategory = function(category, callback){
+        const query = {category:category}
+        Quotation.find(query,callback);
+}

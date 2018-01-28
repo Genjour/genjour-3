@@ -12,20 +12,28 @@ export class SupportService {
 
 
     supportArticle(articleId, genjouristId){
-      // let headers = new Headers();
-      // headers.append('Content-Type','Application/json');
+      let headers = new Headers();
+      headers.append('Content-Type','Application/json');
       const URL = `http://localhost:3000/support/${articleId}/${genjouristId}`;
       // console.log(URL);
-      return this.http.post(URL).map(res=>res.json());
+      return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
     }
 
+
     supportGenjourist(userId, genjouristId){
-      // let headers = new Headers();
-      // headers.append('Content-Type','Application/json');
+      let headers = new Headers();
+      headers.append('Content-Type','Application/json');
       const URL = `http://localhost:3000/support/genjourist/${userId}/${genjouristId}`;
-      // console.log(URL);
-      return this.http.post(URL).map(res=>res.json());
+      return this.http.post(URL,{headers:headers}).map(res=>res.json());
+
+    }
+
+    supportingGenjourist(userId, genjouristId){
+      let headers = new Headers();
+      headers.append('Content-Type','Application/json');
+      const URL = `http://localhost:3000/supporting/genjourist/${userId}/${genjouristId}`;
+      return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
     }
 
