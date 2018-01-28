@@ -4,7 +4,15 @@ import { Injectable } from '@angular/core';
 export class ValidateService {
 
   constructor() { }
-  
+
+  checkLogin(user){
+    if(user.username == undefined || user.password == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
     checkRegister(user){
     if(user.name == undefined || user.email == undefined || user.password == undefined || user.username == undefined){
       return false;

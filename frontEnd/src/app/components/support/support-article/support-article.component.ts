@@ -34,10 +34,10 @@ export class SupportArticleComponent implements OnInit {
     this.articleService.article(this.articleId).subscribe(data=>{
       this.supporterNumber = data.supporters.length
     });
-    this.socketService.getSupport().subscribe((data)=>{
-      console.log(data);
-      this.supporterNumber = data;
-    })
+    // this.socketService.getSupport().subscribe((data)=>{
+    //   console.log(data);
+    //   this.supporterNumber = data;
+    // })
   }
 
   support(articleId, userId){
@@ -48,10 +48,7 @@ export class SupportArticleComponent implements OnInit {
       
       //this.socketService.test();
 
-      this.socketService.supportArticle(articleId).subscribe((data)=>{
-        console.log(data);
-        this.supporterNumber = data;
-      });
+      // this.socketService.supportArticle(articleId);
 
       //.subscribe(data=>{
         //this.supporterNumber=data;

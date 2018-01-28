@@ -60,27 +60,27 @@ export class WriteArticleComponent implements OnInit {
   }
 
   articleSubmit(){
-    var markup = $('.summernote')//.summernote('code');
+    //var markup = $('.summernote').summernote('code');
 
     const article = {
       title    : this.title,
       tags     : this.tags,
       category : this.category,
       imgUrl   : this.imgUrl,
-      content  : markup
+      //content  : markup
     }
 
-    console.log(article)
+    //console.log(article)
     
-    // this.authService.postArticle(article).subscribe(data=>{
-    //   if(data.success){ 
-    //     console.log('article is posted');
-    //     this.router.navigate(['/write-article']);
-    //   }else{
-    //     console.log('unable to post this article');
-    //     this.router.navigate(['/write-article']);
-    //   }
-    // });
+    this.authService.postArticle(article).subscribe(data=>{
+      if(data.success){ 
+        console.log('article is posted');
+        this.router.navigate(['/']);
+      }else{
+        console.log('unable to post this article');
+        this.router.navigate(['/write-article']);
+      }
+    });
 
 
     

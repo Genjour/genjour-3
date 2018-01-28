@@ -1,3 +1,4 @@
+import { ValidateService } from './../../services/validate.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ password: String;
 
   constructor(
     private authService : AuthService,
-    private router : Router
+    private router : Router,
+    private validateService :ValidateService
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,10 @@ password: String;
       password : this.password
     }
 
+ if(! this.validateService.checkLogin(user)){
+   console.log("Please fill all fields");
+   return false;
+ }
   this.authService.authenticateUser(user).subscribe(data=>{
     if(data.success){
       this.authService.storeUserData(data.token,data.user);

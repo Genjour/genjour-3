@@ -99,7 +99,7 @@ io.on('connection', function (socket){
 						console.log("update");
 					}
 				});
-				io.emit('getArticleSupportNumber',data.supporters.length);
+				socket.broadcast.emit('getArticleSupportNumber',data.supporters.length);
 			}
 		});
 	});
