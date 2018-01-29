@@ -24,6 +24,7 @@ export class SocketService {
       }
       
   supportArticle(articleId){
+    
       this.socket.emit('getArticleIdForSupport',articleId);
       // return Observable.create((observer)=>{
       //   this.socket.on('getArticleSupportNumber',(supportNumber)=>{

@@ -10,7 +10,7 @@ export class SupportService {
     private http:Http,
   ) { }
 
-
+ 
     supportArticle(articleId, genjouristId){
       let headers = new Headers();
       headers.append('Content-Type','Application/json');

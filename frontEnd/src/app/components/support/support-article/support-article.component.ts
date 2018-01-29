@@ -42,8 +42,14 @@ export class SupportArticleComponent implements OnInit {
 
   support(articleId, userId){
     if(this.authService.loggedIn()){
+      this.articleService.article(articleId).subscribe(data=>{
+        this.supporterNumber = data.supporters.length
+      });
       this.supportService.supportArticle(articleId, userId).subscribe(data=>{
         console.log(data);
+        this.articleService.article(articleId).subscribe(data=>{
+          this.supporterNumber = data.supporters.length
+        });
       });
       
       //this.socketService.test();

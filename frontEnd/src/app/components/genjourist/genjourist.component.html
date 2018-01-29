@@ -31,7 +31,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                              <!--{{userData?.supporters}}--> {{userData?.supporterNumber}}
+                              <!--{{userData?.supporters}}--> {{userData?.supportNumber}}
                             </h3>
                             <span class="m-widget19__comment">
                               Supporters
@@ -41,7 +41,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                                <!--{{userData?.supporting}}--> {{userData?.supportingNumber}} 
+                                <!--{{userData?.supporting}}--> {{userData?.supportingNumber}}  
                               </h3>
                             <span class="m-widget19__comment">
                               Supporting
@@ -55,6 +55,7 @@
               <button type="button" (click)="support(user?.genjouristId,userData.genjouristId)" class="btn m-btn--square  btn-primary btn-block">
                 Support
               </button>
+              <div *ngIf = "!selfSupportAlert">You cannot support your self :-)</div>
               <ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
                 <li class="m-nav__separator m-nav__separator--fit"></li>
                 <li class="m-nav__section m--hide">

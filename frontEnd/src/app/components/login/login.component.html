@@ -24,6 +24,7 @@
 									<div class="form-group m-form__group">
 										<input class="form-control m-input m-login__form-input--last" [(ngModel)]="password" type="password" placeholder="Password" name="password">
 									</div>
+									<div style="color:red;" *ngIf = "!validateService.checkLogin() ==  true">Please fill all fields</div>
 									<div class="row m-login__form-sub">
 										<div class="col m--align-left">
 											<label class="m-checkbox m-checkbox--focus">
@@ -43,14 +44,13 @@
 											Sign In
 										</button>
 									</div>
-									<div *ngIf = "!Login()">Please fill all fields correctly</div>
+									
 								</form>
 								<div class="m-stack__item m-stack__item--center">
 									<div class="m-login__account">
 										<span class="m-login__account-msg">
 											Don't have an account yet ?
 										</span>
-										&nbsp;&nbsp;
 										<a [routerLink]="['/register']" id="m_login_signup" class="m-link m-link--focus m-login__account-link">
 											Sign Up
 										</a>
@@ -59,7 +59,6 @@
 							</div>
 
 						</div>
-
 					</div>
 
 				</div>

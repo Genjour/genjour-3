@@ -20,6 +20,7 @@ export class GenjouristComponent implements OnInit {
   articleId: any;
   supporterNumber : any;
   supportingNumber : Number;
+  selfSupportAlert : Boolean = true;
 
   constructor(
     private genjouristService: GenjouristService,
@@ -52,14 +53,37 @@ export class GenjouristComponent implements OnInit {
 
   support(userId, genjouristId){
     if(this.authService.loggedIn()){
+
+      if(userId == genjouristId){
+        console.log('You cannot like your own profile');
+        this.selfSupportAlert = false;
+        return this.selfSupportAlert;
+      }
+
+      //=============== Support Code ==========================
+
       this.supportService.supportGenjourist(userId, genjouristId).subscribe(data=>{
         this.supporterNumber = data.msg;
         console.log(data.msg);
+        this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
+          console.log(data.supporters.length);
+        this.supporterNumber = data.supporters.length;
+        })
+    
       });
+
+       //=============== Supporting Code ======================
+
       this.supportService.supportingGenjourist(userId, genjouristId).subscribe(data=>{
         this.supportingNumber = data.msg;
         console.log(data.msg);
-      })
+      });
+      this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
+        console.log(data.supporters.length);
+      this.supportingNumber = data.supporting.length;
+    });
+
+
     }
     else{
         this.router.navigate(['/login']);

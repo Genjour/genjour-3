@@ -51,6 +51,11 @@ router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
                             return res.json({success:false, msg:"supporters cannot pop"});
                         } else {    
                                     //console.log(array.length);
+                                    User.updateSupporterNumber(userId,array.length, function(err,doc) {
+                                        if (err) { throw err; }
+                                        else { console.log("Updated"); }
+                                      });  
+                                    console.log(array.length);
                                     return res.json({success:true, msg:"supporters pop"})
                                 }
                     });
@@ -64,7 +69,12 @@ router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
                         } else 
                                 {
                                     //console.log(array.length);
-                                    return res.json({success:true, msg:"supporters push"})
+                                    User.updateSupporterNumber(userId,array.length, function(err,doc) {
+                                        if (err) { throw err; }
+                                        else { console.log("Updated"); }
+                                      });  
+                                    console.log(array.length);
+                                    return res.json({success:true, msg:"supporters push"});
                                     
                                 }
                                 
@@ -101,8 +111,13 @@ router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
                         if(!status){
                             return res.json({success:false, msg:"supporting cannot pop"});
                         } else {    
-                                    //console.log(array.length);
-                                    return res.json({success:true, msg:"supporting pop"})
+                                    //console.log(array.length); 
+                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
+                                        if (err) { throw err; }
+                                        else { console.log("Updated"); }
+                                      }); 
+                                    console.log(array.length);
+                                    return res.json({success:true, msg:"supporting pop"});
                                 }
                     });
                     
@@ -115,7 +130,12 @@ router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
                         } else 
                                 {
                                     //console.log(array.length);
-                                    return res.json({success:true, msg:"supporting push"})
+                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
+                                        if (err) { throw err; }
+                                        else { console.log("Updated"); }
+                                      });  
+                                    console.log(array.length);
+                                    return res.json({success:true, msg:"supporting push"});
                                     
                                 }
                                 
