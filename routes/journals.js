@@ -22,4 +22,9 @@ router.get('/journal/:id',function(req,res){
     });
 });
 
+router.get('/journals/feeds/:userId', function(req,res){
+    const userId = req.params.userId
+    Article.find
+})
+
 module.exports = router;

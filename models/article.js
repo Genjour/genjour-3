@@ -58,3 +58,7 @@ module.exports.supporterNumber = function(articleId,calllback){
 module.exports.getArticles = function(callback){
         Article.find(callback).sort({date:-1});
 }
+
+module.exports.feedsArticle = function(array,callback){
+        Article.find({genjouristId:{$in : array}}).sort({date:-1});
+}

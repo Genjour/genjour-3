@@ -92,3 +92,7 @@ module.exports.updateSupporterNumber = function(userId, supportersNumber, callba
 module.exports.updateSupportingNumber = function(userId, supportersNumber, callback){
   User.updateOne({genjouristId:userId},{$set:{ supportingNumber : supportersNumber }}, callback);  
 }
+
+module.exports.getSupportingArray = function(userId){
+  //return UserId.find({genjouristId:userId},)
+}
