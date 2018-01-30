@@ -29,3 +29,7 @@ module.exports.findQuotationByCategory = function(category, callback){
         const query = {category:category}
         Quotation.find(query,callback);
 }
+
+module.exports.feedsQuotation = function(array,callback){
+        Quotation.find({genjouristId:{$in : array}},callback).sort({date:-1});
+}

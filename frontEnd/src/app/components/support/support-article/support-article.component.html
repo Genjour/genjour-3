@@ -1,5 +1,11 @@
-<span (click)="support(articleId,userId)"> {{supporterNumber}} Support </span> | <span data-toggle="modal" data-target="#m_modal_4"> Replicate </span> 
-
+<div class="m-stack m-stack--ver m-stack--general">
+        <div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid">
+                <span (click)="support(articleId,userId)"> <i class="m-menu__link-icon la la-hand-rock-o"></i> {{supporterNumber}}  </span>
+        </div>
+        <div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid">
+                <span data-toggle="modal" data-target="#m_modal_4"> <i class="m-menu__link-icon flaticon-network"> </i> </span> 
+        </div>
+    </div>
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

@@ -32,6 +32,7 @@ import { ArticleService } from './services/article.service';
 import { SocketService } from './services/socket/socket.service';
 import { CategoryService } from './services/category/category.service';
 import { ScriptLoaderService } from "./services/script-loader.service";
+import { FeedsService } from './services/feeds/feeds.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { WriteArticleComponent } from './components/write-article/write-article.component';
@@ -94,7 +95,8 @@ const appRoutes: Routes = [
     ArticleService,
     SocketService,
     CategoryService,
-    ScriptLoaderService
+    ScriptLoaderService,
+    FeedsService,
   ],
   bootstrap: [AppComponent]
 })

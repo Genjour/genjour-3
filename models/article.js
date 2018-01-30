@@ -60,5 +60,6 @@ module.exports.getArticles = function(callback){
 }
 
 module.exports.feedsArticle = function(array,callback){
-        Article.find({genjouristId:{$in : array}}).sort({date:-1});
+        Article.find({genjouristId:{$in : array}},callback).sort({date:-1});
 }
+

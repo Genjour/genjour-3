@@ -17,6 +17,7 @@ export class SupportArticleComponent implements OnInit {
   articles : Object;
   user : any[] = [];
   supporterNumber : any;
+  supportStatus : Boolean;
 
   @Input() articleId: String; 
   @Input() userId : String;
@@ -32,7 +33,11 @@ export class SupportArticleComponent implements OnInit {
 
   ngOnInit( ) {
     this.articleService.article(this.articleId).subscribe(data=>{
-      this.supporterNumber = data.supporters.length
+      this.supporterNumber = data.supporters.length;
+      if(data.success  = true)
+       { this.supportStatus = true;}
+      if(data.supportStatus = false)
+        { this.supportStatus = false;}
     });
     // this.socketService.getSupport().subscribe((data)=>{
     //   console.log(data);
@@ -43,7 +48,8 @@ export class SupportArticleComponent implements OnInit {
   support(articleId, userId){
     if(this.authService.loggedIn()){
       this.articleService.article(articleId).subscribe(data=>{
-        this.supporterNumber = data.supporters.length
+        this.supporterNumber = data.supporters.length;
+        
       });
       this.supportService.supportArticle(articleId, userId).subscribe(data=>{
         console.log(data);
