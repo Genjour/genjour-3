@@ -33,6 +33,7 @@ export class ArticleComponent implements OnInit {
 
     this.articleService.article(this.route.snapshot.params.articleId).subscribe(data=>{
       this.articleData = data;
+      console.log(this.articleData);
     })
 
   }

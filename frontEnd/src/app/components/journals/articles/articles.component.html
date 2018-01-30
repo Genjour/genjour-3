@@ -48,7 +48,8 @@
                               </div>
                               <a [routerLink]="['/journal',article.articleId]">
                                 <div class="m-widget19__body m-nav__link-text">
-                                    {{article.content | summary}}
+                                  <div [innerHtml]="article.content | summary"></div>
+                                    <!-- {{article.content | summary}} -->
                                 </div>
                               </a>
                             </div>

@@ -7,7 +7,9 @@ import { FeedsService } from '../../services/feeds/feeds.service';
   styleUrls: ['./feeds.component.css']
 })
 export class FeedsComponent implements OnInit {
-
+  
+articleId: String;
+userId :String;
 articles : Object;
 
   constructor(

@@ -3,8 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import {Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { ScriptLoaderService } from '../../services/script-loader.service';
-import * as $ from "jquery";
-
+//import * as $ from "jquery";
+declare let $:any;
 @Component({
   selector: 'app-write-article',
   templateUrl: './write-article.component.html',
@@ -37,12 +37,12 @@ export class WriteArticleComponent implements OnInit {
   ngAfterViewInit() {
     this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
         'assets/demo/default/custom/components/forms/widgets/summernote.js');
+        
 
 }
 
  upload() {
     let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
-    console.log("iam+ "+inputEl);
     let fileCount: number = inputEl.files.length;
     let formData = new FormData();
     if (fileCount > 0) { // a file was selected
@@ -53,24 +53,25 @@ export class WriteArticleComponent implements OnInit {
          //alert(success._body);
          //console.log(success._body);
          this.imgUrl = success._body;
-         console.log(this.imgUrl);
+         //console.log(this.imgUrl);
        },
          (error) => alert(error))
     }
   }
 
   articleSubmit(){
-    //var markup = $('.summernote').summernote('code');
+    
+    var markup = $('.summernote').summernote('code');
 
     const article = {
       title    : this.title,
       tags     : this.tags,
       category : this.category,
       imgUrl   : this.imgUrl,
-      //content  : markup
+      content  : markup
     }
 
-    //console.log(article)
+    console.log(article)
     
     this.authService.postArticle(article).subscribe(data=>{
       if(data.success){ 

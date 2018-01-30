@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { BaseRequestOptions, HttpModule } from "@angular/http";
 import { MockBackend } from "@angular/http/testing";
 
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
