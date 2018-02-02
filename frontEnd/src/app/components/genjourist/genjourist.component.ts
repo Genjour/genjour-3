@@ -21,6 +21,8 @@ export class GenjouristComponent implements OnInit {
   supporterNumber : any;
   supportingNumber : Number;
   selfSupportAlert : Boolean = true;
+  supportersLists : any[] = [];
+  supportingLists : any[] = [];
 
   constructor(
     private genjouristService: GenjouristService,
@@ -49,6 +51,11 @@ export class GenjouristComponent implements OnInit {
     this.quotations = data;
     })
 
+    this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
+      this.supportingLists = data;
+      console.log(this.supportingLists);
+    })
+
   }
 
   support(userId, genjouristId){
@@ -69,7 +76,6 @@ export class GenjouristComponent implements OnInit {
           console.log(data.supporters.length);
         this.supporterNumber = data.supporters.length;
         })
-    
       });
 
        //=============== Supporting Code ======================

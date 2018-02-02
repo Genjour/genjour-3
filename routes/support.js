@@ -12,7 +12,6 @@ const io		 = require('socket.io');
     router.post('/support/:articleId/:genjouristId',function(req,res) {
         const articleId = req.params.articleId;
         const genjouristId = req.params.genjouristId;
-        
         Article.findArticle(articleId, (err,article)=>{
             if(err) throw err;
             if(!article){

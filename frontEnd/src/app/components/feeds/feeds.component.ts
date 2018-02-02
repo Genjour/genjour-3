@@ -18,7 +18,7 @@ articles : Object;
 
   ngOnInit() {
     this.feedsService.articleFeeds('901513534774213').subscribe(data=>{
-      this.articles = data;
+      this.articles = data; 
       console.log(data);
     })
   }

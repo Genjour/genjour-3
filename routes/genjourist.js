@@ -34,56 +34,8 @@ router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
     const userId = req.params.userId;
     const genjouristId = req.params.genjouristId;
     
-    User.findUser(genjouristId, (err,user)=>{
-        if(err) throw err;
-        if(!user){
-            return res.json({success:false, msg:"genjourist is not found"});
-        }
-        else 
-            {
-                const array = user.supporters;
-                //array.includes(genjouristId);
-                if(array.includes(userId) == true)
-                {
-                    User.removeSupporter(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporters cannot pop"});
-                        } else {    
-                                    //console.log(array.length);
-                                    User.updateSupporterNumber(userId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      });  
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporters pop"})
-                                }
-                    });
-                    
-                }
-                else{
-                    User.addSupporter(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporters cannot push"});
-                        } else 
-                                {
-                                    //console.log(array.length);
-                                    User.updateSupporterNumber(userId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      });  
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporters push"});
-                                    
-                                }
-                                
-                    });
-                    
-                }
 
-            } 
-    })
+
 
 })
 
@@ -94,58 +46,62 @@ router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
 router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
     const userId = req.params.userId;
     const genjouristId = req.params.genjouristId;
-    
-    User.findUser(userId, (err,user)=>{
+
+    User.findUser(userId,(err,user)=>{
         if(err) throw err;
-        if(!user){
-            return res.json({success:false, msg:"user not found"});
+        if(!user)
+        {return res.json({success:false,msg:"no user found"});}
+        else{
+            array = user.supporting;
+            //console.log(genjouristId);
+            var found = array.find(found=>found.genjouristId == genjouristId);
+            if(found != undefined){
+                User.removeSupporting(userId,found, (err,docs)=>{
+                    if(err) throw err;
+                    else res.json({success:true});
+                })
+            } else{
+                User.findUser(genjouristId, (err,doc)=>{
+                    if(err) throw err;
+                    else{        
+                         var store ={
+                            name:doc.name,
+                            genjouristId:doc.genjouristId,
+                            dob: doc.dob,
+                            imgUrl : doc.imgUrl
+                            };
+            
+                        //res.json(store);
+                        User.addSupporting(userId,store,(err,docs)=>{
+                            if(err) throw err;
+                            else{
+                                res.json(docs)
+                            }
+                        })
+            
+                    }
+                })
+
+            }
         }
-        else 
-            {
-                const array = user.supporting;
-                //array.includes(genjouristId);
-                if(array.includes(genjouristId) == true)
-                {
-                    User.removeSupporting(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporting cannot pop"});
-                        } else {    
-                                    //console.log(array.length); 
-                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      }); 
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporting pop"});
-                                }
-                    });
-                    
-                }
-                else{
-                    User.addSupporting(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporting cannot push"});
-                        } else 
-                                {
-                                    //console.log(array.length);
-                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      });  
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporting push"});
-                                    
-                                }
-                                
-                    });
-                    
-                }
-
-            } 
     })
-
+    
+ 
 })
+
+
+//=============================================================================
+//============================== SUPPORTING LIST ==============================
+//=============================================================================
+
+router.get('/supportingList/:userid', function(req,res){
+    const userId = req.params.userid;
+    User.findUser(userId, function(err,user){
+        if(err) throw err;
+        else{
+                return res.json(user.supporting);
+            }
+        })
+    });
 
 module.exports = router;

@@ -284,9 +284,6 @@
                   <span class="m-topbar__userpic">
                     <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
                   </span>
-                  <span class="m-topbar__username m--hide">
-                    Nick
-                  </span>
                 </a>
                 <div class="m-dropdown__wrapper">
                   <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -339,35 +336,10 @@
                               </span>
                             </a>
                           </li>
-                          <li class="m-nav__item">
-                            <a href="header/profile.html" class="m-nav__link">
-                              <i class="m-nav__link-icon flaticon-chat-1"></i>
-                              <span class="m-nav__link-text">
-                                Messages
-                              </span>
-                            </a>
-                          </li>
-                          <li class="m-nav__separator m-nav__separator--fit"></li>
-                          <li class="m-nav__item">
-                            <a href="header/profile.html" class="m-nav__link">
-                              <i class="m-nav__link-icon flaticon-info"></i>
-                              <span class="m-nav__link-text">
-                                FAQ
-                              </span>
-                            </a>
-                          </li>
-                          <li class="m-nav__item">
-                            <a routerLink="['/setting']" class="m-nav__link">
-                              <i class="m-nav__link-icon flaticon-settings"></i>
-                              <span class="m-nav__link-text">
-                                Setting
-                              </span>
-                            </a>
-                          </li>
                           <li class="m-nav__separator m-nav__separator--fit"></li>
                           <li class="m-nav__item">
                             <a (click)="logout()" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
-                              Logout
+                                <i class="m-nav__link-icon la la-lock"></i> Logout
                             </a>
                           </li>
                         </ul>
@@ -380,9 +352,7 @@
                 <span class="m--margin-top-5 m-nav__link">
                   <a [routerLink]="['/login']" class="btn btn-secondary m-btn m-btn--icon m-btn--pill">
                       <span>
-                        <span>
-                          Login
-                        </span>
+                        <i class="m-nav__link-icon la la-key"></i> Login
                       </span>
                     </a>
                 </span>
@@ -391,9 +361,7 @@
                 <span class="m--margin-top-5 m-nav__link">
                   <a [routerLink]="['/register']"  class="btn btn-secondary m-btn m-btn--icon m-btn--pill">
                       <span>
-                        <span>
-                          Sign Up
-                        </span>
+                        <i class="m-nav__link-icon la la-pencil-square"></i> Sign Up
                       </span>
                     </a>
                 </span>

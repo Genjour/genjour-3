@@ -68,7 +68,7 @@ export class WriteArticleComponent implements OnInit {
       tags     : this.tags,
       category : this.category,
       imgUrl   : this.imgUrl,
-      content  : markup
+      content  : this.content
     }
 
     console.log(article)

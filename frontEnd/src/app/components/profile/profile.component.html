@@ -51,9 +51,9 @@
                 </div>
               </div>
               <div class="m-separator"></div>
-              <button type="button" class="btn m-btn--square  btn-brand btn-block">
+              <a [routerLink] = "['/genjourist',user.genjouristId]" class="btn m-btn--square  btn-brand btn-block">
                   View Your Profile
-              </button>
+              </a>
               <ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
                 <li class="m-nav__separator m-nav__separator--fit"></li>
                 <li class="m-nav__section m--hide">
@@ -121,22 +121,6 @@
                       </span>
                   </a>
                 </li>
-                <li class="m-nav__item">
-                  <a  class="m-nav__link">
-                    <i class="m-nav__link-icon flaticon-time-3"></i>
-                    <span class="m-nav__link-text">
-                      Events
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a  class="m-nav__link">
-                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                    <span class="m-nav__link-text">
-                      Support
-                    </span>
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -157,16 +141,6 @@
                       <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab">
                           Quotes
-                        </a>
-                      </li>
-                      <li class="nav-item m-tabs__item">
-                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab">
-                          Interview
-                        </a>
-                      </li>
-                      <li class="nav-item m-tabs__item">
-                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab">
-                          Survey
                         </a>
                       </li>
                     </ul>
@@ -351,9 +325,6 @@
                               </div>
                             </div>
                           </div>
-                      </div>
-                      <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
-                        hello  tab 3
                       </div>
                     </div>
                   </div>

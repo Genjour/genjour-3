@@ -6,19 +6,19 @@ const config = require('../config/database');
 //User Schema
 const  UserSchema = mongoose.Schema({
   
-  name        :String,
-  email       :String,
-  username    :String,
-  password    :String,
-  genjouristId:String,
-  gender      :String,
-  dob         :String,
-  createdOn   :String,
-  supporters  :Array,
+  name             : String,
+  email            : String,
+  username         : String,
+  password         : String,
+  genjouristId     : String,
+  gender           : String,
+  dob              : String,
+  createdOn        : String,
+  supporters       : Array,
   supportersNumber : Number,
-  supporting  :Array,
-  supportingNumber  : Number,
-  status: Boolean,
+  supporting       : Array,
+  supportingNumber : Number,
+  status           : Boolean,
   
   
 });
@@ -53,6 +53,9 @@ module.exports.comparePassword = function(candiadatePassword, hash, callback){
     callback(null,isMatch);
   });
 }
+
+
+//================== find user by genjouristId =============
 
 module.exports.findUser = function(userId, callback){
         const query = {genjouristId: userId}

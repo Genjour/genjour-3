@@ -26,4 +26,9 @@ export class GenjouristService {
       .map(response=>response.json())
   }
 
+
+  getSupportingList(userId){
+    return this.http.get(`http://localhost:3000/supportingList/${userId}`).map(res=>res.json());
+  }
+
 }

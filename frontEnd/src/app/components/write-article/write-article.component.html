@@ -61,7 +61,7 @@
 														Upload
 													</button> <br>
 													<div *ngIf = "imgUrl">
-														<input class="hidden" [disabled]="!xyz" [(ngModel)]="imgUrl" name="imgUrl"/> 
+														<input hidden [disabled]="!xyz" [(ngModel)]="imgUrl" name="imgUrl"/> 
 													</div>
 												</div>
 											</div>
@@ -101,7 +101,8 @@
 													Article Content
 												</label>
 												<div class="col-lg-8">
-                          <div class="summernote"></div>
+													<!-- <div class="summernote"></div> -->
+													<textarea class="form-control m-input"  rows="8" [(ngModel)]="content" name="content"></textarea>
 												</div>
 											</div>
 										</div>

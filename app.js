@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 		next();
 	});
 
+app.use(express.json({limit: '50mb'}));
 app.use(express.static(path.join(__dirname,'public')));
 
 //Express Session Middleware
@@ -85,24 +86,24 @@ io.on('connection', function (socket){
 		console.log(data);
 	});
 
-	socket.on('getArticleIdForSupport',(articleId)=>{
-		Article.findArticle(articleId,(err,data)=>{
-			if(err) throw err;
-			if(!data){
-				io.emit('getArticleSupportNumber',{supporters:"Article not found"});
-			}else{
-				Article.updateSupporters(articleId,data.supporters.length,(err,data)=>{
-					if(err) throw err;
-					if(!data){
-						console.log("cannot update");
-					}else{
-						console.log("update");
-					}
-				});
-				socket.broadcast.emit('getArticleSupportNumber',data.supporters.length);
-			}
-		});
-	});
+	// socket.on('getArticleIdForSupport',(articleId)=>{
+	// 	Article.findArticle(articleId,(err,data)=>{
+	// 		if(err) throw err;
+	// 		if(!data){
+	// 			io.emit('getArticleSupportNumber',{supporters:"Article not found"});
+	// 		}else{
+	// 			Article.updateSupporters(articleId,data.supporters.length,(err,data)=>{
+	// 				if(err) throw err;
+	// 				if(!data){
+	// 					console.log("cannot update");
+	// 				}else{
+	// 					console.log("update");
+	// 				}
+	// 			});
+	// 			socket.broadcast.emit('getArticleSupportNumber',data.supporters.length);
+	// 		}
+	// 	});
+	// });
 
 });
 
