@@ -14,6 +14,7 @@ import { Observable } from "rxjs/Rx"
 export class LoginComponent implements OnInit {
 username: String;
 password: String;
+checkStatus: String;
 
   constructor(
     private authService : AuthService,
@@ -30,13 +31,17 @@ password: String;
       password : this.password
     }
 
-    if(!this.validateService.checkLogin(user)){
-      console.log("Please fill all fields");
+    if(this.username == undefined || this.password == undefined){
+      this.checkStatus = "Enter Username & Password Correctly";
       return false;
     }
 
     this.authService.authenticateUser(user).subscribe(data=>{
-    if(data.success){
+    if(data.success == false){
+      this.checkStatus = data.msg;
+      console.log(this.checkStatus);
+    }
+    else if(data.success == true){
       this.authService.storeUserData(data.token,data.user);
       this.router.navigate(['feeds']);
     }else{

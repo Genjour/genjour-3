@@ -31,4 +31,8 @@ export class GenjouristService {
     return this.http.get(`http://localhost:3000/supportingList/${userId}`).map(res=>res.json());
   }
 
+  getSupportersList(userId){
+    return this.http.get(`http://localhost:3000/supportersList/${userId}`).map(res=>res.json());
+  }
+
 }

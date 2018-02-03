@@ -18,7 +18,7 @@ export class GenjouristComponent implements OnInit {
   quotations :Object;
   user: object;
   articleId: any;
-  supporterNumber : any;
+  supporterNumber : Number;
   supportingNumber : Number;
   selfSupportAlert : Boolean = true;
   supportersLists : any[] = [];
@@ -51,9 +51,17 @@ export class GenjouristComponent implements OnInit {
     this.quotations = data;
     })
 
+    //=================================================================================================
+    //======================================= LIST ====================================================
+    //=================================================================================================
     this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
       this.supportingLists = data;
       console.log(this.supportingLists);
+    })
+
+    this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
+      this.supportersLists = data;
+      console.log(this.supportersLists);
     })
 
   }
@@ -73,8 +81,8 @@ export class GenjouristComponent implements OnInit {
         this.supporterNumber = data.msg;
         console.log(data.msg);
         this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
-          console.log(data.supporters.length);
-        this.supporterNumber = data.supporters.length;
+        console.log(data.supporters.length);
+        this.supporterNumber = data.supporters.length; 
         })
       });
 
@@ -99,6 +107,14 @@ export class GenjouristComponent implements OnInit {
   
 }
 
+
+refreshUser(){
+  this.ngOnInit();
+  this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
+    this.supportingLists = data;
+    //console.log(this.supportingLists);
+  })
+}
   
 
 }

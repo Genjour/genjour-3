@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   password : String;
   username : String;
   gender   : String;
+  checkStatus : String;
 
 
 
@@ -38,8 +39,9 @@ export class RegisterComponent implements OnInit {
 
     // check required fields
 
-    if(!this.validateService.checkRegister(user)){
+    if(user.name == undefined || user.email == undefined || user.password == undefined || user.username == undefined){
       console.log("please fill all fields");
+      this.checkStatus = "Please fill all fields";
       return false;
     }
   
@@ -47,6 +49,7 @@ export class RegisterComponent implements OnInit {
 
     if(!this.validateService.validateEmail(user.email)){
       console.log("Email is not valid");
+      this.checkStatus = "Email is not valid";
       return false;
     }
 

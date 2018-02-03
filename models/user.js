@@ -66,12 +66,12 @@ module.exports.findUser = function(userId, callback){
 //============================== SUPPORTERS ===================================
 //=============================================================================
 
-module.exports.addSupporter = function(userId, supporters, callback){ 
-  User.findOneAndUpdate({genjouristId:supporters}, {$push:{supporters:userId}}, callback);
+module.exports.addSupporter = function(userId, store, callback){ 
+  User.findOneAndUpdate({genjouristId:userId}, {$push:{supporters:store}}, callback);
 }
 
-module.exports.removeSupporter = function(userId, supporters, callback){
-  User.findOneAndUpdate({genjouristId:supporters}, {$pop:{supporters:userId}}, callback);
+module.exports.removeSupporter = function(userId, foundItem, callback){
+  User.findOneAndUpdate({genjouristId:userId}, {$pop:{supporters:foundItem}}, callback);
 }
 
 

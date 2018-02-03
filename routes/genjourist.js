@@ -34,7 +34,48 @@ router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
     const userId = req.params.userId;
     const genjouristId = req.params.genjouristId;
     
+    User.findUser(genjouristId, (err,genjourist)=>{
+        if(err) throw err;
+        if(!genjourist){
+            return res.json({success:false, msg:"no genjourist with this id found"});
+        }
+        else{
+            array=genjourist.supporters;
+            //console.log(array);
+            var found = array.find(found=>found.genjouristId == userId);
+            
+            if(found != undefined){
+                
+                User.removeSupporter(genjouristId, found, (err,docs)=>{
+                    if(err) throw err;
+                    
+                    else {  
+                            // console.log("i m here"+docs);
+                            res.json({ msg:"remove supporter"});
+                        }
+                })
+            }else{
+                User.findUser(userId, (err,doc)=>{
+                    if(err) throw err;
+                    else{
+                        var store ={
+                            name:doc.name,
+                            genjouristId:doc.genjouristId,
+                            dob: doc.dob,
+                            imgUrl : doc.imgUrl
+                            };
 
+                            User.addSupporter(genjouristId, store, (err,docs)=>{
+                                if(err) throw err;
+                                else{
+                                    res.json({msg:"add supporter"})
+                                }
+                            })
+                    }
+                })
+            }
+        }
+    })
 
 
 })
@@ -58,7 +99,7 @@ router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
             if(found != undefined){
                 User.removeSupporting(userId,found, (err,docs)=>{
                     if(err) throw err;
-                    else res.json({success:true});
+                    else res.json({success:true, msg:"remove supporting"});
                 })
             } else{
                 User.findUser(genjouristId, (err,doc)=>{
@@ -75,7 +116,7 @@ router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
                         User.addSupporting(userId,store,(err,docs)=>{
                             if(err) throw err;
                             else{
-                                res.json(docs)
+                                res.json({succes:true, msg:"add supporting"})
                             }
                         })
             
@@ -100,6 +141,20 @@ router.get('/supportingList/:userid', function(req,res){
         if(err) throw err;
         else{
                 return res.json(user.supporting);
+            }
+        })
+    });
+
+//=============================================================================
+//============================== Supporters LIST ==============================
+//=============================================================================
+
+router.get('/supportersList/:userid', function(req,res){
+    const userId = req.params.userid;
+    User.findUser(userId, function(err,user){
+        if(err) throw err;
+        else{
+                return res.json(user.supporters);
             }
         })
     });

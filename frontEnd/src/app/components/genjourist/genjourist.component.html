@@ -31,7 +31,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                              <!--{{userData?.supporters}}--> {{userData?.supportNumber}}
+                              <!--{{userData?.supporters}}--> {{supporterNumber}}
                             </h3>
                             <span class="m-widget19__comment">
                               Supporters
@@ -357,7 +357,9 @@
                                       </div>
                                       <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                          {{supportersList.name}}
+                                          <a [routerLink]="['/genjourist',supportersList.genjouristId]" (click)="refreshUser()">
+                                            {{supportersList.name}}
+                                          </a>
                                         </span>
                                         <br>
                                         <span class="m-widget4__sub">
@@ -394,7 +396,7 @@
                                       </div>
                                       <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                          <a [routerLink]="['genjourist',supportingList.genjouristId]">
+                                          <a [routerLink]="['/genjourist',supportingList.genjouristId]" (click)="refreshUser()">
                                             {{supportingList.name}}
                                           </a>
                                         </span>

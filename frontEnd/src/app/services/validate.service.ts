@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ValidateService {
 
-  
 
   constructor() { }
 
@@ -14,6 +13,7 @@ export class ValidateService {
       return true;
     }
   }
+
 
 checkRegister(user){
     if(user.name == undefined || user.email == undefined || user.password == undefined || user.username == undefined){
