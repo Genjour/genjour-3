@@ -14,9 +14,9 @@ const  UserSchema = mongoose.Schema({
   gender           : String,
   dob              : String,
   createdOn        : String,
-  supporters       : Array,
+  supporters       : String,
+  supporting       : String,
   supportersNumber : Number,
-  supporting       : Array,
   supportingNumber : Number,
   status           : Boolean,
   
