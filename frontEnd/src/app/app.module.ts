@@ -34,6 +34,8 @@ import { ScriptLoaderService } from "./services/script-loader.service";
 import { FeedsService } from './services/feeds/feeds.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
+import { ProtectedGaurd } from './gaurds/protected.gaurd';
+
 import { WriteArticleComponent } from './components/write-article/write-article.component';
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
@@ -41,12 +43,10 @@ import { SummaryPipe } from './components/journals/articles/summary.pipe';
 
 
 
-
-
 const appRoutes: Routes = [
   {path: '', component:JournalsComponent },
-  {path: 'login', component:LoginComponent},
-  {path: 'register', component:RegisterComponent},
+  {path: 'login', component:LoginComponent, canActivate:[ProtectedGaurd]},
+  {path: 'register', component:RegisterComponent, canActivate:[ProtectedGaurd]},
   {path: 'feeds', component:FeedsComponent, canActivate:[AuthGaurd] },
   {path: 'category/:categoryName', component:CategoryComponent},
   {path: 'genjourist/:id', component:GenjouristComponent},
@@ -87,6 +87,7 @@ const appRoutes: Routes = [
     PostService,
     AuthService,
     AuthGaurd,
+    ProtectedGaurd,
     JournalsService,
     ProfileService,
     SupportService,
