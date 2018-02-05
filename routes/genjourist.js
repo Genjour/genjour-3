@@ -140,7 +140,8 @@ router.get('/supportingList/:userid', function(req,res){
     User.findUser(userId, function(err,user){
         if(err) throw err;
         else{
-                return res.json(user.supporting);
+            
+                return res.json( JSON.stringify( user ) );
             }
         })
     });
@@ -154,7 +155,8 @@ router.get('/supportersList/:userid', function(req,res){
     User.findUser(userId, function(err,user){
         if(err) throw err;
         else{
-                return res.json(user.supporters);
+                
+                return res.json(user.supporting);
             }
         })
     });

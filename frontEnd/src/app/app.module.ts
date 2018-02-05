@@ -39,6 +39,7 @@ import { ProtectedGaurd } from './gaurds/protected.gaurd';
 import { WriteArticleComponent } from './components/write-article/write-article.component';
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
+import { SettingsComponent } from './components/settings/settings/settings.component';
 
 
 
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
   {path: 'category/:categoryName', component:CategoryComponent},
   {path: 'genjourist/:id', component:GenjouristComponent},
   {path: 'genjourist', component: ProfileComponent, canActivate:[AuthGaurd] },
+  {path: 'settings', component: SettingsComponent, canActivate:[AuthGaurd] },
   {path: 'journal/:articleId', component:ArticleComponent},
   {path: 'write-article', component:WriteArticleComponent, canActivate:[AuthGaurd]},
   {path: 'write-quotation', component:WriteQuotationComponent, canActivate:[AuthGaurd]},
@@ -75,6 +77,7 @@ const appRoutes: Routes = [
     SupportArticleComponent,
     SupportQuotationComponent,
     CategoryComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

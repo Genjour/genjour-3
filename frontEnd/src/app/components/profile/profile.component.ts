@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
 user : any;
 journals : Object;
 quotations :Object;
+supportersLists : any[] = [];
+supportingLists : any[] = [];
 
   constructor(
     private authService : AuthService,
@@ -32,6 +34,19 @@ quotations :Object;
       this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
         this.quotations = quotation;
         });
+
+            //=================================================================================================
+            //======================================= LIST ====================================================
+            //=================================================================================================
+            this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
+              this.supportingLists = data;
+              console.log(this.supportingLists);
+            })
+
+            this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
+              this.supportersLists = data;
+              console.log(this.supportersLists);
+            })
     });
 
 

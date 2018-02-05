@@ -15,13 +15,16 @@ user: Object;
   ) { }
 
   ngOnInit() {
-        this.authService.getGenjourist().subscribe(profile=>{
+      this.authService.getGenjourist().subscribe(profile=>{
       this.user = profile.user;
+      this.authService.userDataBridge(this.user);
       },
       err => {
         console.log(err);
         return false;
       });
+
+      
   }
 
   logout(){

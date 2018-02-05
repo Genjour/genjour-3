@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+
+<div class="m-subheader">
+
+</div>
+<div *ngIf="user" class="m-content m--margin-20">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12">
+
+      <div class="m-portlet m-portlet--full-height ">
+          <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                    Settings 
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+        <form class="m-form m-form--fit m-form--label-align-right">
+          <div class="m-portlet__body">
+              <div class="form-group m-form__group row">
+                  <label for="example-text-input" class="col-3 col-form-label">
+                    Profile Image
+                  </label>
+                      <div class="col-6 col-xs-12 col-sm-12" style="text-align:center;">
+                        <img src="{{user.imgUrl}}" alt="profile pic">
+                        <br>
+                        <input type="file" class="btn btn-accent m-btn m-btn--metal m--margin-10">
+                      </div>
+                </div>
+            <div class="form-group m-form__group row">
+              <label for="example-text-input" class="col-3 col-form-label">
+                Full Name
+              </label>
+              <div class="col-6">
+                <input class="form-control m-input" type="text" value="{{user.name}}">
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label for="example-text-input" class="col-3 col-form-label">
+                Username
+              </label>
+              <div class="col-6">
+                <input class="form-control m-input" disabled type="text" value="{{user.username}}">
+              </div>
+              <div class="col">
+                  <button class="btn btn-accent m-btn m-btn--metal" >Edit</button>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label for="example-text-input" class="col-3 col-form-label">
+                Email
+              </label>
+              <div class="col-6">
+                <input class="form-control m-input" disabled type="email" value="{{user.email}}">
+                <span class="m-form__help">
+                  If you want your invoices addressed to a company. Leave blank to use your full name.
+                </span>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label for="example-text-input" class="col-3 col-form-label">
+                Phone No.
+              </label>
+              <div class="col-6">
+                <input class="form-control m-input" type="text" value="{{user?.contactNumber}}">
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__foot m-portlet__foot--fit">
+            <div class="m-form__actions">
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                    Save changes
+                  </button>
+                  &nbsp;&nbsp;
+                  <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

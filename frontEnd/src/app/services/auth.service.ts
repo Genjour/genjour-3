@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Headers } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class AuthService {
   authToken : any;
   user : any = false;
 
-  
+  public userSubject = new Subject<any>();
 
   constructor(
     private http:Http, 
@@ -56,6 +57,10 @@ export class AuthService {
     headers.append('Content-Type','Application/json');
     return this.http.get('http://localhost:3000/profile',{headers:headers})
     .map(res=>res.json());
+  }
+
+  userDataBridge(data){
+    this.userSubject.next(data);
   }
 
   storeUserData(token,user){
