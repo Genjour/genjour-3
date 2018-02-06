@@ -12,12 +12,16 @@ export class SettingsComponent implements OnInit {
   constructor( private authService : AuthService ) { }
 
   user : object;
-
+  usernameEdit: boolean = true;
   ngOnInit() {
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
           })
+  }
+
+  editUsername(){
+    this.usernameEdit = !this.usernameEdit;
   }
 
 }

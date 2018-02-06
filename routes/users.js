@@ -14,7 +14,14 @@ router.post('/register',(req,res,next)=>{
 		password : req.body.password,
 		gender   : req.body.gender,
 		genjouristId: "10"+uniqueId(),
+		dob 		: req.body.dob,
+		supporters	:[''],
+		supporting	:[''],
+		supportingNumber: " ",
+		supportersNumber: " ",
+		status: true,
 		createdOn: Date(),
+		img: "assets/app/media/img/users/user2.jpg",
 
 	});
 

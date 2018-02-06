@@ -50485,6 +50485,8 @@ function closure ( target, options, originalOptions ){
     ].join(''));
   });
 
+  
+
   var popover = renderer.create([
     '<div class="note-popover popover in">',
     '  <div class="arrow"/>',

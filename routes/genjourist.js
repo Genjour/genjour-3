@@ -156,7 +156,7 @@ router.get('/supportersList/:userid', function(req,res){
         if(err) throw err;
         else{
                 
-                return res.json(user.supporting);
+                return res.json(user);
             }
         })
     });

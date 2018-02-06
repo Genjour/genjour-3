@@ -32,6 +32,29 @@
                 <div class="form-group m-form__group">
                   <input class="form-control m-input m-login__form-input--last" [(ngModel)]="password" type="password" placeholder="Password" name="password">
                 </div>
+                <div class="form-group m-form__group">
+                  <div class="m-radio-inline">
+                      <label class="m-radio m-radio--solid">
+                        <input type="radio" name="gender" [(ngModel)]="gender" checked value="Male">
+                        Male
+                        <span></span>
+                      </label>
+                      <label class="m-radio m-radio--solid">
+                        <input type="radio" name="gender" [(ngModel)]="gender" value="Female">
+                        Female
+                        <span></span>
+                      </label>
+                      <label class="m-radio m-radio--solid">
+                          <input type="radio" name="gender" [(ngModel)]="gender" value="Other">
+                          Other
+                          <span></span>
+                      </label>
+                  </div>
+                </div>
+                <div class="m-login__head" style="text-align:center;">
+                  <div class="m-login__desc">Birth Date</div>
+                  <input class="form-control m-input" type="date" name="dob" [(ngModel)]="dob" [value]="2011-08-19" id="example-date-input">
+                </div>
                 <div style="color:red">
                   {{checkStatus}}
                 </div>
@@ -86,3 +109,4 @@
   </div>
 </div>
 </body>
+

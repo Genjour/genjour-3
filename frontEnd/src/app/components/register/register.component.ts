@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import {Router } from '@angular/router';
+
  
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   constructor( 
     private validateService : ValidateService,
     private authService : AuthService,
-    private router : Router
+    private router : Router,
+
      ) { }
 
   fullname : String;
@@ -21,11 +23,13 @@ export class RegisterComponent implements OnInit {
   password : String;
   username : String;
   gender   : String;
+  dob      : Date;
   checkStatus : String;
 
 
 
   ngOnInit() {
+
   }
 
   register(){
@@ -33,19 +37,21 @@ export class RegisterComponent implements OnInit {
           name     : this.fullname,
           email    : this.email,
           password : this.password,
-          username : this.username
+          username : this.username,
+          gender   : this.gender,
+          dob      : this.dob,
           
     }
 
     // check required fields
 
-    if(user.name == undefined || user.email == undefined || user.password == undefined || user.username == undefined){
+    if(user.name == undefined || user.email == undefined || user.password == undefined || user.username == undefined || user.gender == undefined || user.dob == undefined){
       console.log("please fill all fields");
       this.checkStatus = "Please fill all fields";
       return false;
     }
   
-    // check email 
+    //check email 
 
     if(!this.validateService.validateEmail(user.email)){
       console.log("Email is not valid");
@@ -61,9 +67,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       }else{
         console.log('not registered');
-        this.router.navigate(['/feeds']);
+        this.router.navigate(['/']);
       }
     });
+
+    console.log(user);
 
   }
 

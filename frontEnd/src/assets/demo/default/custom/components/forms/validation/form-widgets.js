@@ -65,7 +65,7 @@ var FormWidgets = function () {
         var countries = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/countries.json'
+            //prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/countries.json'
         });
 
         $('#m_typeahead').typeahead(null, {

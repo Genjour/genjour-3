@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDatepickerModule } from '@angular/material/datepicker'
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
