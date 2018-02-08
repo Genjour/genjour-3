@@ -35,9 +35,11 @@ export class GenjouristComponent implements OnInit {
 
   ngOnInit() {
     
-    this.authService.getGenjourist().subscribe(profile=>{
-    this.user = profile.user;
-    })
+    this.authService.userSubject.subscribe(
+      data=> {
+                this.user = data;
+                console.log(this.user);
+          })
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;

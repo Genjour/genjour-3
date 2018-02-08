@@ -26,28 +26,35 @@ supportingLists : any[] = [];
   ) { }
 
   ngOnInit() {
-    this.authService.getGenjourist().subscribe(profile=>{
-    this.user = profile.user;
-      this.profileService.articles(this.user.genjouristId).subscribe(article=>{
-      this.journals = article;
-      });
-      this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
-        this.quotations = quotation;
-        });
+
+    this.authService.userSubject.subscribe(
+      data=> {
+                this.user = data;
+                console.log(this.user);
+          })
+
+    // this.authService.getGenjourist().subscribe(profile=>{
+    // this.user = profile.user;
+    //   this.profileService.articles(this.user.genjouristId).subscribe(article=>{
+    //   this.journals = article;
+    //   });
+    //   this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
+    //     this.quotations = quotation;
+    //     });
 
             //=================================================================================================
             //======================================= LIST ====================================================
             //=================================================================================================
-            this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
-              this.supportingLists = data;
-              console.log(this.supportingLists);
-            })
+            // this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
+            //   this.supportingLists = data;
+            //   console.log(this.supportingLists);
+            // })
 
-            this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
-              this.supportersLists = data;
-              console.log(this.supportersLists);
-            })
-    });
+            // this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
+            //   this.supportersLists = data;
+            //   console.log(this.supportersLists);
+            // })
+    //});
 
 
     // err => {

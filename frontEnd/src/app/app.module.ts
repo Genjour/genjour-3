@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { BaseRequestOptions, HttpModule } from "@angular/http";
 import { MockBackend } from "@angular/http/testing";
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -40,6 +41,7 @@ import { WriteArticleComponent } from './components/write-article/write-article.
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
 import { SettingsComponent } from './components/settings/settings/settings.component';
+import { AgeCategoryPipe } from './components/profile/age-category.pipe';
 
 
 
@@ -78,12 +80,14 @@ const appRoutes: Routes = [
     SupportQuotationComponent,
     CategoryComponent,
     SettingsComponent,
+    AgeCategoryPipe,
   ],
   imports: [
     BrowserModule,
     HttpModule, 
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    ClipboardModule
   ],
   providers: [
     ValidateService,

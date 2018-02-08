@@ -20,6 +20,7 @@ const  UserSchema = mongoose.Schema({
   supportersNumber : Number,
   supportingNumber : Number,
   status           : Boolean,
+  mobile           : String,
   
   
 });
