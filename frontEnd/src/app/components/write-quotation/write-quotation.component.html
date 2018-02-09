@@ -20,7 +20,7 @@
 										</div>
 									</div>
 									<!--begin::Form-->
-									<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" (submit)= "quotationSubmit()" >
+									<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
 												<label class="col-lg-2 col-form-label">
@@ -80,12 +80,16 @@
 												<div class="row">
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
-														<button type="submit" class="btn btn-primary">
-															Submit
-														</button>
-														<button type="reset" class="btn btn-secondary">
-															Reset
-														</button>
+															<h4 style="color:red">{{throwStatus}}</h4>
+															<button (click)= "quotationSave()" type="reset" class="btn btn-info">
+																	Save
+																</button>
+																<button (click)= "quotationSubmit()" type="submit" class="btn btn-primary"  >
+																	Publish
+																</button>
+																<a [routerLink]="['/']" class="btn btn-danger"  >
+																	Cancel
+																</a>
 													</div>
 												</div>
 											</div>

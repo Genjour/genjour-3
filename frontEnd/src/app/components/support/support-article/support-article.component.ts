@@ -93,23 +93,13 @@ export class SupportArticleComponent implements OnInit {
            return false; 
       }
 
-      copyLink(articleId){
-        console.log(articleId);
-        let link = 'http://localhost:4200/journal/'+articleId;
-        //link.select();
-        //document.execCommand("copy")
-      }
+      // copyLink(articleId){
+      //   console.log(articleId);
+      //   let link = 'http://localhost:4200/journal/'+articleId;
+      //   //link.select();
+      //   //document.execCommand("copy")
+      // }
 
-
-
-      // var twitterShare = document.querySelector('[data-js="twitter-share"]');
-
-      // twitterShare.onclick = function(e) {
-      //   e.preventDefault();
-      //   var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
-      //   if(twitterWindow.focus) { twitterWindow.focus(); }
-      //     return false;
-      //   }
 
 
 }

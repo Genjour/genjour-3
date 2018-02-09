@@ -20,7 +20,7 @@
 										</div>
 									</div>
 									<!--begin::Form-->
-									<form enctype="multipart/form-data" (submit)= "articleSubmit()" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" method="POST">
+									<form enctype="multipart/form-data" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" method="POST">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
 												<label class="col-lg-2 col-form-label">
@@ -67,7 +67,7 @@
 											</div>
                       <div class="form-group1 m-form__group row">
                         <label class="col-lg-2 col-form-label" for="caterogySelection">
-                          Custom Select
+                          Category
                         </label>
                         <select [(ngModel)]="category" name="category" class="custom-select">
                           <option selected="">
@@ -112,12 +112,16 @@
 												<div class="row">
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
-														<button type="submit" class="btn btn-primary"  >
-															Submit
+														<h4 style="color:red">{{throwStatus}}</h4>
+														<button (click)= "articleSave()" type="reset" class="btn btn-info">
+															Save
 														</button>
-														<button type="reset" class="btn btn-secondary">
-															Reset
+														<button (click)= "articleSubmit()" type="submit" class="btn btn-primary"  >
+															Publish
 														</button>
+														<a [routerLink]="['/']" class="btn btn-danger"  >
+															Cancel
+														</a>
 													</div>
 												</div>
 											</div>

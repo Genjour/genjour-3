@@ -72,7 +72,8 @@ router.post('/article',  passport.authenticate('jwt', {session:false}),  functio
         content       : req.body.content,
         date          : Date(),
         tags          : req.body.tags,
-        imgUrl        : req.body.imgUrl
+        imgUrl        : req.body.imgUrl,
+        status        : req.body.status,
     });
 
 

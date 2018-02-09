@@ -50,6 +50,15 @@ export class AuthService {
     .map(res=>res.json());
   }
 
+  saveArticle(user){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization',this.authToken);
+    headers.append('Content-Type','Application/json');
+    return this.http.post('http://localhost:3000/article',user,{headers:headers})
+    .map(res=>res.json());
+  }
+
   getGenjourist(){
     let headers = new Headers();
     this.loadToken();

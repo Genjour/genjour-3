@@ -23,6 +23,7 @@ export class GenjouristComponent implements OnInit {
   selfSupportAlert : Boolean = true;
   supportersLists : any[] = [];
   supportingLists : any[] = [];
+  supportingListsStatus: String;
 
   constructor(
     private genjouristService: GenjouristService,
@@ -38,11 +39,12 @@ export class GenjouristComponent implements OnInit {
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-                console.log(this.user);
-          })
+                //console.log(this.user);
+          });
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;
+      //console.log(this.userData);
     })
 
     this.genjouristService.articles(this.route.snapshot.params.id).subscribe(article=>{
@@ -57,13 +59,16 @@ export class GenjouristComponent implements OnInit {
     //======================================= LIST ====================================================
     //=================================================================================================
     this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
-      this.supportingLists = data;
+      this.supportingLists = data.supporting;
+      if(this.supportingLists == undefined){
+        this.supportingListsStatus = "No Supporters" ;
+      }
       console.log(this.supportingLists);
     })
 
     this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
-      this.supportersLists = data;
-      console.log(this.supportersLists);
+      this.supportersLists = data.supporters;
+      //console.log(this.supportersLists);
     })
 
   }

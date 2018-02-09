@@ -27,8 +27,9 @@ export class WriteQuotationComponent implements OnInit {
   quote         : String;
   tags          : String;
   category      : String;
-  // genjouristId  : String,
-  // genjourist    : String,
+  status        : Boolean;
+  throwStatus   : String;
+
 
   
   quotationSubmit(){
@@ -36,21 +37,44 @@ export class WriteQuotationComponent implements OnInit {
       quote    : this.quote,
       tags     : this.tags,
       category : this.category,
+      status   : true,
 
     }
 
-    // if(!this.validateService.checkQuotation(quotation)){
-    //   console.log("Please fill all fields");
-    //   return false;
-    // }
+    if(quotation.quote == undefined || quotation.tags == undefined || quotation.category == undefined)
+    {
+      this.throwStatus = "Please fill all fields";
+      return false;
+    }else{
+        this.auhtService.postQuotation(quotation).subscribe(data=>{
+        if(data.success){
+          console.log('quotation is posted');
+          this.router.navigate(['/']);
+        }else{
+          console.log('unable to post this quotation');
+          this.router.navigate(['/write-quotation']);
+        }
+      });
+    }
+    
 
+  }
+
+  quotationSave(){
+    const quotation = {
+      quote    : this.quote,
+      tags     : this.tags,
+      category : this.category,
+      status    : false,
+  
+    }
     this.auhtService.postQuotation(quotation).subscribe(data=>{
       if(data.success){
         console.log('quotation is posted');
-        this.router.navigate(['/feeds']);
+        this.router.navigate(['/']);
       }else{
         console.log('unable to post this quotation');
-        this.router.navigate(['/write-article']);
+        this.router.navigate(['/write-quotation']);
       }
     });
 

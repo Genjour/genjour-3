@@ -28,6 +28,8 @@ export class WriteArticleComponent implements OnInit {
   image    : String;
   category : String;
   content  : String;
+  throwStatus : String;
+  status : Boolean;
 
 
   ngOnInit() {
@@ -61,31 +63,59 @@ export class WriteArticleComponent implements OnInit {
 
   articleSubmit(){
     
-    var markup = $('.summernote').summernote('code');
+    //var markup = $('.summernote').summernote('code');  //this is summercode editor code
 
     const article = {
       title    : this.title,
       tags     : this.tags,
       category : this.category,
       imgUrl   : this.imgUrl,
-      content  : this.content
+      content  : this.content,
+      status   : true,
+
     }
 
     console.log(article)
     
-    this.authService.postArticle(article).subscribe(data=>{
-      if(data.success){ 
-        console.log('article is posted');
+    if(article.title == undefined || article.tags == undefined || article.content == undefined || article.category == undefined || article.imgUrl == undefined){
+      this.throwStatus = "Please fill all fields";
+      return false;
+    }
+      else{
+          this.authService.postArticle(article).subscribe(data=>{
+            if(data.success){ 
+              console.log('article is posted');
+              this.router.navigate(['/']);
+            }else{
+              console.log('unable to post this article');
+              this.router.navigate(['/write-article']);
+            }
+          });
+
+
+        }
+
+  }
+
+  articleSave(){
+    const article = {
+      title    : this.title,
+      tags     : this.tags,
+      category : this.category,
+      imgUrl   : this.imgUrl,
+      content  : this.content,
+      status   : false,
+
+    }
+    this.authService.saveArticle(article).subscribe(data=>{
+      if(data.success){
+        console.log('article is successfully saved');
         this.router.navigate(['/']);
       }else{
-        console.log('unable to post this article');
+        console.log('unable to post this article something went wrong');
         this.router.navigate(['/write-article']);
       }
-    });
-
-
-    
-
+    })
   }
 
 }
