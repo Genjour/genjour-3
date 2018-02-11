@@ -1,3 +1,4 @@
+import { AgeCategoryPipe } from './../profile/age-category.pipe';
 import { Component, OnInit } from '@angular/core';
 import { GenjouristService } from '../../services/genjourist.service';
 import { ActivatedRoute } from '@angular/router';
@@ -44,15 +45,14 @@ export class GenjouristComponent implements OnInit {
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;
-      //console.log(this.userData);
     })
 
     this.genjouristService.articles(this.route.snapshot.params.id).subscribe(article=>{
-    this.journals = article;
+    this.journals = article.filter( x=> x.status == true );
     })
 
     this.genjouristService.quotation(this.route.snapshot.params.id).subscribe(data=>{
-    this.quotations = data;
+    this.quotations = data.filter( x=> x.status == true);
     })
 
     //=================================================================================================
@@ -60,10 +60,6 @@ export class GenjouristComponent implements OnInit {
     //=================================================================================================
     this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
       this.supportingLists = data.supporting;
-      if(this.supportingLists == undefined){
-        this.supportingListsStatus = "No Supporters" ;
-      }
-      console.log(this.supportingLists);
     })
 
     this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{

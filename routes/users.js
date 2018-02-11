@@ -21,7 +21,7 @@ router.post('/register',(req,res,next)=>{
 		supportersNumber: " ",
 		status: true,
 		createdOn: Date(),
-		img: "assets/app/media/img/users/user2.jpg",
+		img: "assets/uploads/user/defaultBoy",
 
 	});
 

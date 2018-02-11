@@ -141,7 +141,7 @@ router.get('/supportingList/:userid', function(req,res){
         if(err) throw err;
         else{
             
-                return res.json( JSON.stringify( user ) );
+                return res.json(user);
             }
         })
     });

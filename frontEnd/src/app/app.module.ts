@@ -42,6 +42,8 @@ import { WriteQuotationComponent } from './components/write-quotation/write-quot
 import { SummaryPipe } from './components/journals/articles/summary.pipe';
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { AgeCategoryPipe } from './components/profile/age-category.pipe';
+import { EditArticleComponent } from './components/edit/article/edit-article/edit-article.component';
+import { EditQuotationComponent } from './components/edit/quotation/edit-quotation/edit-quotation.component';
 
 
 
@@ -81,6 +83,8 @@ const appRoutes: Routes = [
     CategoryComponent,
     SettingsComponent,
     AgeCategoryPipe,
+    EditArticleComponent,
+    EditQuotationComponent,
   ],
   imports: [
     BrowserModule,

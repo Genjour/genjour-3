@@ -5,3 +5,8 @@
 .p-details{
     color: #7b7e8a;
 }
+
+a, a:link, a:visited, a:hover {
+    text-decoration: none;
+    color:#333439;
+}

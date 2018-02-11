@@ -30,7 +30,24 @@ supportingLists : any[] = [];
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-                console.log(this.user);
+               
+                this.profileService.articles(this.user.genjouristId).subscribe(article=>{
+                   this.journals = article;
+                });
+                this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
+                  this.quotations = quotation;
+                });
+
+            //=================================================================================================
+            //======================================= LIST ====================================================
+            //=================================================================================================
+             this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
+               this.supportingLists = data.supporting;
+             })
+
+             this.genjouristService.getSupportersList(this.user.genjouristId).subscribe(data=>{
+               this.supportersLists = data.supporters;
+             })
           })
 
     // this.authService.getGenjourist().subscribe(profile=>{
