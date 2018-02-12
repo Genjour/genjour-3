@@ -10,7 +10,7 @@ import { SocketService } from '../../services/socket/socket.service';
 @Component({
   selector: 'app-genjourist',
   templateUrl: './genjourist.component.html',
-  styleUrls: ['./genjourist.component.css']
+  styleUrls: ['./genjourist.component.css'],
 })
 export class GenjouristComponent implements OnInit {
 

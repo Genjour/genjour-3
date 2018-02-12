@@ -100,6 +100,15 @@ router.get('/articles/:category', (req,res)=>{
   })
 })
 
-
+router.get('/edit/article/:articleId', (req,res)=>{
+  Article.findArticle(req.params.articleId, (err,data)=>{
+    if(err) throw err;
+    if(!data){
+      res.json({success:false, msg:"No data found"});
+    }else{
+      res.json(data);
+    }
+  })
+})
 
 module.exports = router;

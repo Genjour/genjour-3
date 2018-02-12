@@ -35,4 +35,16 @@ export class GenjouristService {
     return this.http.get(`http://localhost:3000/supportersList/${userId}`).map(res=>res.json());
   }
 
+  getDraftArticles(articleId){
+    return this.http.get(`http://localhost:3000/edit/article/${articleId}`).map(res=>res.json());
+  }
+
+  getDraftQuotation(quotationId){
+    return this.http.get(`http://localhost:3000/edit/quotation/${quotationId}`).map(res=>res.json());
+  }
+
+  deleteArticle(articleId){
+    return this.http.delete(`http://localhost:3000/delete/article/${articleId}`).map(res=>res.json());
+  }
+
 }

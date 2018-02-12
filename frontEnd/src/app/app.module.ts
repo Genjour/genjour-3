@@ -60,6 +60,8 @@ const appRoutes: Routes = [
   {path: 'journal/:articleId', component:ArticleComponent},
   {path: 'write-article', component:WriteArticleComponent, canActivate:[AuthGaurd]},
   {path: 'write-quotation', component:WriteQuotationComponent, canActivate:[AuthGaurd]},
+  {path: 'edit/article/:articleId', component:EditArticleComponent, canActivate:[AuthGaurd]},
+  {path: 'edit/quotation/:quotationId', component:EditQuotationComponent, canActivate:[AuthGaurd]},
 ]
 
 @NgModule({

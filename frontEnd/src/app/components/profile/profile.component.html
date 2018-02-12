@@ -228,10 +228,10 @@
                                 </div>
                                 <div class="m-widget5__stats1">
                                     <div>
-                                        <a [routerLink]="['edit',journal.articleId]" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"><i class="la la-edit"></i></a>
+                                        <a [routerLink]="['edit/article/',journal.articleId]" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"><i class="la la-edit"></i></a>
                                     </div>
                                     <div>
-                                        <a [routerLink]="['delete',journal.articleId]" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill m--margin-top-10" title="Delete"><i class="la la-trash"></i></a>
+                                        <a (click)="deleteArticle(journal.articleId)" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill m--margin-top-10" title="Delete"><i class="la la-trash"></i></a>
                                     </div>
                                 </div>
                                 <div class="m-widget5__stats1">

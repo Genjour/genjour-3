@@ -50,34 +50,16 @@ supportingLists : any[] = [];
              })
           })
 
-    // this.authService.getGenjourist().subscribe(profile=>{
-    // this.user = profile.user;
-    //   this.profileService.articles(this.user.genjouristId).subscribe(article=>{
-    //   this.journals = article;
-    //   });
-    //   this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
-    //     this.quotations = quotation;
-    //     });
+  }
 
-            //=================================================================================================
-            //======================================= LIST ====================================================
-            //=================================================================================================
-            // this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
-            //   this.supportingLists = data;
-            //   console.log(this.supportingLists);
-            // })
-
-            // this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
-            //   this.supportersLists = data;
-            //   console.log(this.supportersLists);
-            // })
-    //});
-
-
-    // err => {
-    //   console.log(err);
-    //   return false;
-    // });
+  deleteArticle(articleId){
+        if (confirm('Are you sure you want to delete this article?')) {
+          this.genjouristService.deleteArticle(articleId).subscribe(data=>{
+            console.log(data);
+          });
+      } else {
+         console.log('cannot do anything');
+      }
   }
 
 }
