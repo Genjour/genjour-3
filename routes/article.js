@@ -123,17 +123,15 @@ router.delete('/delete/article/:articleId', function(req,res){
   });
 });
 
-router.put('/draft/article/:articleId', function(req,res){
+router.put('/update/article/:articleId', function(req,res){
 
   const flag = {
         category         : req.body.category,
         title            : req.body.title,
         content          : req.body.content,
         tags             : req.body.tags,
-        status           : false,
+        status           : req.body.status,
   }
-
-  console.log(flag);
 
   Article.findArticle(req.params.articleId, (err,article)=>{
     if(err) throw err;

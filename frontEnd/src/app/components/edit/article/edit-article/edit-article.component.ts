@@ -45,4 +45,23 @@ export class EditArticleComponent implements OnInit {
     })
   }
 
+  articleSubmit(articleId){
+    const article = {
+      title    : this.draftData.title,
+      tags     : this.draftData.tags,
+      category : this.draftData.category,
+      content  : this.draftData.content,
+      status   : true,
+    }
+
+    this.genjouristService.updateArticle(articleId,article).subscribe(data=>{
+      if(data.success){
+        console.log('Yeah updated');
+        this.router.navigate(['/genjourist']);
+      }else{
+        console.log('cant update');
+      }
+    })
+  }
+
 }

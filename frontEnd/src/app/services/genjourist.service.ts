@@ -49,7 +49,11 @@ export class GenjouristService {
   }
 
   draftArticles(articleId,article){
-    return this.http.put(`http://localhost:3000/draft/article/${articleId}`,article).map(res=>res.json());
+    return this.http.put(`http://localhost:3000/update/article/${articleId}`,article).map(res=>res.json());
+  }
+
+  updateArticle(articleId,article){
+    return this.http.put(`http://localhost:3000/update/article/${articleId}`,article).map(res=>res.json());
   }
 
 }

@@ -116,7 +116,7 @@
 														<button (click)= "draft(draftData.articleId)" type="reset" class="btn btn-info">
 															Draft
 														</button>
-														<button (click)= "articleSubmit()" type="submit" class="btn btn-primary"  >
+														<button (click)= "articleSubmit(draftData.articleId)" type="submit" class="btn btn-primary"  >
 															Publish
 														</button>
 														<a [routerLink]="['/']" class="btn btn-danger"  >

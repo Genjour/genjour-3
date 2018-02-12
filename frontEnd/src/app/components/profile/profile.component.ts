@@ -56,6 +56,7 @@ supportingLists : any[] = [];
         if (confirm('Are you sure you want to delete this article?')) {
           this.genjouristService.deleteArticle(articleId).subscribe(data=>{
             console.log(data);
+
           });
       } else {
          console.log('cannot do anything');
