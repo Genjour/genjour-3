@@ -1,3 +1,4 @@
+import { draftArticles } from './../components/models/draftArticles';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Headers } from '@angular/http';
@@ -45,6 +46,10 @@ export class GenjouristService {
 
   deleteArticle(articleId){
     return this.http.delete(`http://localhost:3000/delete/article/${articleId}`).map(res=>res.json());
+  }
+
+  draftArticles(articleId,article){
+    return this.http.put(`http://localhost:3000/draft/article/${articleId}`,article).map(res=>res.json());
   }
 
 }

@@ -42,17 +42,6 @@ router.get('/journals/feeds/:userId', function(req,res){
 });
 
 
-router.delete('/delete/article/:articleId', function(req,res){
-    const articleId = req.params.articleId;
-    Article.deleteArticle(articleId, (err,done)=>{
-        if(err) throw err;
-        if(!done){
-            res.json({success:false, msg:"Cannot delete"});
-        }else{
-            res.json({success:true, msg:"deleted"});
-        }
-    })
-})
 
 
 module.exports = router;

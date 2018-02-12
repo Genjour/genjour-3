@@ -66,3 +66,7 @@ module.exports.feedsArticle = function(array,callback){
 module.exports.deleteArticle = function(articleId, callback){
         Article.remove({articleId:articleId},callback);
 }
+
+module.exports.updateArticle = function(articleId, article, callback){
+        Article.findOneAndUpdate({articleId:articleId}, article, callback );
+}

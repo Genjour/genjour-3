@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenjouristService } from '../../../../services/genjourist.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { draftArticles } from '../../../models/draftArticles';
 
 @Component({
   selector: 'app-edit-article',
@@ -9,17 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditArticleComponent implements OnInit {
 
-  constructor( private genjouristService: GenjouristService, private route: ActivatedRoute,) { }
+  constructor( private genjouristService: GenjouristService, private route: ActivatedRoute, private router:Router) { }
 
-  draftData:String;
-  imgUrl   : String;
-  title    : String;
-  tags     : String;
-  image    : String;
-  category : String;
-  content  : String;
-  throwStatus : String;
-  status : Boolean;
+  draftData= new draftArticles();
+
+
+
 
   ngOnInit() {
 
@@ -30,17 +26,23 @@ export class EditArticleComponent implements OnInit {
 
   }
 
-  draft(){
+  draft(articleId){
     const article = {
-      title    : this.title,
-      tags     : this.tags,
-      category : this.category,
-      imgUrl   : this.imgUrl,
-      content  : this.content,
+      title    : this.draftData.title,
+      tags     : this.draftData.tags,
+      category : this.draftData.category,
+      content  : this.draftData.content,
       status   : false,
 
     }
-    console.log(article);
+    this.genjouristService.draftArticles(articleId,article).subscribe(data=>{
+      if(data.success){
+        console.log('Yeah updated');
+        this.router.navigate(['/genjourist']);
+      }else{
+        console.log('cant update');
+      }
+    })
   }
 
 }
