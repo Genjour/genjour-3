@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { SupportService } from '../../services/support.service';
 import { SocketService } from '../../services/socket/socket.service';
+import { user } from '../models/user';
 
 @Component({
   selector: 'app-genjourist',
@@ -14,11 +15,13 @@ import { SocketService } from '../../services/socket/socket.service';
 })
 export class GenjouristComponent implements OnInit {
 
-  userData : Object;
+  userData : any[]=[]; // genjourist profile which user is seeing
   journals: Object;
   quotations :Object;
-  user: object;
+  user : user;
+  currentUser: object;
   articleId: any;
+  supportStatus : Boolean;
   supporterNumber : Number;
   supportingNumber : Number;
   selfSupportAlert : Boolean = true;
@@ -40,11 +43,13 @@ export class GenjouristComponent implements OnInit {
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-                //console.log(this.user);
+               // console.log(this.user);          
           });
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;
+      this.supporterNumber = data.supportNumber;
+      this.supportingNumber = data.supportingNumber;
     })
 
     this.genjouristService.articles(this.route.snapshot.params.id).subscribe(article=>{
@@ -78,14 +83,20 @@ export class GenjouristComponent implements OnInit {
         return this.selfSupportAlert;
       }
 
+      
+      
       //=============== Support Code ==========================
 
       this.supportService.supportGenjourist(userId, genjouristId).subscribe(data=>{
         this.supporterNumber = data.msg;
         console.log(data.msg);
+
+
         this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
         console.log(data.supporters.length);
         this.supporterNumber = data.supporters.length; 
+
+        
         })
       });
 

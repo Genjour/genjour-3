@@ -30,7 +30,7 @@ supportingLists : any[] = [];
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-               
+                const userGenjouristId = this.user.genjouristId;
                 this.profileService.articles(this.user.genjouristId).subscribe(article=>{
                    this.journals = article;
                 });
@@ -56,7 +56,9 @@ supportingLists : any[] = [];
         if (confirm('Are you sure you want to delete this article?')) {
           this.genjouristService.deleteArticle(articleId).subscribe(data=>{
             console.log(data);
-
+            this.profileService.articles(this.user.genjouristId).subscribe(article=>{
+              this.journals = article;
+           });
           });
       } else {
          console.log('cannot do anything');

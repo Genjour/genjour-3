@@ -1,6 +1,10 @@
 <div class="m-stack m-stack--ver m-stack--general">
     <div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid">
-            <span (click)="support(articleId,userId)"> <i class="m-menu__link-icon la la-hand-rock-o"></i> {{supporterNumber}}  </span>
+            <span (click)="support(articleId,userId)">
+                <span *ngIf="!supportStatus"><i class="m-menu__link-icon fa fa-thumbs-o-up"></i></span> 
+                <span *ngIf="supportStatus"><i class="m-menu__link-icon fa 	fa-thumbs-up"></i></span>
+                {{supporterNumber}}    
+            </span>
     </div>
     <div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid">
             <span data-toggle="modal" data-target="#m_modal_4"> <i class="m-menu__link-icon flaticon-network"> </i> </span> 
@@ -26,31 +30,30 @@
                                     <span class="m-widget17__icon">
                                             <i class="socicon-whatsapp"></i>
                                     </span>
-                                    
                                     <span class="m-widget17__subtitle">
                                         <a href="whatsapp://send?text=http://localhost:4200/journal/{{articleId}}">Whatsapp</a>    
                                     </span>
                                 </div>
                             </div>
                             <div class="col">
-                                    <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                    <i class="socicon-facebook"></i>
-                                            </span>
-                                            <span (click)="facebookShare(articleId)" class="m-widget17__subtitle">
-                                                Facebook
-                                            </span>
-                                        </div>
+                                <div class="m-widget17__item">
+                                    <span class="m-widget17__icon">
+                                            <i class="socicon-facebook"></i>
+                                    </span>
+                                    <span (click)="facebookShare(articleId)" class="m-widget17__subtitle">
+                                        Facebook
+                                    </span>
+                                </div>
                             </div>
                             <div class="col">
-                                    <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                    <i class="socicon-twitter"></i>
-                                            </span>
-                                            <span (click)="twitterShare(articleId)" class="m-widget17__subtitle">
-                                                Twitter
-                                            </span>
-                                    </div>
+                                <div class="m-widget17__item">
+                                    <span class="m-widget17__icon">
+                                            <i class="socicon-twitter"></i>
+                                    </span>
+                                    <span (click)="twitterShare(articleId)" class="m-widget17__subtitle">
+                                        Twitter
+                                    </span>
+                                </div>
                             </div>
                             <div class="col">
                                     <div class="m-widget17__item">

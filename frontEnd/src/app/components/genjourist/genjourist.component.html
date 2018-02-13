@@ -18,7 +18,7 @@
                 </div>
                 <div class="m-card-profile__pic">
                   <div class="m-card-profile__pic-wrapper">
-                    <img src="assets/{{userData.imgUrl}}" alt="">
+                    <img src="assets/{{userData?.imgUrl}}" alt="">
                   </div>
                 </div>
                 <div class="m-card-profile__details">
@@ -31,7 +31,7 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                               {{userData?.supporterNumber}} 
+                               {{supporterNumber}} 
                             </h3>
                             <span class="m-widget19__comment">
                               Supporters
@@ -41,19 +41,19 @@
                     <div class="col">
                         <div class="m-widget19__stats text-center">
                             <h3 class="m--font-brand">
-                                {{userData?.supportingNumber}}  
-                              </h3>
+                                {{supportingNumber}}  
+                            </h3>
                             <span class="m-widget19__comment">
                               Supporting
                             </span>
                         </div>
-                    </div>    
-                                     
+                    </div>                     
                 </div>
               </div>
               <div class="m-separator"></div>
               <button type="button" (click)="support(user?.genjouristId,userData.genjouristId)" class="btn m-btn--square  btn-primary btn-block">
-                Support
+                <div *ngIf="supportStatus"> Start Supporting</div>
+                <div *ngIf="!supportStatus"> Stop Supporting</div>
               </button>
               <div *ngIf = "!selfSupportAlert">You cannot support your self :-)</div>
               <ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">

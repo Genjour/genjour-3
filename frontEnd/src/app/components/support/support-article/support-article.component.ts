@@ -15,7 +15,7 @@ export class SupportArticleComponent implements OnInit {
 
   articleData:Object;
   articles : Object;
-  user : any[] = [];
+  supporters : any[] = [];
   supporterNumber : any;
   supportStatus : Boolean;
 
@@ -34,7 +34,18 @@ export class SupportArticleComponent implements OnInit {
   ngOnInit( ) {
     this.articleService.article(this.articleId).subscribe(data=>{
       this.supporterNumber = data.supporters.length;
+      this.supporters = data.supporters;
+      //-----------------------------------support button animatation--------------------------------
+      if(this.supporters.includes(this.userId)==true){ 
+        this.supportStatus = true;
+        console.log(this.supportStatus);
+      }
+      else{
+        this.supportStatus=false;
+      }
+      //---------------------------------end support button animatation--------------------------------
     });
+
     // this.socketService.getSupport().subscribe((data)=>{
     //   console.log(data);
     //   this.supporterNumber = data;
@@ -42,14 +53,35 @@ export class SupportArticleComponent implements OnInit {
   }
 
   support(articleId, userId){
+    
     if(this.authService.loggedIn()){
       this.articleService.article(articleId).subscribe(data=>{
         this.supporterNumber = data.supporters.length;
+        this.supporters = data.supporters;
+        //---------------------------------support button animatation--------------------------------
+        if(this.supporters.includes(this.userId)==true){ 
+          this.supportStatus = true;
+          console.log(this.supportStatus);
+        }
+        else{
+          this.supportStatus=false;
+        }
+        //-----------------------------------------------------------------
       });
       this.supportService.supportArticle(articleId, userId).subscribe(data=>{
         console.log(data);
         this.articleService.article(articleId).subscribe(data=>{
           this.supporterNumber = data.supporters.length
+          this.supporters = data.supporters;
+          //------------------------------support button animatation-----------------------------------
+          if(this.supporters.includes(this.userId)==true){ 
+            this.supportStatus = true;
+            console.log(this.supportStatus);
+          }
+          else{
+            this.supportStatus=false;
+          }
+          //-----------------------------------------------------------------
         });
       });
       

@@ -39,13 +39,14 @@
                                         14-30
                                     </span>
                                   </div>
-                                  <div class="col m--align-right">
+
+                                </div>
+                                  <div class="row">
                                       <app-support-article [articleId]="articleData?.articleId" [userId]="articleData?.genjouristId" ></app-support-article>  
                                   </div>
-                                </div>
                                 <div class="">
                                   
-                                      <div [innerHtml]="articleData.content | summary"></div>
+                                      <div [innerHtml]="articleData.content"></div>
                                      <!-- {{articleData?.content}} -->
                                   
                                 </div>

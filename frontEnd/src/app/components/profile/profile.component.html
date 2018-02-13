@@ -311,9 +311,6 @@
                           <div class="m-widget5">
                             <div class="m-widget5__item" *ngFor="let quotation of quotations">
                               <div class="m-widget5__content m-widget2__item m-widget2__item--primary">
-                                <h4 class="m-widget5__title">
-                                  {{quotation.title}}
-                                </h4>
                                 <span class="m-widget5__title">
                                   {{quotation.quote}}
                                 </span>
@@ -322,6 +319,14 @@
                                     {{quotation.date | date:'medium' }}
                                   </span>
                                 </div>
+                              </div>
+                              <div class="m-widget5__stats1">
+                                  <div>
+                                      <a [routerLink]="['/edit/quotation/',quotation.quotationId]" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details"><i class="la la-edit"></i></a>
+                                  </div>
+                                  <div>
+                                      <a (click)="deleteQuotation(quotation.quotationId)" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill m--margin-top-10" title="Delete"><i class="la la-trash"></i></a>
+                                  </div>
                               </div>
                               <div class="m-widget5__stats1">
                                 <span class="m-widget5__number">

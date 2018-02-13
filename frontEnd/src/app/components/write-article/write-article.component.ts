@@ -77,7 +77,7 @@ export class WriteArticleComponent implements OnInit {
 
     console.log(article)
     
-    if(article.title == undefined || article.tags == undefined || article.content == undefined || article.category == undefined || article.imgUrl == undefined){
+    if(article.title == undefined || article.tags == undefined || article.content == undefined || article.category == undefined){
       this.throwStatus = "Please fill all fields";
       return false;
     }
