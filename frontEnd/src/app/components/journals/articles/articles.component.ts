@@ -23,17 +23,33 @@ articleId: String;
 userId :String;
 articles : any[] = [];
 user : any[] = [];
+journals : any[]=[]
 
   ngOnInit() {
       if(this.authService.loggedIn()){
-          this.authService.getGenjourist().subscribe(profile=>{
-          this.user = profile.user;
-          })
+        this.authService.userSubject.subscribe(
+          data=> {
+                    this.user = data;
+              })
         }
       this.journalsService.getJournals().subscribe(data=>{
-      this.articles=data;
-      })
+      this.journals = data.filter( x=> x.status == true );
+      this.articles = this.journals.slice(0,7);
+      });
     }
+
+    onScroll () {
+      console.log('scrolled!!')
+      if(this.articles.length<this.journals.length){
+        let len = this.articles.length;
+        console.log(len);
+        for(let i = len; i<=len+3; i++ ){
+          this.articles.push(this.journals[i]);
+        }
+        
+      }
+    }
+
 
   }
 

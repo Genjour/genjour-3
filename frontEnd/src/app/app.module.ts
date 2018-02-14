@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { BaseRequestOptions, HttpModule } from "@angular/http";
 import { MockBackend } from "@angular/http/testing";
-import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -20,6 +19,7 @@ import { GenjouristComponent } from './components/genjourist/genjourist.componen
 import { SupportArticleComponent } from './components/support/support-article/support-article.component';
 import { SupportQuotationComponent } from './components/support/support-quotation/support-quotation.component';
 import { CategoryComponent } from './components/category/category.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
@@ -87,13 +87,14 @@ const appRoutes: Routes = [
     AgeCategoryPipe,
     EditArticleComponent,
     EditQuotationComponent,
+    
   ],
   imports: [
     BrowserModule,
     HttpModule, 
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ClipboardModule
+    InfiniteScrollModule,
   ],
   providers: [
     ValidateService,

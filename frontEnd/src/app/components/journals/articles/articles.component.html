@@ -4,15 +4,18 @@
       <div class="row">
         <div class="col-lg-12 m-subheader ">
           <div class="m-content" >
-            <div class="row">
+            <div class="row" infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="1000"
+            (scrolled)="onScroll()">
               <div class="col-md-3" *ngFor="let article of articles">
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
                     <div class="m-portlet__head m-portlet__head--fit">
                       <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-action">
-                        <a [routerLink]="['/category',article.category]">
+                        <a [routerLink]="['/category',article?.category]">
                           <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
-                            {{article.category}}
+                            {{article?.category}}
                           </button>
                         </a>
                         </div>
@@ -20,11 +23,11 @@
                     </div>
                     <div class="m-portlet__body">
                       <div class="m-widget19">
-                          <a [routerLink]="['/journal',article.articleId]">
-                            <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
-                              <img src= "assets/{{article.imgUrl}}" alt="">
+                          <a [routerLink]="['/journal',article?.articleId]">
+                            <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height:-286px;">
+                              <img src= "assets/{{article?.imgUrl}}" alt="">
                               <h3 class="m-widget19__title m--font-light">
-                                {{article.title}}
+                                {{article?.title}}
                               </h3>
                               <div class="m-widget19__shadow"></div>
                             </div>
@@ -32,21 +35,21 @@
                             <div class="m-widget19__content">
                               <div class="m-widget19__header">
                                 <div class="m-widget19__user-img">
-                                  <a [routerLink]="['/',article.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
+                                  <a [routerLink]="['/',article?.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
                                 </div>
                                 <div class="m-widget19__info">
                                   <span class="m-widget19__username">
-                                      <a [routerLink]="['/genjourist',article.genjouristId]">{{article.genjourist}}</a>
+                                      <a [routerLink]="['/genjourist',article.genjouristId]">{{article?.genjourist}}</a>
                                   </span>
                                   <br>
                                   <span class="m-widget19__time">
-                                    {{article.date | date:'medium' }}
+                                    {{article?.date | date:'medium' }}
                                   </span>
                                 </div>
                               </div>
-                              <a [routerLink]="['/journal',article.articleId]">
+                              <a [routerLink]="['/journal',article?.articleId]">
                                 <div class="m-widget19__body m-nav__link-text">
-                                  <div [innerHTML]="article.content | summary "></div>
+                                  <div [innerHTML]="article?.content | summary "></div>
                                     <!-- {{article.content | summary}} -->
                                 </div>
                               </a>

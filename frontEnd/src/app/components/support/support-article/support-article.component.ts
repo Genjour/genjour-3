@@ -38,7 +38,6 @@ export class SupportArticleComponent implements OnInit {
       //-----------------------------------support button animatation--------------------------------
       if(this.supporters.includes(this.userId)==true){ 
         this.supportStatus = true;
-        console.log(this.supportStatus);
       }
       else{
         this.supportStatus=false;
@@ -61,7 +60,6 @@ export class SupportArticleComponent implements OnInit {
         //---------------------------------support button animatation--------------------------------
         if(this.supporters.includes(this.userId)==true){ 
           this.supportStatus = true;
-          console.log(this.supportStatus);
         }
         else{
           this.supportStatus=false;
@@ -69,14 +67,13 @@ export class SupportArticleComponent implements OnInit {
         //-----------------------------------------------------------------
       });
       this.supportService.supportArticle(articleId, userId).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.articleService.article(articleId).subscribe(data=>{
           this.supporterNumber = data.supporters.length
           this.supporters = data.supporters;
           //------------------------------support button animatation-----------------------------------
           if(this.supporters.includes(this.userId)==true){ 
             this.supportStatus = true;
-            console.log(this.supportStatus);
           }
           else{
             this.supportStatus=false;
