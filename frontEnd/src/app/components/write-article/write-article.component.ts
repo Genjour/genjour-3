@@ -30,6 +30,7 @@ export class WriteArticleComponent implements OnInit {
   content  : String;
   throwStatus : String;
   status : Boolean;
+  imgStatus : Boolean = false;
 
 
   ngOnInit() {
@@ -55,6 +56,7 @@ export class WriteArticleComponent implements OnInit {
          //alert(success._body);
          //console.log(success._body);
          this.imgUrl = success._body;
+         this.imgStatus =  true;
          //console.log(this.imgUrl);
        },
          (error) => alert(error))
@@ -77,11 +79,14 @@ export class WriteArticleComponent implements OnInit {
 
     console.log(article)
     
-    if(article.title == undefined || article.tags == undefined || article.content == undefined || article.category == undefined){
+    if(article.title == undefined || article.tags == undefined || article.content == undefined || article.category == undefined ){
       this.throwStatus = "Please fill all fields";
       return false;
+    } else if(this.imgStatus == false){
+        console.log('please upload image');
     }
       else{
+
           this.authService.postArticle(article).subscribe(data=>{
             if(data.success){ 
               console.log('article is posted');

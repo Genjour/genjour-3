@@ -57,11 +57,11 @@
 														<!-- <input [(ngModel)]="image" type="file" name="image" >		-->											
 													</label>
 													<input  id="photo" type="file" />
-													<button type="button" class="btn btn-success btn-s"  (click)="upload()">
+													<button type="button" class="btn btn-success btn-s" [disabled]="imgStatus" (click)="upload()">
 														Upload
 													</button> <br>
 													<div *ngIf = "imgUrl">
-														<input hidden [disabled]="!xyz" [(ngModel)]="imgUrl" name="imgUrl"/> 
+														<input  [disabled]="!xyz" [(ngModel)]="imgUrl" name="imgUrl"/> 
 													</div>
 												</div>
 											</div>

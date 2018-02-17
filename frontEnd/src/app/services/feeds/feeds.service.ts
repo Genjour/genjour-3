@@ -11,7 +11,7 @@ export class FeedsService {
   ) { }
 
   articleFeeds(userId){
-    return this.http.get('http://localhost:3000/journals/feeds/'+userId)
+    return this.http.get(`http://localhost:3000/journals/feeds/${userId}`)
          .map(response=>response.json())
   }
 

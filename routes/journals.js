@@ -30,11 +30,25 @@ router.get('/journals/feeds/:userId', function(req,res){
         if(!user){
             res.json({success:false, msg:"no such user"});
         }else{
-            console.log(user.supporting);
-            Article.feedsArticle(user.supporting, function(err,docs){
-                if(err) throw err;
-                res.json(docs);
-            });
+            console.log(user.supporting.length);
+            if(user.supporting.length==0){
+                res.json({msg:'support them'});
+            }else{
+
+                var supporting_array = [];
+                console.log(user.supporting);
+                for(var i=0; i<user.supporting.length; i++){
+                    //console.log(user.supporting[i].genjouristId);
+                    supporting_array.push(user.supporting[i].genjouristId);
+                }
+
+                
+                //console.log(supporting_array);
+                Article.feedsArticle(supporting_array, function(err,docs){
+                    if(err) throw err;
+                    res.json(docs);
+                });
+            }
         }
     });
 

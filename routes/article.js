@@ -9,7 +9,7 @@ const multer  = require('multer');
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
-  destination: './uploads/articles/',
+  destination: './assets/uploads/articles/',
   filename: function(req, file, cb){
     cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
