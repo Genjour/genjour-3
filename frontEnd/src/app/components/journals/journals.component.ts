@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JournalsComponent implements OnInit {
   status : boolean = true;
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
   
 
@@ -16,12 +21,20 @@ export class JournalsComponent implements OnInit {
   }
 
   toggle(){
-    if(this.status == true){
-      this.status = false;
-      console.log(this.status);
-    }else{
+    if(this.authService.loggedIn()){
+      if(this.status == true){
+        console.log('initally'+this.status);
+          this.status = false;
+          console.log(this.status);
+        }else if(this.status == false){
+          console.log('initally'+this.status);
+          this.status = true;
+          console.log(this.status);
+        }
+
+    }else {
       this.status = true;
-      console.log(this.status);
+      this.router.navigate(['/login']);
     }
   }
 

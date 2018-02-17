@@ -48,7 +48,7 @@ export class GenjouristComponent implements OnInit {
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;
-      this.supporterNumber = data.supportNumber;
+      this.supporterNumber = data.supportersNumber;
       this.supportingNumber = data.supportingNumber;
     })
 

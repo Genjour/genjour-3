@@ -101,3 +101,11 @@ module.exports.updateSupportingNumber = function(userId, supportersNumber, callb
 module.exports.getSupportingArray = function(userId){
   //return UserId.find({genjouristId:userId},)
 }
+
+//=============================================================================
+//============================== Recommended User =============================
+//=============================================================================
+
+module.exports.recommendedUsers = function(arr,callback){
+  User.find({genjouristId:{$nin:arr}},callback);
+}

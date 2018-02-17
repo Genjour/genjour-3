@@ -3,7 +3,21 @@
   <div class="m-subheader">
 
   </div>
-  <div class="row">
+
+  <!-- New User -->
+<div *ngIf = "!newUserStatus" class="row">
+  <div class="col-md-8 m--margin-top-10 m--margin-left-40">
+    here will be random posts according to categories
+    
+  </div>
+  <div class="col-md-3 m--margin-10">
+    <app-recommend-user></app-recommend-user>
+  </div>
+</div>
+ 
+
+  <!-- Old User -->
+  <div *ngIf = "newUserStatus" class="row">
     <div class="col-xl-8 m--margin-top-10 m--margin-left-40">
       <div class="row">
           <div class="col-md-4" *ngFor="let article of articles">
@@ -71,5 +85,7 @@
     <div class="col-xl-3 m--margin-10">
       <app-recommend-user></app-recommend-user>
     </div>
+  
+  
   </div>
 </div>
