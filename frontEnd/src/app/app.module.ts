@@ -44,6 +44,8 @@ import { SettingsComponent } from './components/settings/settings/settings.compo
 import { AgeCategoryPipe } from './components/profile/age-category.pipe';
 import { EditArticleComponent } from './components/edit/article/edit-article/edit-article.component';
 import { EditQuotationComponent } from './components/edit/quotation/edit-quotation/edit-quotation.component';
+import { RecommendUserComponent } from './components/feeds/new user/recommend-user/recommend-user.component';
+import { SupportBtnComponent } from './components/support/supportbtn/support-btn/support-btn.component';
 
 
 
@@ -87,6 +89,8 @@ const appRoutes: Routes = [
     AgeCategoryPipe,
     EditArticleComponent,
     EditQuotationComponent,
+    RecommendUserComponent,
+    SupportBtnComponent,
     
   ],
   imports: [

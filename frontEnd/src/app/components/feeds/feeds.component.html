@@ -3,68 +3,73 @@
   <div class="m-subheader">
 
   </div>
-    <div class="col-md-12 m--margin-10">
-        <div class="row">
-            <div class="col-md-3" *ngFor="let article of articles">
-              <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
-                  <div class="m-portlet__head m-portlet__head--fit">
-                    <div class="m-portlet__head-caption">
-                      <div class="m-portlet__head-action">
-                      <a [routerLink]="['/category',article.category]">
-                        <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
-                          {{article.category}}
-                        </button>
-                      </a>
-                      </div>
+  <div class="row">
+    <div class="col-xl-8 m--margin-top-10 m--margin-left-40">
+      <div class="row">
+          <div class="col-md-4" *ngFor="let article of articles">
+            <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                <div class="m-portlet__head m-portlet__head--fit">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-action">
+                    <a [routerLink]="['/category',article.category]">
+                      <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
+                        {{article.category}}
+                      </button>
+                    </a>
                     </div>
                   </div>
-                  <div class="m-portlet__body">
-                    <div class="m-widget19">
-                        <a [routerLink]="['/journal',article.articleId]">
-                          <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
-                            <img src= "assets/{{article.imgUrl}}" alt="">
-                            <h3 class="m-widget19__title m--font-light">
-                              {{article.title}}
-                            </h3>
-                            <div class="m-widget19__shadow"></div>
-                          </div>
-                        </a>
-                          <div class="m-widget19__content">
-                            <div class="m-widget19__header">
-                              <div class="m-widget19__user-img">
-                                <a [routerLink]="['/',article.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
-                              </div>
-                              <div class="m-widget19__info">
-                                <span class="m-widget19__username">
-                                    <a [routerLink]="['/genjourist',article.genjouristId]">{{article.genjourist}}</a>
-                                </span>
-                                <br>
-                                <span class="m-widget19__time">
-                                  {{article.date | date:'medium' }}
-                                </span>
-                              </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-widget19">
+                      <a [routerLink]="['/journal',article.articleId]">
+                        <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
+                          <img src= "assets/{{article.imgUrl}}" alt="">
+                          <h3 class="m-widget19__title m--font-light">
+                            {{article.title}}
+                          </h3>
+                          <div class="m-widget19__shadow"></div>
+                        </div>
+                      </a>
+                        <div class="m-widget19__content">
+                          <div class="m-widget19__header">
+                            <div class="m-widget19__user-img">
+                              <a [routerLink]="['/',article.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
                             </div>
-                            <a [routerLink]="['/journal',article.articleId]">
-                              <div class="m-widget19__body m-nav__link-text">
-                                <div [innerHtml]="article.content | summary"></div>
-                                  <!-- {{article.content | summary}} -->
-                              </div>
-                            </a>
-                          </div>
-                        
-                      <div class="m-widget19__action">
-                          <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
-                            <div>
-                              <app-support-article [articleId]="article.articleId" [userId]="user?.genjouristId">
-                              
-                              </app-support-article>   
+                            <div class="m-widget19__info">
+                              <span class="m-widget19__username">
+                                  <a [routerLink]="['/genjourist',article.genjouristId]">{{article.genjourist}}</a>
+                              </span>
+                              <br>
+                              <span class="m-widget19__time">
+                                {{article.date | date:'medium' }}
+                              </span>
                             </div>
                           </div>
-                      </div>
+                          <a [routerLink]="['/journal',article.articleId]">
+                            <div class="m-widget19__body m-nav__link-text">
+                              <div [innerHtml]="article.content | summary"></div>
+                                <!-- {{article.content | summary}} -->
+                            </div>
+                          </a>
+                        </div>
+                      
+                    <div class="m-widget19__action">
+                        <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
+                          <div>
+                            <app-support-article [articleId]="article.articleId" [userId]="user?.genjouristId">
+                            
+                            </app-support-article>   
+                          </div>
+                        </div>
                     </div>
-                  </div> 
-              </div>
+                  </div>
+                </div> 
             </div>
-        </div>
+          </div>
+      </div>
     </div>
+    <div class="col-xl-3 m--margin-10">
+      <app-recommend-user></app-recommend-user>
+    </div>
+  </div>
 </div>

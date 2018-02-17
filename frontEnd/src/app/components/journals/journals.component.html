@@ -1,2 +1,14 @@
 <app-navbar></app-navbar>
-<app-articles></app-articles>
+<div class="m-subheader">
+    <div class="d-flex align-item-center">
+        <div class="mr-auto">
+                <button (click)="toggle()"  data-skin="dark" data-toggle="m-tooltip" data-placement="top" title="Circle" class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                        <i class="la la-archive"></i>
+                </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="status" >global</div>
+<div *ngIf="!status" >circle</div>
+<app-articles *ngIf="status" ></app-articles>
+<app-feeds *ngIf="!status" ></app-feeds>

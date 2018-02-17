@@ -63,6 +63,10 @@ module.exports.feedsArticle = function(array,callback){
         Article.find({genjouristId:{$in : array}},callback).sort({date:-1});
 }
 
+module.exports.newUserArticles = function(category,callback){
+
+}
+
 module.exports.deleteArticle = function(articleId, callback){
         Article.remove({articleId:articleId},callback);
 }

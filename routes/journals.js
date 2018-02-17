@@ -33,6 +33,7 @@ router.get('/journals/feeds/:userId', function(req,res){
             console.log(user.supporting.length);
             if(user.supporting.length==0){
                 res.json({msg:'support them'});
+                
             }else{
 
                 var supporting_array = [];
