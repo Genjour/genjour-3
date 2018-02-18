@@ -28,6 +28,17 @@ Quotation.addQuotation(newQuotation, (err,Quotation)=>{
 
 });
 
+router.get('/quotations',(req,res)=>{
+  Quotation.getQuotations((err,quotes)=>{
+    if(err) throw err;
+    if(!quotes){
+      res.json({success:false, msg:'no quotes'});
+    }else{
+      res.json(quotes);
+    }
+  })
+})
+
 router.get('/quotations/:category', (req,res)=>{
     Quotation.findQuotationByCategory(req.params.category, (err,data)=>{
       if(err) throw err;

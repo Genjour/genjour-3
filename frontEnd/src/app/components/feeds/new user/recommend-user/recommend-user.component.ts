@@ -1,3 +1,5 @@
+import { AuthService } from './../../../../services/auth.service';
+import { GenjouristService } from './../../../../services/genjourist.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecommendUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private genjouristService: GenjouristService,
+    private authService : AuthService
+  ) { }
+
+ user:any;
+ recommendedUsers:any
 
   ngOnInit() {
+    this.authService.userSubject.subscribe(data=>{
+      this.user =data;
+      this.genjouristService.recommendedUser(this.user.genjouristId).subscribe(data=>{
+        this.recommendedUsers = data;
+        console.log(data);
+      })
+    })
   }
 
 }

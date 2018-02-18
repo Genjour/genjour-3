@@ -1,9 +1,10 @@
+import { ArticleService } from './../../../services/article.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JournalsService } from '../../../services/journals.service'; 
 import { AuthService } from '../../../services/auth.service';
 import { SupportService } from '../../../services/support.service';
-import { ArticleComponent } from '../../article/article.component';
+
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -12,7 +13,7 @@ import { ArticleComponent } from '../../article/article.component';
 export class ArticlesComponent implements OnInit {
 
   constructor(
-    private journalsService : JournalsService,
+    private articleService : ArticleService,
     private authService : AuthService,
     private router: Router,
     private supportService: SupportService,
@@ -23,7 +24,7 @@ articleId: String;
 userId :String;
 articles : any[] = [];
 user : any[] = [];
-journals : any[]=[]
+journals : any[]=[];
 
   ngOnInit() {
       if(this.authService.loggedIn()){
@@ -32,7 +33,7 @@ journals : any[]=[]
                     this.user = data;
               })
         }
-      this.journalsService.getJournals().subscribe(data=>{
+      this.articleService.getArticles().subscribe(data=>{
       this.journals = data.filter( x=> x.status == true );
       this.articles = this.journals.slice(0,7);
       });

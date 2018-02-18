@@ -33,6 +33,7 @@ import { SocketService } from './services/socket/socket.service';
 import { CategoryService } from './services/category/category.service';
 import { ScriptLoaderService } from "./services/script-loader.service";
 import { FeedsService } from './services/feeds/feeds.service';
+import { QuotationsService } from './services/quotations.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { ProtectedGaurd } from './gaurds/protected.gaurd';
@@ -46,6 +47,8 @@ import { EditArticleComponent } from './components/edit/article/edit-article/edi
 import { EditQuotationComponent } from './components/edit/quotation/edit-quotation/edit-quotation.component';
 import { RecommendUserComponent } from './components/feeds/new user/recommend-user/recommend-user.component';
 import { SupportBtnComponent } from './components/support/supportbtn/support-btn/support-btn.component';
+import { ArticleRecommendationComponent } from './components/feeds/new user/article-recommendation/article-recommendation.component';
+import { QuotationsComponent } from './components/journals/quotations/quotations.component';
 
 
 
@@ -91,6 +94,8 @@ const appRoutes: Routes = [
     EditQuotationComponent,
     RecommendUserComponent,
     SupportBtnComponent,
+    ArticleRecommendationComponent,
+    QuotationsComponent,
     
   ],
   imports: [
@@ -115,6 +120,7 @@ const appRoutes: Routes = [
     CategoryService,
     ScriptLoaderService,
     FeedsService,
+    QuotationsService,
   ],
   bootstrap: [AppComponent]
 })

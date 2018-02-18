@@ -1,14 +1,5 @@
 <app-navbar></app-navbar>
-<!-- <div class="m-subheader">
-    <div class="d-flex align-item-center">
-        <div class="mr-auto">
-                <button (click)="toggle()"  data-skin="dark" data-toggle="m-tooltip" data-placement="top" title="Global/Circle" class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
-                        <i *ngIf="status" class="la la-globe"></i>
-                        <i *ngIf="!status" class="la la-circle"></i>
-                </button>
-        </div>
-    </div>
-</div> -->
+
 <div class="m-scroll-bottom m-scroll-bottom--skin-bottom--skin-dark " data-toggle="m-tooltip" data-placement="left" title="Global/Circle" (click)="toggle()">
     <i *ngIf="status" class="la la-globe"></i>
     <i *ngIf="!status" class="la la-circle"></i>
@@ -17,3 +8,5 @@
 <div *ngIf="!status" >circle</div>
 <app-articles *ngIf="status" ></app-articles>
 <app-feeds *ngIf="!status" ></app-feeds>
+<!-- <app-quotations></app-quotations> -->
+

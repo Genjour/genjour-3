@@ -10,12 +10,7 @@ export class JournalsService {
     private http: Http,
   ) { }
 
-getJournals(){
 
-  return this.http.get('http://localhost:3000/journals')
-      .map(response=>response.json())
-
-  } 
 
 }
 

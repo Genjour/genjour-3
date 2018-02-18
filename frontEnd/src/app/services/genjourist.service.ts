@@ -53,4 +53,8 @@ export class GenjouristService {
     return this.http.put(`http://localhost:3000/update/article/${articleId}`,article).map(res=>res.json());
   }
 
+  recommendedUser(userId){
+    return this.http.get(`http://localhost:3000/recommended/users/${userId}`).map(res=>res.json());
+  }
+
 }

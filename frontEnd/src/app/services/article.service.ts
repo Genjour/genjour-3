@@ -11,9 +11,12 @@ export class ArticleService {
     private http: Http,
   ) { }
 
+  getArticles(){
+    return this.http.get('http://localhost:3000/articles').map(response=>response.json())
+  
+    } 
   article(articleId){
-    return this.http.get(`http://localhost:3000/journal/${articleId}`)
-    .map(res=>res.json());
+    return this.http.get(`http://localhost:3000/journal/${articleId}`).map(res=>res.json());
   }
 
 }

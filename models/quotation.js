@@ -33,3 +33,7 @@ module.exports.findQuotationByCategory = function(category, callback){
 module.exports.feedsQuotation = function(array,callback){
         Quotation.find({genjouristId:{$in : array}},callback).sort({date:-1});
 }
+
+module.exports.getQuotations = function(callback){
+        Quotation.find(callback).sort({date:-1});
+}

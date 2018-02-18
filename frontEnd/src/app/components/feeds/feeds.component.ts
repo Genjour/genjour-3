@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedsService } from '../../services/feeds/feeds.service';
+import { user } from '../models/user';
 
 @Component({
   selector: 'app-feeds',
@@ -10,9 +11,10 @@ import { FeedsService } from '../../services/feeds/feeds.service';
 export class FeedsComponent implements OnInit {
   
 articleId: String;
-user :any;
+user :user;
 articles : Object;
 newUserStatus: Boolean = true;
+userId : String;
 
   constructor(
     private feedsService: FeedsService,
@@ -20,11 +22,11 @@ newUserStatus: Boolean = true;
   ) { }
 
   ngOnInit() {
+
     this.authService.userSubject.subscribe(data=>{
       this.user = data;
-
       console.log(this.user.supporting.length);
-      if(this.user.supporting.length<1){
+      if(this.user.supporting.length == 0){
         this.newUserStatus = false;
       }
       this.feedsService.articleFeeds(this.user.genjouristId).subscribe(data=>{

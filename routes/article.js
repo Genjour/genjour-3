@@ -151,4 +151,13 @@ router.put('/update/article/:articleId', function(req,res){
 });
 
 
+router.get('/articles',   function(req,res){
+
+  Article.getArticles((err, articles) => {
+      if (err) throw err;
+      res.json(articles);
+  });
+  
+});
+
 module.exports = router;

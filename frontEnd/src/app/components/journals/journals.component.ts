@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs/Observable';
+import { QuotationsService } from './../../services/quotations.service';
+import { ArticleService } from './../../services/article.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,27 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JournalsComponent implements OnInit {
   status : boolean = true;
+  articles:Observable<any[]>;
+  quotations:Observable<any[]>;
+  journals: Observable<any[]>;
   constructor(
     private authService: AuthService,
     private router: Router,
+    private quotationsService:QuotationsService,
+    private articleService:ArticleService,
   ) { }
 
   
-
   ngOnInit() {
-   
+
+
   }
 
   toggle(){
     if(this.authService.loggedIn()){
       if(this.status == true){
-        console.log('initally'+this.status);
           this.status = false;
-          console.log(this.status);
         }else if(this.status == false){
-          console.log('initally'+this.status);
           this.status = true;
-          console.log(this.status);
         }
 
     }else {

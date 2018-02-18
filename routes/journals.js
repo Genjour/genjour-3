@@ -4,14 +4,6 @@ const Article = require('../models/article');
 const User = require('../models/user');
 const uniqid     = require('uniqid');
 
-router.get('/journals',   function(req,res){
-
-    Article.getArticles((err, articles) => {
-        if (err) throw err;
-        res.json(articles);
-    });
-    
-});
 
 
 
