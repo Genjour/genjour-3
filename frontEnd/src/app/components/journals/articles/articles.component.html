@@ -1,14 +1,10 @@
-<div class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default m-scroll-top--shown">
-  <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body ">
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-      <div class="row">
-        <div class="col-lg-12 m-subheader ">
-          <div class="m-content" >
-            <div class="row" infiniteScroll
+
+        <div class="container m--margin-top-30">
+            <div class="card-columns" infiniteScroll
             [infiniteScrollDistance]="2"
             [infiniteScrollThrottle]="1000"
             (scrolled)="onScroll()">
-              <div class="col-md-3" *ngFor="let article of articles">
+              <div class="card" *ngFor="let article of articles">
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
                     <div class="m-portlet__head m-portlet__head--fit">
                       <div class="m-portlet__head-caption">
@@ -72,9 +68,4 @@
                 </div>
               </div>
             </div>      
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>

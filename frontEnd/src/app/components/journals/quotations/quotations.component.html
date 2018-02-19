@@ -1,51 +1,54 @@
 <div style="margin-top:90px;">
 
 </div>
-    <div class="row" >
-        <div class="col-md-3" *ngFor="let quote of quotes">
-          <div class="m-portlet m-portlet--bordered-semi m-portlet--skin-dark">
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">
-                      <a [routerLink]="['/category',quote?.category]">
-                        <button type="button" class="btn btn-sm m-btn--pill  btn-info">
-                          {{quote?.category}}
-                        </button>
-                      </a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="m-portlet__body">
-              <!--begin::Widget 7-->
-              <div class="m-widget7 m-widget7--skin-dark">
-                <div class="m-widget7__desc">
-                  {{quote.quote}}
-                </div>
-                <div class="m-widget7__user">
-                  <div class="m-widget7__user-img">
-                    <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
+    <div class="container m--margin-top-30" >
+        <div class="card-columns">
+          <div class="card" *ngFor="let quote of quotes" >
+              <div class="m-portlet m-portlet--bordered-semi">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            <a [routerLink]="['/category',quote?.category]">
+                              <button type="button" class="btn btn-sm m-btn--pill  btn-info">
+                                {{quote?.category}}
+                              </button>
+                            </a>
+                        </h3>
+                      </div>
+                    </div>
                   </div>
-                  <div class="m-widget7__info">
-                    <span class="m-widget7__username">
-                      {{quote.genjourist}}
-                    </span>
-                    <br>
-                    <span class="m-widget7__time">
-                      3 days ago
-                    </span>
+                  <div class="m-portlet__body">
+                    <!--begin::Widget 7-->
+                    <div class="m-widget7 m-widget7--skin-dark">
+                      <div class="m-widget7__desc">
+                        {{quote.quote}}
+                      </div>
+                      <div class="m-widget7__user">
+                        <div class="m-widget7__user-img">
+                          <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
+                        </div>
+                        <div class="m-widget7__info">
+                          <span class="m-widget7__username">
+                            {{quote.genjourist}}
+                          </span>
+                          <br>
+                          <span class="m-widget7__time">
+                            3 days ago
+                          </span>
+                        </div>
+                      </div>
+                      <div class="m-widget7__button">
+                        <a class="m-btn m-btn--pill btn btn-danger" href="#" role="button">
+                          All Feeds
+                        </a>
+                      </div>
+                    </div>
+                    <!--end::Widget 7-->
                   </div>
                 </div>
-                <div class="m-widget7__button">
-                  <a class="m-btn m-btn--pill btn btn-danger" href="#" role="button">
-                    All Feeds
-                  </a>
-                </div>
-              </div>
-              <!--end::Widget 7-->
-            </div>
           </div>
+          
         </div>
     
     </div>

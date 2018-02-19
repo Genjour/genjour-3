@@ -42,3 +42,12 @@
       color: #dfdff1; }
     .m-scroll-bottom.m-scroll-bottom--skin-dark:hover > i {
       color: #716aca; }
+
+/* .card-block{
+  padding: 2rem 2rem;
+} */
+
+.card-columns {
+  column-count: 4;
+  column-gap: 1.25rem;
+}
