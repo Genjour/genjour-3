@@ -29,7 +29,7 @@ mongoose.connection.on('Error', (err)=>{
 const users = require('./routes/users');
 const article = require('./routes/article');
 const quotation = require('./routes/quotation');
-const journals = require('./routes/journals');
+const journal = require('./routes/journal');
 const genjourist = require('./routes/genjourist');
 const support = require('./routes/support');
 
@@ -61,7 +61,7 @@ require('./config/passport')(passport);
  app.use('/',users);
  app.use('/',article);
  app.use('/',quotation);
- app.use('/',journals);
+ app.use('/',journal);
  app.use('/',genjourist);
  app.use('/',support);
 

@@ -37,7 +37,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization',this.authToken);
     headers.append('Content-Type','Application/json');
-    return this.http.post('http://localhost:3000/quotation',user,{headers:headers})
+    return this.http.post('http://localhost:3000/journal/add/quotation',user,{headers:headers})
     .map(res=>res.json());
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization',this.authToken);
     headers.append('Content-Type','Application/json');
-    return this.http.post('http://localhost:3000/article',user,{headers:headers})
+    return this.http.post('http://localhost:3000/journal/add/article',user,{headers:headers})
     .map(res=>res.json());
   }
 
@@ -55,7 +55,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization',this.authToken);
     headers.append('Content-Type','Application/json');
-    return this.http.post('http://localhost:3000/article',user,{headers:headers})
+    return this.http.post('http://localhost:3000/journal/add/article',user,{headers:headers})
     .map(res=>res.json());
   }
 

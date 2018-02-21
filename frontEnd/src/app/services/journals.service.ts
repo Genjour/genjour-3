@@ -10,7 +10,13 @@ export class JournalsService {
     private http: Http,
   ) { }
 
+  getJournal(){
+    return this.http.get(`http://localhost:3000/journal`).map(res=>res.json());
+  }
 
+  getJournalById(journalId){
+    return this.http.get(`http://localhost:3000/journal/${journalId}`).map(res=>res.json());
+  }
 
 }
 

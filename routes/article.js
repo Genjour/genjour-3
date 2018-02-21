@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const Article = require('../models/article');
+const Journal = require('../models/journal');
 const uniqid     = require('uniqid');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -60,37 +60,38 @@ router.post('/articleImage' , function(req,res){
     
 });
 
-router.post('/article',  passport.authenticate('jwt', {session:false}),  function(req,res){
+router.post('/journal/add/article',  passport.authenticate('jwt', {session:false}),  function(req,res){
 
   
-    let newArticle = new Article({
-        articleId     : uniqid(),
-        genjouristId  : req.user.genjouristId,
-        genjourist    : req.user.name,
-        category      : req.body.category,
-        title         : req.body.title,
-        content       : req.body.content,
-        date          : Date(),
-        tags          : req.body.tags,
-        imgUrl        : req.body.imgUrl,
-        status        : req.body.status,
-    });
+  let newArticle = new Journal({
+      journalId     : uniqid(),
+      genjouristId  : req.user.genjouristId,
+      genjourist    : req.user.name,
+      category      : req.body.category,
+      title         : req.body.title,
+      content       : req.body.content,
+      date          : Date(),
+      tags          : req.body.tags,
+      imgUrl        : req.body.imgUrl,
+      status        : req.body.status,
+      type          : 1
+  });
 
 
-    Article.addArticle(newArticle, (err,article)=>{
-		if(err){
-			res.json({success:false, msg:'Fail to add article'});
-		} else {
-      
-			res.json({success:true, msg:'Article saved'});
-		
-    }
-	});
+  Journal.addJournal(newArticle, (err,article)=>{
+  if(err){
+    res.json({success:false, msg:'Fail to add article'});
+  } else {
+    
+    res.json({success:true, msg:'Article saved'});
+  
+  }
+});
 
 });
 
 router.get('/articles/:category', (req,res)=>{
-  Article.findArticleByCategory(req.params.category, (err,data)=>{
+  Journal.findArticleByCategory(req.params.category, (err,data)=>{
     if(err) throw err;
     if(!data){
       res.json({success:false, msg:"No data found"});
@@ -101,7 +102,7 @@ router.get('/articles/:category', (req,res)=>{
 });
 
 router.get('/edit/article/:articleId', (req,res)=>{
-  Article.findArticle(req.params.articleId, (err,data)=>{
+  Journal.findArticle(req.params.articleId, (err,data)=>{
     if(err) throw err;
     if(!data){
       res.json({success:false, msg:"No data found"});
@@ -113,7 +114,7 @@ router.get('/edit/article/:articleId', (req,res)=>{
 
 
 router.delete('/delete/article/:articleId', function(req,res){
-  Article.deleteArticle(req.params.articleId, (err,done)=>{
+  Journal.deleteArticle(req.params.articleId, (err,done)=>{
       if(err) throw err;
       if(!done){ 
           res.json({success:false, msg:"Cannot delete"});
@@ -133,12 +134,12 @@ router.put('/update/article/:articleId', function(req,res){
         status           : req.body.status,
   }
 
-  Article.findArticle(req.params.articleId, (err,article)=>{
+  Journal.findArticle(req.params.articleId, (err,article)=>{
     if(err) throw err;
     if(!article){
       res.json({success:false, msg:'cannot find this article which you want to update'});
     }else{
-      Article.updateArticle(req.params.articleId, flag, (err,draftArticle)=>{
+      Journal.updateArticle(req.params.articleId, flag, (err,draftArticle)=>{
         if(err) throw err;
         if(!draftArticle){
           res.json({success:false, msg:'cannot update'});
@@ -153,7 +154,7 @@ router.put('/update/article/:articleId', function(req,res){
 
 router.get('/articles',   function(req,res){
 
-  Article.getArticles((err, articles) => {
+  Journal.getArticles((err, articles) => {
       if (err) throw err;
       res.json(articles);
   });

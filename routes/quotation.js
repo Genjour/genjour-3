@@ -14,7 +14,8 @@ router.post('/quotation', passport.authenticate('jwt', {session:false}), functio
         quote         : req.body.quote,
         tags          : req.body.tags,
         date          : Date(),
-        status        : req.body.status
+        status        : req.body.status,
+        type          : "quote"
 
     });
 
