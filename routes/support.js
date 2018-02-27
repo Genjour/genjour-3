@@ -6,12 +6,13 @@ const Journal    = require('../models/journal');
 const jwt        = require('jsonwebtoken');
 const config     = require('../config/database');
 const uniqueId   = require('unique-id-generator');
-const io		 = require('socket.io');
+//const io		 = require('socket.io');
 
 
     router.post('/support/journal/:journalId/:genjouristId',function(req,res) {
         const journalId = req.params.journalId;
         const genjouristId = req.params.genjouristId;
+        console.log(journalId);
         Journal.findJournal(journalId, (err,article)=>{
             if(err) throw err;
             if(!article){

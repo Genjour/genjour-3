@@ -18,7 +18,7 @@ router.get('/journal',(req,res)=>{
 })
 
 router.get('/journal/:id',function(req,res){
-    Journal.findOne({ 'articleId' : req.params.id }, function(err, article) {
+    Journal.findOne({ 'journalId' : req.params.id }, function(err, article) {
         if (err) throw err;
         res.json(article);
     });

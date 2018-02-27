@@ -8,20 +8,20 @@ const uniqueId = require('unique-id-generator');
 
 router.post('/register',(req,res,next)=>{
 	let newUser = new User({
-		name : req.body.name,
-		email: req.body.email,
-		username : req.body.username,
-		password : req.body.password,
-		gender   : req.body.gender,
-		genjouristId: "10"+uniqueId(),
-		dob 		: req.body.dob,
-		supporters	:[],
-		supporting	:[],
+		name 			: req.body.name,
+		email			: req.body.email,
+		username		: req.body.username,
+		password		: req.body.password,
+		gender   		: req.body.gender,
+		genjouristId	: "10"+uniqueId(),
+		dob 			: req.body.dob,
+		supporters		: [],
+		supporting		: [],
 		supportingNumber: " ",
 		supportersNumber: " ",
-		status: true,
-		createdOn: Date(),
-		img: "assets/uploads/user/defaultBoy",
+		status			: true,
+		createdOn 		: Date(),
+		img 			: "assets/uploads/user/defaultBoy",
 
 	});
 

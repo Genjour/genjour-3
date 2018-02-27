@@ -16,7 +16,7 @@ export class SupportArticleComponent implements OnInit {
   @Input() journalId: String; 
   @Input() userId : String;
 
-  articleData:Object;
+
   articles : Object;
   supporters : any[] = [];
   supporterNumber : any;
@@ -31,6 +31,7 @@ export class SupportArticleComponent implements OnInit {
   ) { }
 
   ngOnInit( ) {
+    console.log(this.journalId);
     this.journalsService.getJournalById(this.journalId).subscribe(data=>{
       this.supporterNumber = data.supporters.length;
       this.supporters = data.supporters;
@@ -54,6 +55,7 @@ export class SupportArticleComponent implements OnInit {
     
     if(this.authService.loggedIn()){
 
+      //console.log(journalId+ ' ' + userId);
       this.journalsService.getJournalById(journalId).subscribe(data=>{
         this.supporterNumber = data.supporters.length;
         this.supporters = data.supporters;

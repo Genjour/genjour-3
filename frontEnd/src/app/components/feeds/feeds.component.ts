@@ -12,7 +12,7 @@ export class FeedsComponent implements OnInit {
   
 articleId: String;
 user :user;
-articles : Object;
+journals : Object;
 newUserStatus: Boolean = true;
 userId : String;
 
@@ -29,9 +29,9 @@ userId : String;
       if(this.user.supporting.length == 0){
         this.newUserStatus = false;
       }
-      this.feedsService.articleFeeds(this.user.genjouristId).subscribe(data=>{
-        this.articles = data; 
-        console.log(data);
+      this.feedsService.journalFeeds(this.user.genjouristId).subscribe(data=>{
+        this.journals = data; 
+        //console.log(data);
       })
     })
     

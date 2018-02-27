@@ -5,125 +5,141 @@
         <i *ngIf="!status" class="la la-circle"></i>
     </div>
 
-<div class="container">    
-<!--
-<div *ngIf="status" >global</div>
-<div *ngIf="!status" >circle</div>
-<app-articles *ngIf="status" ></app-articles>
-<app-feeds *ngIf="!status" ></app-feeds> -->
-<!-- <app-quotations></app-quotations>  -->
-    <div class="card-columns">
-        <div *ngFor="let journal of journals">
-            
-            <div *ngIf="journal.type == 1; then article else quotation" ></div>
+<!-- ===================================== GLOBAL ==================================== -->
 
-            <ng-template #article >
-                <div class="card">
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
-                        <div class="m-portlet__head m-portlet__head--fit">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-action">
-                            <a [routerLink]="['/category',journal?.category]">
-                            <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
-                                {{journal?.category}}
-                            </button>
-                            </a>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="m-portlet__body">
-                        <div class="m-widget19">
-                            <a [routerLink]="['/journal',journal?.journalId]">
-                                <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height:-286px;">
-                                <img src= "{{journal?.imgUrl}}" alt="">
-                                <h3 class="m-widget19__title m--font-light">
-                                    {{journal?.title}}
-                                </h3>
-                                <div class="m-widget19__shadow"></div>
-                                </div>
-                            </a>
-                                <div class="m-widget19__content">
-                                <div class="m-widget19__header">
-                                    <div class="m-widget19__user-img">
-                                    <a [routerLink]="['/genjourist',journal?.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="m-widget19__info">
-                                    <span class="m-widget19__username">
-                                        <a [routerLink]="['/genjourist',journal?.genjouristId]">{{journal?.genjourist}}</a>
-                                    </span>
-                                    <br>
-                                    <span class="m-widget19__time">
-                                        {{journal?.date | date:'medium' }}
-                                    </span>
-                                    </div>
-                                </div>
-                                <a [routerLink]="['/journal',journal?.journalId]">
-                                    <div class="m-widget19__body m-nav__link-text">
-                                        <div [innerHTML]=" journal?.content | summary "></div>
-                                    </div>
+<div *ngIf="status">
+    <div class="container">    
+        <!--
+        <div *ngIf="status" >global</div>
+        <div *ngIf="!status" >circle</div>
+        <app-articles *ngIf="status" ></app-articles>
+        <app-feeds *ngIf="!status" ></app-feeds> -->
+        <!-- <app-quotations></app-quotations>  -->
+        <div class="card-columns">
+            <div *ngFor="let journal of journals">
+                
+                <div *ngIf="journal.type == 1; then article else quotation" ></div>
+
+                <ng-template #article >
+                    <div class="card">
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                            <div class="m-portlet__head m-portlet__head--fit">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-action">
+                                <a [routerLink]="['/category',journal?.category]">
+                                <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
+                                    {{journal?.category}}
+                                </button>
                                 </a>
                                 </div>
-                            
-                            <div class="m-widget19__action">
-                                <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
-                                <div>
-                                    <app-support-article [journalId]="journal.journalId" [userId]="user.genjouristId">
-                                    
-                                    </app-support-article>   
-                                </div>
-                                </div>
                             </div>
-                        </div>
-                        </div> 
-                    </div>
-                </div>
-                
-            </ng-template>
-
-            <ng-template #quotation >
-                <div class="card">
-                    <div class="m-portlet m-portlet--bordered-semi">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    <a [routerLink]="['/category',journal?.category]">
-                                    <button type="button" class="btn btn-sm m-btn--pill  btn-info">
-                                        {{journal?.category}}
-                                    </button>
+                            </div>
+                            <div class="m-portlet__body">
+                            <div class="m-widget19">
+                                <a [routerLink]="['/journal',journal?.journalId]">
+                                    <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height:-286px;">
+                                    <img src= "{{journal?.imgUrl}}" alt="">
+                                    <h3 class="m-widget19__title m--font-light">
+                                        {{journal?.title}}
+                                    </h3>
+                                    <div class="m-widget19__shadow"></div>
+                                    </div>
+                                </a>
+                                    <div class="m-widget19__content">
+                                    <div class="m-widget19__header">
+                                        <div class="m-widget19__user-img">
+                                        <a [routerLink]="['/genjourist',journal?.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
+                                        </div>
+                                        <div class="m-widget19__info">
+                                        <span class="m-widget19__username">
+                                            <a [routerLink]="['/genjourist',journal?.genjouristId]">{{journal?.genjourist}}</a>
+                                        </span>
+                                        <br>
+                                        <span class="m-widget19__time">
+                                            {{journal?.date | date:'medium' }}
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <a [routerLink]="['/journal',journal?.journalId]">
+                                        <div class="m-widget19__body m-nav__link-text">
+                                            <div [innerHTML]=" journal?.content | summary "></div>
+                                        </div>
                                     </a>
-                                </h3>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="m-portlet__body">
-                            <!--begin::Widget 7-->
-                            <div class="m-widget7 m-widget7--skin-dark">
-                            <div class="m-widget7__desc">
-                                    <blockquote class="blockquote">{{journal.content}} </blockquote>
-                            </div>
-                            <div class="m-widget7__user">
-                                <div class="m-widget7__user-img">
-                                <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
-                                </div>
-                                <div class="m-widget7__info">
-                                <span class="m-widget7__username">
-                                    {{journal.genjourist}}
-                                </span>
-                                <br>
-                                <span class="m-widget7__time">
-                                    3 days ago
-                                </span>
+                                    </div>
+                                
+                                <div class="m-widget19__action">
+                                    <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
+                                    <div>
+                                        <app-support-article [journalId]="journal.journalId" [userId]="user?.genjouristId">
+                                        
+                                        </app-support-article>   
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                            <!--end::Widget 7-->
+                            </div> 
                         </div>
-                        </div>
-                </div> 
-            </ng-template>
+                    </div>
+                    
+                </ng-template>
 
+                <ng-template #quotation >
+                    <div class="card">
+                        <div class="m-portlet m-portlet--bordered-semi">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        <a [routerLink]="['/category',journal?.category]">
+                                        <button type="button" class="btn btn-sm m-btn--pill  btn-info">
+                                            {{journal?.category}}
+                                        </button>
+                                        </a>
+                                    </h3>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <!--begin::Widget 7-->
+                                <div class="m-widget7 m-widget7--skin-dark">
+                                <div class="m-widget7__desc">
+                                        <blockquote class="blockquote">{{journal.content}} </blockquote>
+                                </div>
+                                <div class="m-widget7__user">
+                                    <div class="m-widget7__user-img">
+                                    <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
+                                    </div>
+                                    <div class="m-widget7__info">
+                                    <span class="m-widget7__username">
+                                        {{journal.genjourist}}
+                                    </span>
+                                    <br>
+                                    <span class="m-widget7__time">
+                                        3 days ago
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="m-widget7__button">
+                                    <app-support-article [journalId]="journal.journalId" [userId]="user?.genjouristId">
+                                    
+                                    </app-support-article>  
+                                </div>
+                                </div>
+                                <!--end::Widget 7-->
+                            </div>
+                            </div>
+                    </div> 
+                </ng-template>
+
+            </div>
         </div>
     </div>
 </div>
+
+<!-- ===================================== CIRCLE ==================================== -->    
+
+<div *ngIf="!status">
+    <app-feeds></app-feeds>
+</div>
+
 

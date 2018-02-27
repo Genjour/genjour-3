@@ -43,13 +43,20 @@ export class GenjouristComponent implements OnInit {
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-               // console.log(this.user);          
+               //console.log(this.user);          
           });
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
       this.userData = data;
-      this.supporterNumber = data.supportersNumber;
-      this.supportingNumber = data.supportingNumber;
+      this.supporterNumber  = data.supportersNumber.length;
+      this.supportingNumber = data.supportingNumber.length;
+      if(this.supporterNumber == null){
+        this.supporterNumber=0;
+      }
+
+      if(this.supportingNumber == null){
+        this.supportingNumber = 0;
+      }
     })
 
     this.genjouristService.articles(this.route.snapshot.params.id).subscribe(article=>{
@@ -88,7 +95,7 @@ export class GenjouristComponent implements OnInit {
       //=============== Support Code ==========================
 
       this.supportService.supportGenjourist(userId, genjouristId).subscribe(data=>{
-        this.supporterNumber = data.msg;
+        this.supporterNumber = data.supporters.length;
         console.log(data.msg);
 
 
@@ -103,7 +110,7 @@ export class GenjouristComponent implements OnInit {
        //=============== Supporting Code ======================
 
       this.supportService.supportingGenjourist(userId, genjouristId).subscribe(data=>{
-        this.supportingNumber = data.msg;
+        this.supportingNumber = data.suupporting.length;
         console.log(data.msg);
       });
       this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{

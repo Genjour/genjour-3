@@ -14,7 +14,7 @@ export class SupportService {
     supportJournal(journalId, genjouristId){
       let headers = new Headers();
       headers.append('Content-Type','Application/json');
-      const URL = `http://localhost:3000/journal/support/${journalId}/${genjouristId}`;
+      const URL = `http://localhost:3000/support/journal/${journalId}/${genjouristId}`;
       // console.log(URL);
       return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
