@@ -15,7 +15,7 @@ import { user } from '../models/user';
 })
 export class GenjouristComponent implements OnInit {
 
-  userData : any[]=[]; // genjourist profile which user is seeing
+  genjouristData : any[]=[]; // genjourist profile which user is seeing
   journals: Object;
   quotations :Object;
   user : user;
@@ -41,15 +41,28 @@ export class GenjouristComponent implements OnInit {
   ngOnInit() {
     
     this.authService.userSubject.subscribe(
-      data=> {
-                this.user = data;
-               //console.log(this.user);          
-          });
+      user=> {
+                this.user = user;
+               //console.log(this.user);       
+               
+          
 
-    this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
-      this.userData = data;
-      this.supporterNumber  = data.supportersNumber.length;
-      this.supportingNumber = data.supportingNumber.length;
+    this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(genjourist=>{
+      this.genjouristData = genjourist;
+      this.supporterNumber  = genjourist.supporters.length;
+      this.supportingNumber = genjourist.supporting.length;
+
+      // ========================================= Support Status ============================================
+      
+        let n = this.user.supporting;
+       if(n.includes(this.route.snapshot.params.id) == true){
+          this.supportStatus = false;
+        }else{
+          this.supportStatus = true;
+        }
+
+      //======================================================================================================
+
       if(this.supporterNumber == null){
         this.supporterNumber=0;
       }
@@ -57,6 +70,7 @@ export class GenjouristComponent implements OnInit {
       if(this.supportingNumber == null){
         this.supportingNumber = 0;
       }
+      
     })
 
     this.genjouristService.articles(this.route.snapshot.params.id).subscribe(article=>{
@@ -68,7 +82,7 @@ export class GenjouristComponent implements OnInit {
     })
 
     //=================================================================================================
-    //======================================= LIST ====================================================
+    //============================================= LIST ==============================================
     //=================================================================================================
     this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
       this.supportingLists = data.supporting;
@@ -79,24 +93,34 @@ export class GenjouristComponent implements OnInit {
       //console.log(this.supportersLists);
     })
 
+  });
+
+
   }
+
 
   support(userId, genjouristId){
     if(this.authService.loggedIn()){
 
       if(userId == genjouristId){
-        console.log('You cannot like your own profile');
+        //console.log('You cannot like your own profile');
         this.selfSupportAlert = false;
         return this.selfSupportAlert;
       }
 
-      
-      
-      //=============== Support Code ==========================
+       // ========================================= Support Status ===========================================
+
+      if(this.supportStatus === true){
+        this.supportStatus = false;
+      }else if (this.supportStatus === false){
+        this.supportStatus = true;
+      }
+
+      //============================================ Support Code ============================================
 
       this.supportService.supportGenjourist(userId, genjouristId).subscribe(data=>{
-        this.supporterNumber = data.supporters.length;
-        console.log(data.msg);
+        // this.supporterNumber = data.msg;
+           console.log(data.msg);
 
 
         this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{
@@ -107,10 +131,10 @@ export class GenjouristComponent implements OnInit {
         })
       });
 
-       //=============== Supporting Code ======================
+       //========================================= Supporting Code ============================================
 
       this.supportService.supportingGenjourist(userId, genjouristId).subscribe(data=>{
-        this.supportingNumber = data.suupporting.length;
+        //this.supportingNumber = data.msg;
         console.log(data.msg);
       });
       this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(data=>{

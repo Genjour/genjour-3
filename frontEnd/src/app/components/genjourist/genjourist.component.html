@@ -18,12 +18,12 @@
                 </div>
                 <div class="m-card-profile__pic">
                   <div class="m-card-profile__pic-wrapper">
-                    <img src="assets/{{userData?.imgUrl}}" alt="">
+                    <img src="assets/{{genjouristData?.imgUrl}}" alt="">
                   </div>
                 </div>
                 <div class="m-card-profile__details">
                     <span class="m-card-profile__name">
-                      Genjourist {{userData?.name}}
+                      Genjourist {{genjouristData?.name}}
                     </span>
                   </div>
                   <br>
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="m-separator"></div>
-              <button type="button" (click)="support(user?.genjouristId,userData.genjouristId)" class="btn m-btn--square  btn-primary btn-block">
+              <button type="button" (click)="support(user?.genjouristId,genjouristData.genjouristId)" class="btn m-btn--square  btn-primary btn-block">
                 <div *ngIf="supportStatus"> Start Supporting</div>
                 <div *ngIf="!supportStatus"> Stop Supporting</div>
               </button>
@@ -73,7 +73,7 @@
                         </span>
                         <span class="m-nav__link-badge">
                           <span class="m-badge m-badge--success m-badge--wide">
-                            {{userData?.dob | ageCategory}}
+                            {{genjouristData?.dob | ageCategory}}
                           </span>
                         </span>
                       </span>
@@ -90,7 +90,7 @@
                         </span>
                         <span class="m-nav__link-badge">
                           <span class="m-badge m-badge--info m-badge--wide">
-                            {{userData?.gender}}
+                            {{genjouristData?.gender}}
                           </span>
                         </span>
                       </span>
@@ -118,7 +118,7 @@
                             Email
                           </span>
                           <span class="m--pull-right p-details">
-                              {{userData?.email}}
+                              {{genjouristData?.email}}
                           </span>
                       </span>
                   </a>

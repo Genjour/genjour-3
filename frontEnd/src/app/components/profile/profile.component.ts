@@ -16,6 +16,8 @@ journals : Object;
 quotations :Object;
 supportersLists : any[] = [];
 supportingLists : any[] = [];
+supportingNumber : number;
+supportersNumber : number;
 
   constructor(
     private authService : AuthService,
@@ -36,10 +38,16 @@ supportingLists : any[] = [];
                 this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
                   this.quotations = quotation;
                 });
+  //=================================================================================================
+//======================================= Support Numbers ==========================================
+//=================================================================================================
 
-            //=================================================================================================
-            //======================================= LIST ====================================================
-            //=================================================================================================
+                this.supportersNumber = this.user.supporters.length;
+                this.supportingNumber = this.user.supporting.length;
+                
+//=================================================================================================
+//======================================= LIST ====================================================
+//=================================================================================================
              this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
                this.supportingLists = data.supporting;
              })
