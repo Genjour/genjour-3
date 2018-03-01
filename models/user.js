@@ -57,7 +57,9 @@ module.exports.comparePassword = function(candiadatePassword, hash, callback){
 }
 
 
-//================== find user by genjouristId =============
+//=============================================================================
+//============================== find user by genjouristId ====================
+//=============================================================================
 
 module.exports.findUser = function(userId, callback){
         const query = {genjouristId: userId}
@@ -90,6 +92,10 @@ module.exports.removeSupporting = function(userId, supporting, callback){
   User.findOneAndUpdate({genjouristId:userId}, {$pop:{supporting:supporting}}, callback);
 }
 
+//=============================================================================
+//========================= UPDATING SUPPORTERS AND SUPPORTING ================
+//=============================================================================
+
 module.exports.updateSupporterNumber = function(userId, supportersNumber, callback){
   User.updateOne({genjouristId:userId},{$set:{ supportNumber : supportersNumber }}, callback);  
 }
@@ -98,9 +104,6 @@ module.exports.updateSupportingNumber = function(userId, supportersNumber, callb
   User.updateOne({genjouristId:userId},{$set:{ supportingNumber : supportersNumber }}, callback);  
 }
 
-module.exports.getSupportingArray = function(userId){
-  //return UserId.find({genjouristId:userId},)
-}
 
 //=============================================================================
 //============================== Recommended User =============================

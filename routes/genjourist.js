@@ -160,15 +160,33 @@ router.get('/supportingList/:userid', function(req,res){
     var userId = req.params.userid;
     User.findUser(userId, function(err,user){
         if(err) throw err;
-        else{
-            
-                return res.json(user);
+        if(!user){
+            return res.json({success:false, msg:'genjourist id is not valid'});
+        }
+        else{   
+                let supporting = user.supporting;
+                console.log(supporting);
+                let array = [];
+                for(var i=0; i<supporting.length; i++){
+                    User.findUser(supporting[i], function(err,user){
+                        if(err) throw err;
+                        else{
+
+                           array.push(user);
+                           console.log(array);
+                            
+                        }
+                       
+                    })
+                }
+                return res.json(array);
+
             }
         })
     });
 
 //=============================================================================
-//============================== Supporters ===================================
+//============================== SUPPORTERS LIST ==============================
 //=============================================================================
 
 router.get('/supportersList/:userid', function(req,res){
@@ -177,7 +195,7 @@ router.get('/supportersList/:userid', function(req,res){
         if(err) throw err;
         else{
                 
-                return res.json(user);
+                return res.json(user.supporters);
             }
         })
     });

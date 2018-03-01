@@ -52,7 +52,7 @@
               </div>
               <div class="m-separator"></div>
               <button type="button" (click)="support(user?.genjouristId,genjouristData.genjouristId)" class="btn m-btn--square  btn-primary btn-block">
-                <div *ngIf="supportStatus"> Start Supporting</div>
+                <div *ngIf="supportStatus">Support</div>
                 <div *ngIf="!supportStatus"> Stop Supporting</div>
               </button>
               <div *ngIf = "!selfSupportAlert">You cannot support your self :-)</div>

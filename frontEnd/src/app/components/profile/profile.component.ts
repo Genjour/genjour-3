@@ -50,10 +50,12 @@ supportersNumber : number;
 //=================================================================================================
              this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
                this.supportingLists = data.supporting;
+               console.log(this.supportingLists);
              })
 
              this.genjouristService.getSupportersList(this.user.genjouristId).subscribe(data=>{
                this.supportersLists = data.supporters;
+               console.log(this.supportersLists)
              })
           })
 
