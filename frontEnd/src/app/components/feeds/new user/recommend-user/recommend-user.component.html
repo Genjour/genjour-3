@@ -13,7 +13,7 @@
           <!--begin::Widget 14 Item-->
           <div *ngFor="let recommendedUser of recommendedUsers" class="m-widget4__item">
             <div class="m-widget4__img m-widget4__img--pic">
-              <img src="assets/app/media/img/users/100_4.jpg" alt="">
+              <img src="{{recommendedUser.profileImg}}" alt="">
             </div>
             <div class="m-widget4__info">
               <span class="m-widget4__title">

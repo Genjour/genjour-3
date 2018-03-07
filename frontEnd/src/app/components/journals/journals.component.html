@@ -48,7 +48,7 @@
                                     <div class="m-widget19__content">
                                     <div class="m-widget19__header">
                                         <div class="m-widget19__user-img">
-                                        <a [routerLink]="['/genjourist',journal?.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
+                                        <a [routerLink]="['/genjourist',journal?.genjouristId]"><img class="m-widget19__img" src="{{journal.profileImg}}" alt=""></a>
                                         </div>
                                         <div class="m-widget19__info">
                                         <span class="m-widget19__username">
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="m-widget7__user">
                                     <div class="m-widget7__user-img">
-                                    <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
+                                    <img class="m-widget7__img" src="{{journal.profileImg}}" alt="">
                                     </div>
                                     <div class="m-widget7__info">
                                     <span class="m-widget7__username">

@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecommendUserComponent implements OnInit {
 
+  userId:String;
+  supportGenjouristId : String;
+  
   constructor(
     private genjouristService: GenjouristService,
     private authService : AuthService
@@ -22,7 +25,7 @@ export class RecommendUserComponent implements OnInit {
       this.user =data;
       this.genjouristService.recommendedUser(this.user.genjouristId).subscribe(data=>{
         this.recommendedUsers = data;
-        console.log(data);
+        //console.log(data);
       })
     })
   }

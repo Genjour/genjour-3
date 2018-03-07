@@ -85,4 +85,15 @@ router.post('/journal/add/quotation', passport.authenticate('jwt', {session:fals
 
 });
 
+router.get('/journals/:category', (req,res)=>{
+    Journal.findJournalByCategory(req.params.category, (err,data)=>{
+      if(err) throw err;
+      if(!data){
+        res.json({success:false, msg:"No data found"});
+      }else{
+        res.json(data);
+      }
+    });
+  });
+
 module.exports = router;

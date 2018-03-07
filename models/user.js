@@ -112,3 +112,23 @@ module.exports.updateSupportingNumber = function(userId, supportersNumber, callb
 module.exports.recommendedUsers = function(arr,callback){
   User.find({genjouristId:{$nin:arr}},callback);
 }
+
+
+module.exports.getSupporting = function(arr,callback){
+  User.find(
+              {genjouristId:{$in:arr}},
+              {name:1, genjouristId:1, dob:1, imgUrl:1 },
+              callback
+            );
+}
+
+module.exports.getSupporters = function(arr,callback){
+  User.find(
+              {genjouristId:{$in:arr}},
+              {name:1, genjouristId:1, dob:1, imgUrl:1 },
+              callback
+            );
+}
+
+
+

@@ -10,8 +10,8 @@ export class CategoryService {
     private http: Http,
   ) { }
 
-  articleContent(category){
-     return this.http.get('http://localhost:3000/articles/'+category)
+  JournalsByCategory(category){
+     return this.http.get('http://localhost:3000/journals/'+category)
          .map(response=>response.json())
   }
   quotationContent(category){

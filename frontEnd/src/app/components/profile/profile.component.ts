@@ -11,13 +11,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
 user : any;
+userId:String;
 journals : Object;
 quotations :Object;
 supportersLists : any[] = [];
 supportingLists : any[] = [];
 supportingNumber : number;
 supportersNumber : number;
+
+supportersListsStatus:String;
+supportGenjouristId : String;
 
   constructor(
     private authService : AuthService,
@@ -49,13 +54,13 @@ supportersNumber : number;
 //======================================= LIST ====================================================
 //=================================================================================================
              this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
-               this.supportingLists = data.supporting;
-               console.log(this.supportingLists);
+               this.supportingLists = data;
+               //console.log(this.supportingLists);
              })
 
              this.genjouristService.getSupportersList(this.user.genjouristId).subscribe(data=>{
-               this.supportersLists = data.supporters;
-               console.log(this.supportersLists)
+               this.supportersLists = data;
+               //console.log(this.supportersLists)
              })
           })
 

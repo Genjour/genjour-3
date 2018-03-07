@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
 
-  articleContents : any[] = [];
+  journals : any[] = [];
   quotationContents : any[] = [];
 
   constructor(
@@ -18,13 +18,10 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.categoryService.articleContent(this.route.snapshot.params.categoryName).subscribe(data=>{
-      this.articleContents = data;
+    this.categoryService.JournalsByCategory(this.route.snapshot.params.categoryName).subscribe(data=>{
+      this.journals = data;
     });
-    this.categoryService.quotationContent(this.route.snapshot.params.categoryName).subscribe(data=>{
-      this.quotationContents = data;
-    });
-    
+   
   }
 
 }

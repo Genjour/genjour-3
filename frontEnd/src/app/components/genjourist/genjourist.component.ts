@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import { AgeCategoryPipe } from './../profile/age-category.pipe';
 import { Component, OnInit } from '@angular/core';
 import { GenjouristService } from '../../services/genjourist.service';
@@ -49,8 +50,6 @@ export class GenjouristComponent implements OnInit {
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(genjourist=>{
       this.genjouristData = genjourist;
-      this.supporterNumber  = genjourist.supporters.length;
-      this.supportingNumber = genjourist.supporting.length;
 
       // ========================================= Support Status ============================================
       
@@ -81,20 +80,22 @@ export class GenjouristComponent implements OnInit {
     this.quotations = data.filter( x=> x.status == true);
     })
 
-    //=================================================================================================
-    //============================================= LIST ==============================================
-    //=================================================================================================
-    this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
-      this.supportingLists = data.supporting;
-    })
-
-    this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
-      this.supportersLists = data.supporters;
-      //console.log(this.supportersLists);
-    })
-
   });
 
+      //=================================================================================================
+      //======================================= LIST ====================================================
+      //=================================================================================================
+      this.genjouristService.getSupportingList(this.route.snapshot.params.id).subscribe(data=>{
+        this.supportingLists = data;
+        this.supportingNumber = data.length;
+        //console.log(this.supportingLists);
+      })
+
+      this.genjouristService.getSupportersList(this.route.snapshot.params.id).subscribe(data=>{
+        this.supportersLists = data;
+        this.supporterNumber = data.length;
+        //console.log(this.supportersLists)
+      })
 
   }
 

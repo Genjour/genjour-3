@@ -1,234 +1,128 @@
 <app-navbar></app-navbar>
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div style="margin-top:90px;" ></div>
+<!-- ===================================== GLOBAL ==================================== -->
 
 
-  <div class="m-subheader">
+    <div class="container">    
+        <div class="card-columns">
+            <div *ngFor="let journal of journals">
+                
+                <div *ngIf="journal.type == 1; then article else quotation" ></div>
 
-  </div> 
-
-  <div class="m-content ">
-      <div class="row">
-          <div class="col-xl-8 m--margin-20">
-              <!--begin:: Widgets/Best Sellers-->
-              <div class="m-portlet m-portlet--full-height ">
-                  <div class="m-portlet__head">
-                      <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                          <h3 class="m-portlet__head-text">
-                            Articles
-                          </h3>
-                        </div>
-                      </div>
-                      <div class="m-portlet__head-tools">
-                        <ul class="m-portlet__nav">
-                          <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-                            <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
-                              <i class="la la-ellipsis-h m--font-brand"></i>
-                            </a>
-                            <div class="m-dropdown__wrapper">
-                              <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                              <div class="m-dropdown__inner">
-                                <div class="m-dropdown__body">
-                                  <div class="m-dropdown__content">
-                                    <ul class="m-nav">
-                                      <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
-                                          <i class="m-nav__link-icon flaticon-share"></i>
-                                          <span class="m-nav__link-text">
-                                            Genjour Trending
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
-                                          <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                          <span class="m-nav__link-text">
-                                            Latest
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
-                                          <i class="m-nav__link-icon flaticon-info"></i>
-                                          <span class="m-nav__link-text">
-                                            Top
-                                          </span>
-                                        </a>
-                                      </li>
-                                      <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
-                                          <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                          <span class="m-nav__link-text">
-                                            Sort
-                                          </span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
+                <ng-template #article >
+                    <div class="card">
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                            <div class="m-portlet__head m-portlet__head--fit">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-action">
+                                <a [routerLink]="['/category',journal?.category]">
+                                <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
+                                    {{journal?.category}}
+                                </button>
+                                </a>
                                 </div>
-                              </div>
                             </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                <div class="m-portlet__body">
-                  <!--begin::Content-->
-                  <div *ngFor="let articleContent of articleContents"> 
-                    <div class="tab-content">
-                      <div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
-                        <!--begin::m-widget5-->
-                        <div class="m-widget5">
-                          <div class="m-widget5__item">
-                            <div class="m-widget5__pic">
-                              <img class="m-widget7__img" src="assets/{{articleContent.imgUrl}}" alt="">
                             </div>
-                            <div class="m-widget5__content">
-                              <h4 class="m-widget5__title">
-                                  <a [routerLink]="['/journal',articleContent.articleId]"> {{articleContent.content | summary}} </a>
-                              </h4>
-                              <div class="m-widget5__info">
-                                <span class="m-widget5__author">
-                                  Genjourist:
-                                </span>
-                                <span class="m-widget5__info-label">
-                                    <a [routerLink]="['/genjourist',articleContent.genjouristId]"> {{articleContent.genjourist}} </a>
-                                </span>
-                                <span class="m-widget5__info-date m--font-info">
-                                  {{articleContent.date | date:'medium'}}
-                                </span>
-                              </div>
-                            </div>
-                            <div class="m-widget5__stats1">
-                              <span class="m-widget5__number">
-                                {{articleContent.supportNumber}}
-                              </span>
-                              <br>
-                              <span class="m-widget5__sales">
-                                Supporters
-                              </span>
-                            </div>
-                            <div class="m-widget5__stats2">
-                              <span class="m-widget5__number">
-                                1046
-                              </span>
-                              <br>
-                              <span class="m-widget5__votes">
-                                Replicates
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <!--end::m-widget5-->
-                      </div>
-                    </div>
-                  </div>
-                  <!--end::Content-->
-                  <div class="m--align-center">
-                      <div class=" m-loader m-loader--brand m-loader--lg" style="width: 30px; display: inline-block;"></div> 
-                  </div>
-                  
-                </div>
-              </div>
-              <!--end:: Widgets/Best Sellers-->
-          </div>
-          
-          <div class="col-xl-3 m--margin-20">
-              <!--begin:: Widgets/Support Tickets -->
-              <div class="m-portlet m-portlet--full-height ">
-                <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                      <h3 class="m-portlet__head-text">
-                        Quotations
-                      </h3>
-                    </div>
-                  </div>
-                  <div class="m-portlet__head-tools">
-                      <ul class="m-portlet__nav">
-                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-                          <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
-                            <i class="la la-ellipsis-h m--font-brand"></i>
-                          </a>
-                          <div class="m-dropdown__wrapper">
-                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                            <div class="m-dropdown__inner">
-                              <div class="m-dropdown__body">
-                                <div class="m-dropdown__content">
-                                  <ul class="m-nav">
-                                    <li class="m-nav__item">
-                                      <a href="" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-share"></i>
-                                        <span class="m-nav__link-text">
-                                          Genjour Trending
+                            <div class="m-portlet__body">
+                            <div class="m-widget19">
+                                <a [routerLink]="['/journal',journal?.journalId]">
+                                    <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height:-286px;">
+                                    <img src= "{{journal?.imgUrl}}" alt="">
+                                    <h3 class="m-widget19__title m--font-light">
+                                        {{journal?.title}}
+                                    </h3>
+                                    <div class="m-widget19__shadow"></div>
+                                    </div>
+                                </a>
+                                    <div class="m-widget19__content">
+                                    <div class="m-widget19__header">
+                                        <div class="m-widget19__user-img">
+                                        <a [routerLink]="['/genjourist',journal?.genjouristId]"><img class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt=""></a>
+                                        </div>
+                                        <div class="m-widget19__info">
+                                        <span class="m-widget19__username">
+                                            <a [routerLink]="['/genjourist',journal?.genjouristId]">{{journal?.genjourist}}</a>
                                         </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__item">
-                                      <a href="" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                        <span class="m-nav__link-text">
-                                          Latest
+                                        <br>
+                                        <span class="m-widget19__time">
+                                            {{journal?.date | date:'medium' }}
                                         </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__item">
-                                      <a href="" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                        <span class="m-nav__link-text">
-                                          Top
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__item">
-                                      <a href="" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                        <span class="m-nav__link-text">
-                                          Sort
-                                        </span>
-                                      </a>
-                                    </li>
-                                  </ul>
+                                        </div>
+                                    </div>
+                                    <a [routerLink]="['/journal',journal?.journalId]">
+                                        <div class="m-widget19__body m-nav__link-text">
+                                            <div [innerHTML]=" journal?.content | summary "></div>
+                                        </div>
+                                    </a>
+                                    </div>
+                                
+                                <div class="m-widget19__action">
+                                    <div class="m--margin-top-5 m--margin-bottom-5 m--margin-right-15">
+                                    <div>
+                                        <app-support-article [journalId]="journal.journalId" [userId]="user?.genjouristId">
+                                        
+                                        </app-support-article>   
+                                    </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                        </li>
-                      </ul>
+                            </div> 
+                        </div>
                     </div>
-                </div>
-                <div class="m-portlet__body">
-                  <div class="m-widget3">
-                    <div *ngFor = "let quotationContent of quotationContents">
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                              <div class="m-widget3__user-img">
-                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
-                              </div>
-                              <div class="m-widget3__info">
-                                <span class="m-widget3__username">
-                                  {{quotationContent.genjourist}}
-                                </span>
-                                <br>
-                                <span class="m-widget3__time">
-                                  2 day ago
-                                </span>
-                              </div>
-                            </div>
-                            <div class="m-widget3__body">
-                              <p class="m-widget3__text">
-                                {{quotationContent.quote}}
-                              </p>
-                            </div>
-                          </div>
-                    </div>
+                    
+                </ng-template>
 
-                  </div>
-                </div>
-              </div>
-              <!--end:: Widgets/Support Tickets -->
-          </div>
-      </div>
-  </div>
+                <ng-template #quotation >
+                    <div class="card">
+                        <div class="m-portlet m-portlet--bordered-semi">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        <a [routerLink]="['/category',journal?.category]">
+                                        <button type="button" class="btn btn-sm m-btn--pill  btn-info">
+                                            {{journal?.category}}
+                                        </button>
+                                        </a>
+                                    </h3>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <!--begin::Widget 7-->
+                                <div class="m-widget7 m-widget7--skin-dark">
+                                <div class="m-widget7__desc">
+                                        <blockquote class="blockquote">{{journal.content}} </blockquote>
+                                </div>
+                                <div class="m-widget7__user">
+                                    <div class="m-widget7__user-img">
+                                    <img class="m-widget7__img" src="../../assets/app/media/img//users/100_3.jpg" alt="">
+                                    </div>
+                                    <div class="m-widget7__info">
+                                    <span class="m-widget7__username">
+                                        {{journal.genjourist}}
+                                    </span>
+                                    <br>
+                                    <span class="m-widget7__time">
+                                        3 days ago
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="m-widget7__button">
+                                    <app-support-article [journalId]="journal.journalId" [userId]="user?.genjouristId">
+                                    
+                                    </app-support-article>  
+                                </div>
+                                </div>
+                                <!--end::Widget 7-->
+                            </div>
+                            </div>
+                    </div> 
+                </ng-template>
 
-</div>
+            </div>
+        </div>
+    </div>
+
+
+

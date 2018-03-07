@@ -37,7 +37,20 @@ module.exports.addJournal = function(journal, callback){
 //=================================================================================
 
 module.exports.getJournal = function(callback){
-    Journal.find(callback).sort({data:-1})
+    Journal.aggregate([
+        {
+           $lookup: {
+              from: "users",
+              localField: "genjouristId",    // field in the orders collection
+              foreignField: "genjouristId",  // field in the items collection
+              as: "fromItems"
+           }
+        },
+        {
+           $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromItems", 0 ] }, "$$ROOT" ] } }
+        },
+        { $project: { fromItems: 0 } }
+     ],callback)
 }
 
 //=================================================================================
@@ -53,7 +66,7 @@ module.exports.findJournal = function(articleId, callback){
 //==================== Find Article from Joutna acc to category ===================
 //=================================================================================
 
-module.exports.findArticleByCategory = function(category, callback){
+module.exports.findJournalByCategory = function(category, callback){
     const query = {category:category}
     Journal.find(query,callback);
 }

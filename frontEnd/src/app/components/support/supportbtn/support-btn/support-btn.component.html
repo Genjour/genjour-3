@@ -1,3 +1,4 @@
-<a href="#" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">
-    Support
-</a>
+<div (click)="supportGen(userId,supportGenjouristId)" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">
+    <div *ngIf="supportStatus">Support</div>
+    <div *ngIf="!supportStatus">Stop Supporting</div>
+</div>

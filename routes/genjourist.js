@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const Article = require('../models/article');
 const Quotation = require('../models/quotation');
-
+const Support = require('../models/support');
 
 router.get('/genjourist/:id',function(req,res){
     User.findOne({ 'genjouristId' : req.params.id }, function(err, genjourist) {
@@ -27,62 +27,37 @@ router.get('/genjourist/quotation/:id', function(req,res){
 });
 
 //=============================================================================
-//============================== SUPPORTERS ===================================
+//============================== SUPPORT Genjourist ===================================
 //=============================================================================
 
-router.post('/support/genjourist/:userId/:genjouristId',function(req,res) {
+router.post('/support/genjourist/:userId/:supportId',function(req,res) {
     const userId = req.params.userId;
-    const genjouristId = req.params.genjouristId;
-    
-    User.findUser(genjouristId, (err,genjourist)=>{
-        if(err) throw err;
-        if(!genjourist){
-            return res.json({success:false, msg:"genjourist is not found"});
-        }
-        else 
-            {
-                const array = genjourist.supporters;
-                //array.includes(genjouristId);
-                if(array.includes(userId) == true)
-                {
-                    User.removeSupporter(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporters cannot pop"});
-                        } else {    
-                                    //console.log(array.length);
-                                    // User.updateSupporterNumber(userId,array.length, function(err,doc) {
-                                    //     if (err) { throw err; }
-                                    //     else { console.log("Updated"); }
-                                    //   });  
-                                    // console.log(array.length);
-                                    return res.json({success:true, msg:"supporters pop"})
-                                }
-                    });
-                    
-                }
-                else{
-                    User.addSupporter(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporters cannot push"});
-                        } else 
-                                {
-                                    //console.log(array.length);
-                                    // User.updateSupporterNumber(userId,array.length, function(err,doc) {
-                                    //     if (err) { throw err; }
-                                    //     else { console.log("Updated"); }
-                                    //   });  
-                                    // console.log(array.length);
-                                    return res.json({success:true, msg:"supporters push"});
-                                    
-                                }
-                                
-                    });
-                    
-                }
+    const supportId = req.params.supportId;
 
-            } 
+    let a = new Support({
+        genjouristId : userId,
+        supportId    : supportId,
+        sDate        : Date()
+    })
+
+    Support.findSupporters(userId,supportId,(err,docs)=>{
+        if(err) throw err;
+        if(docs){
+            Support.removeSupporters(userId,supportId, (err,docs)=>{
+                if(err) throw err;
+                else{
+                    res.json({success:true,msg:"user is pop"});
+                }
+            })
+        }else{
+            
+            Support.addSupporters(a, (err,docss)=>{
+                if(err) throw err;
+                else{
+                    res.json({success:true,msg:"user is pushed"});
+                }
+            })
+        }
     })
 
 })
@@ -164,23 +139,13 @@ router.get('/supportingList/:userid', function(req,res){
             return res.json({success:false, msg:'genjourist id is not valid'});
         }
         else{   
-                let supporting = user.supporting;
-                console.log(supporting);
-                let array = [];
-                for(var i=0; i<supporting.length; i++){
-                    User.findUser(supporting[i], function(err,user){
-                        if(err) throw err;
-                        else{
-
-                           array.push(user);
-                           console.log(array);
-                            
-                        }
-                       
-                    })
-                }
-                return res.json(array);
-
+                Support.getSupporting(userId, (err,docs)=>{
+                    if (err) throw err;
+                    else{
+                        //console.log(docs);
+                        return res.json(docs);
+                    }
+                })
             }
         })
     });
@@ -193,9 +158,18 @@ router.get('/supportersList/:userid', function(req,res){
     var userId = req.params.userid;
     User.findUser(userId, function(err,user){
         if(err) throw err;
+        if(!user){
+            return res.json({success:false, msg:'genjourist id is not valid'});
+        }
         else{
-                
-                return res.json(user.supporters);
+
+                Support.getSupporters(userId, (err,docs)=>{
+                    if (err) throw err;
+                    else{
+                        //console.log(docs);
+                        return res.json(docs);
+                    }
+                })
             }
         })
     });

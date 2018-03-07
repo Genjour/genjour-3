@@ -15,13 +15,9 @@ router.post('/register',(req,res,next)=>{
 		gender   		: req.body.gender,
 		genjouristId	: "10"+uniqueId(),
 		dob 			: req.body.dob,
-		supporters		: [],
-		supporting		: [],
-		supportingNumber: " ",
-		supportersNumber: " ",
 		status			: true,
 		createdOn 		: Date(),
-		img 			: "assets/uploads/user/defaultBoy",
+		profileImg 			: "assets/uploads/user/defaultBoy",
 
 	});
 
