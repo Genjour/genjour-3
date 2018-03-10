@@ -3,57 +3,84 @@ const router     = express.Router();
 const passport   = require('passport');
 const User       = require('../models/user');
 const Journal    = require('../models/journal');
+const SupportJournal    = require('../models/supportJournal');
 const jwt        = require('jsonwebtoken');
 const config     = require('../config/database');
 const uniqueId   = require('unique-id-generator');
 //const io		 = require('socket.io');
 
 
-    router.post('/support/journal/:journalId/:genjouristId',function(req,res) {
+//=============================================================================
+//============================== SUPPORT JOURNAL ==============================
+//=============================================================================
+
+    router.post('/support/journal/:journalId/:supportId',function(req,res) {
         const journalId = req.params.journalId;
-        const genjouristId = req.params.genjouristId;
+        const supportId = req.params.supportId;
         console.log(journalId);
-        Journal.findJournal(journalId, (err,article)=>{
+
+        let a = new SupportJournal({
+            journalId    : journalId,
+            supportId    : supportId,
+            sDate        : Date()
+        })
+
+        Journal.findJournal(journalId, (err,journal)=>{
             if(err) throw err;
-            if(!article){
-                return res.json({success:false, msg:"article not found"});
+            if(!journal){
+                return res.json({success:false, msg:"Journal not found"});
             }
             else 
                 {
-                    const array = article.supporters;
-                    //array.includes(genjouristId);
-                    if(array.includes(genjouristId) == true)
-                    {
-                        Journal.removeSupporter(journalId, genjouristId , (err,status)=>{
-                            if(err) throw err;
-                            if(!status){
-                                return res.json({success:false, msg:"cannot pop"});
-                            } else {                          
-                                      return res.json({success:true, msg:"pop"});
-                                    }
-                        });
-                        
-                    }
-                    else{
-                        Journal.addSupporter(journalId, genjouristId , (err,status)=>{
-                            if(err) throw err;
-                            if(!status){
-                                return res.json({success:false, msg:"cannot push"});
-                            } else 
-                                    {
-    
-                                        return res.json({success:true, msg:"push"})
-                                        
-                                    }
-                                    
-                        });
-                        
-                    }
+                    SupportJournal.findSupporters(journalId,supportId,(err,docs)=>{
+                        if(err) throw err;
+                        if(docs){
+                            SupportJournal.removeSupporters(journalId,supportId, (err,docs)=>{
+                                if(err) throw err;
+                                else{
+                                    res.json({success:true,msg:"user is pop"});
+                                }
+                            })
+                        }else{
+                            
+                            SupportJournal.addSupporters(a, (err,docss)=>{
+                                if(err) throw err;
+                                else{
+                                    res.json({success:true,msg:"user is pushed"});
+                                }
+                            })
+                        }
+                    })
     
                 } 
         })
 
     
+    });
+
+
+//=============================================================================
+//============================ SUPPORTERS LIST OF JOURNAL =====================
+//=============================================================================
+
+router.get('/journal/supportersList/:journalId', function(req,res){
+    var journalId = req.params.journalId;
+    Journal.findJournal(journalId, function(err,journal){
+        if(err) throw err;
+        if(!journal){
+            return res.json({success:false, msg:'journal id is not valid'});
+        }
+        else{
+
+                SupportJournal.getSupporters(journalId, (err,docs)=>{
+                    if (err) throw err;
+                    else{
+                        //console.log(docs);
+                        return res.json(docs);
+                    }
+                })
+            }
+        })
     });
 
 

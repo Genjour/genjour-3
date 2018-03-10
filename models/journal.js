@@ -15,7 +15,6 @@ var journalSchema = mongoose.Schema({
         tags             : String,
         imgUrl           : String,
         supportersNumber : Number,
-        supporters       : Array,
         repilicateNumber : Number,
         status           : Boolean,
         type             : String
@@ -57,13 +56,13 @@ module.exports.getJournal = function(callback){
 //========================= Find Article from Journal ==============================
 //=================================================================================
 
-module.exports.findJournal = function(articleId, callback){
-    const query = {journalId: articleId}
+module.exports.findJournal = function(journalId, callback){
+    const query = {journalId: journalId}
     Journal.findOne(query, callback);
 }
 
 //=================================================================================
-//==================== Find Article from Joutna acc to category ===================
+//==================== Find Article from Journal acc to category ===================
 //=================================================================================
 
 module.exports.findJournalByCategory = function(category, callback){

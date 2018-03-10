@@ -4,7 +4,6 @@ import { JournalsService } from '../../../services/journals.service';
 import { AuthService } from '../../../services/auth.service';
 import { SupportService } from '../../../services/support.service';
 
-//import { SocketService } from '../../../services/socket/socket.service';
 
 @Component({
   selector: 'app-support-article',
@@ -30,58 +29,54 @@ export class SupportArticleComponent implements OnInit {
 
   ) { }
 
+
+
   ngOnInit( ) {
-    console.log(this.journalId);
-    this.journalsService.getJournalById(this.journalId).subscribe(data=>{
-      this.supporterNumber = data.supporters.length;
-      this.supporters = data.supporters;
-      //-----------------------------------support button animatation--------------------------------
-      if(this.supporters.includes(this.userId)==true){ 
-        this.supportStatus = true;
-      }
-      else{
-        this.supportStatus=false;
-      }
-      //---------------------------------end support button animatation--------------------------------
-    });
 
-    // this.socketService.getSupport().subscribe((data)=>{
-    //   console.log(data);
-    //   this.supporterNumber = data;
-    // })
-  }
+    this.supportService.journalSupporters(this.journalId).subscribe(data=>{
+      //console.log(data);
+      this.supporterNumber = data.length;
 
-  support(journalId, userId){
-    
-    if(this.authService.loggedIn()){
-
-      //console.log(journalId+ ' ' + userId);
-      this.journalsService.getJournalById(journalId).subscribe(data=>{
-        this.supporterNumber = data.supporters.length;
-        this.supporters = data.supporters;
-        //---------------------------------support button animatation--------------------------------
-        if(this.supporters.includes(this.userId)==true){ 
+//-----------------------------------support button animatation--------------------------------
+      for(var x=0; x<data.length; x++){
+        let n = data[0].genjouristId;
+        if(n==this.userId){ 
           this.supportStatus = true;
         }
         else{
           this.supportStatus=false;
         }
-        //-----------------------------------------------------------------
-      });
+      }
+//---------------------------------end support button animatation--------------------------------
+
+    })
+
+
+
+  }
+
+
+
+
+
+
+  support(journalId, userId){
+    
+    //-----------------------------------support button animatation--------------------------------
+    if(this.authService.loggedIn()){
+
+      if(this.supportStatus == true){
+        this.supportStatus=false;
+      }else{
+        this.supportStatus=true;
+      }
+  //----------------------------------- end button animatation--------------------------------
       this.supportService.supportJournal(journalId, userId).subscribe(data=>{
         //console.log(data);
-        this.journalsService.getJournalById(journalId).subscribe(data=>{
-          this.supporterNumber = data.supporters.length
-          this.supporters = data.supporters;
-          //------------------------------support button animatation-----------------------------------
-          if(this.supporters.includes(this.userId)==true){ 
-            this.supportStatus = true;
-          }
-          else{
-            this.supportStatus=false;
-          }
-          //-----------------------------------------------------------------
-        });
+        this.supportService.journalSupporters(this.journalId).subscribe(data=>{
+          //console.log(data);
+          this.supporterNumber = data.length;
+        })
       });
       
       

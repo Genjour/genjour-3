@@ -3,7 +3,7 @@
     <div class="m-stack m-stack--ver m-stack--desktop">
       <!-- BEGIN: Brand -->
       <div class="m-stack__item m-brand  m-brand--skin-light ">
-        <div class="m-stack m-stack--ver m-stack--general">
+        <div class="m-stack m-stack--ver m-stack--general  m-stack--inline">
           <div class="m-stack__item m-stack__item--middle m-brand__logo">
             <a [routerLink]="['/']" class="m-brand__logo-wrapper">
               <img alt="" height="45" src="assets/img/logo-dark.png"/>
@@ -15,24 +15,7 @@
       <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
         <div id="m_header_topbar" class="m-topbar m-stack m-stack--ver m-stack--general">
             <div class="m-stack__item m-stack__item--middle m-dropdown--skin-light m-header-search m-header-search--expandable" id="m_quicksearch" data-search-type="default">
-              <!--BEGIN: Search Form -->
-              <form class="m-header-search__form">
-                <div class="m-header-search__wrapper">
-                  <span class="m-header-search__icon-search" id="m_quicksearch_search">
-                    <i class="flaticon-search"></i>
-                  </span>
-                  <span class="m-header-search__input-wrapper">
-                    <input autocomplete="off" type="text" name="search" class="m-header-search__input" value="" placeholder="Search..." id="m_quicksearch_input">
-                  </span>
-                  <span class="m-header-search__icon-close" id="m_quicksearch_close">
-                    <i class="la la-remove"></i>
-                  </span>
-                  <span class="m-header-search__icon-cancel" id="m_quicksearch_cancel">
-                    <i class="la la-remove"></i>
-                  </span>
-                </div>
-              </form>
-              <!--END: Search Form -->
+              <app-search></app-search>
             </div>
           <div class="m-stack__item m-topbar__nav-wrapper">
             <ul class="m-topbar__nav m-nav m-nav--inline">

@@ -74,7 +74,17 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req,res,n
 
 
 
+router.get('/search/user=:name', (req,res)=>{
+	const name = req.params.name;
 
+	User.findUserByName(name, (err,doc)=>{
+		if(err) throw err;
+		else{
+			res.json(doc);
+		}
+	})
+
+});
 
 
 module.exports = router;

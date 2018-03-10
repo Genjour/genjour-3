@@ -34,6 +34,7 @@ import { CategoryService } from './services/category/category.service';
 import { ScriptLoaderService } from "./services/script-loader.service";
 import { FeedsService } from './services/feeds/feeds.service';
 import { QuotationsService } from './services/quotations.service';
+import { SearchService } from './services/search/search.service';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
 import { ProtectedGaurd } from './gaurds/protected.gaurd';
@@ -49,6 +50,7 @@ import { RecommendUserComponent } from './components/feeds/new user/recommend-us
 import { SupportBtnComponent } from './components/support/supportbtn/support-btn/support-btn.component';
 import { ArticleRecommendationComponent } from './components/feeds/new user/article-recommendation/article-recommendation.component';
 import { QuotationsComponent } from './components/journals/quotations/quotations.component';
+import { SearchComponent } from './components/navbar/search/search.component';
 
 
 
@@ -96,6 +98,7 @@ const appRoutes: Routes = [
     SupportBtnComponent,
     ArticleRecommendationComponent,
     QuotationsComponent,
+    SearchComponent,
     
   ],
   imports: [
@@ -121,6 +124,7 @@ const appRoutes: Routes = [
     ScriptLoaderService,
     FeedsService,
     QuotationsService,
+    SearchService,
   ],
   bootstrap: [AppComponent]
 })

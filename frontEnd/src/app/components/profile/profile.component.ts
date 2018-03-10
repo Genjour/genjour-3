@@ -43,25 +43,28 @@ supportGenjouristId : String;
                 this.profileService.quotation(this.user.genjouristId).subscribe(quotation=>{
                   this.quotations = quotation;
                 });
-  //=================================================================================================
-//======================================= Support Numbers ==========================================
-//=================================================================================================
+        //=================================================================================================
+        //======================================= Support Numbers =========================================
+        //=================================================================================================
 
-                this.supportersNumber = this.user.supporters.length;
-                this.supportingNumber = this.user.supporting.length;
+                this.supportersNumber = this.user.length;
+                this.supportingNumber = this.user.length;
                 
-//=================================================================================================
-//======================================= LIST ====================================================
-//=================================================================================================
-             this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
-               this.supportingLists = data;
-               //console.log(this.supportingLists);
-             })
 
-             this.genjouristService.getSupportersList(this.user.genjouristId).subscribe(data=>{
-               this.supportersLists = data;
-               //console.log(this.supportersLists)
-             })
+        //=================================================================================================
+        //======================================= LIST ====================================================
+        //=================================================================================================
+              this.genjouristService.getSupportingList(this.user.genjouristId).subscribe(data=>{
+                this.supportingLists = data;
+                this.supportingNumber = data.length;
+                //console.log(this.supportingLists);
+              })
+
+              this.genjouristService.getSupportersList(this.user.genjouristId).subscribe(data=>{
+                this.supportersLists = data;
+                this.supportersNumber = data.length;
+                //console.log(this.supportersLists)
+              })
           })
 
   } 

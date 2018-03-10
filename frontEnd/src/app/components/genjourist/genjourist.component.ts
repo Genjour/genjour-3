@@ -76,8 +76,8 @@ export class GenjouristComponent implements OnInit {
     this.journals = article.filter( x=> x.status == true );
     })
 
-    this.genjouristService.quotation(this.route.snapshot.params.id).subscribe(data=>{
-    this.quotations = data.filter( x=> x.status == true);
+    this.genjouristService.quotation(this.route.snapshot.params.id).subscribe(quotation=>{
+      this.quotations = quotation.filter( x=> x.status == true);
     })
 
   });

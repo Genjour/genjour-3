@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 
+const webUrl = "http://localhost:3000";
+
 @Injectable()
 export class SupportService {
 
@@ -14,17 +16,25 @@ export class SupportService {
     supportJournal(journalId, genjouristId){
       let headers = new Headers();
       headers.append('Content-Type','Application/json');
-      const URL = `http://localhost:3000/support/journal/${journalId}/${genjouristId}`;
+      const URL = `${webUrl}/support/journal/${journalId}/${genjouristId}`;
       // console.log(URL);
       return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
     }
 
+    journalSupporters(journalId){
+      let headers = new Headers();
+      headers.append('Content-Type','Application/json');
+      const URL = `${webUrl}/journal/supportersList/${journalId}`;
+      // console.log(URL);
+      return this.http.get(URL,{headers:headers}).map(res=>res.json());
+
+    }
 
     supportGenjourist(userId, genjouristId){
       let headers = new Headers();
       headers.append('Content-Type','Application/json');
-      const URL = `http://localhost:3000/support/genjourist/${userId}/${genjouristId}`;
+      const URL = `${webUrl}/support/genjourist/${userId}/${genjouristId}`;
       return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
     }
@@ -32,7 +42,7 @@ export class SupportService {
     supportingGenjourist(userId, genjouristId){
       let headers = new Headers();
       headers.append('Content-Type','Application/json');
-      const URL = `http://localhost:3000/supporting/genjourist/${userId}/${genjouristId}`;
+      const URL = `${webUrl}/supporting/genjourist/${userId}/${genjouristId}`;
       return this.http.post(URL,{headers:headers}).map(res=>res.json());
 
     }

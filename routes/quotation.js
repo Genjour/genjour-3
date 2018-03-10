@@ -5,29 +5,35 @@ const uniqid     = require('uniqid');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-router.post('/quotation', passport.authenticate('jwt', {session:false}), function(req,res){
-    let newQuotation = new Quotation({
-        quotationId   : uniqid(),
-        genjouristId  : req.user.genjouristId,
-        genjourist    : req.user.name,
-        category      : req.body.category,
-        quote         : req.body.quote,
-        tags          : req.body.tags,
-        date          : Date(),
-        status        : req.body.status,
-        type          : "quote"
 
-    });
+//=============================================================================
+//============================== ADD QUOTAION ====-============================
+//=============================================================================
 
-Quotation.addQuotation(newQuotation, (err,Quotation)=>{
-		if(err){
-			res.json({success:false, msg:'Fail to add Quotation'});
-		} else {
-			res.json({success:true, msg:'Quotation saved'});
-		}
-	});
+router.post('/journal/add/quotation', passport.authenticate('jwt', {session:false}), function(req,res){
+  let newQuotation = new Journal({
+      journalId   : uniqid(),
+      genjouristId  : req.user.genjouristId,
+      genjourist    : req.user.name,
+      category      : req.body.category,
+      content       : req.body.quote,
+      tags          : req.body.tags,
+      date          : Date(),
+      status        : req.body.status,
+      type          : 0
+
+  });
+
+  Journal.addJournal(newQuotation, (err,Quotation)=>{
+  if(err){
+    res.json({success:false, msg:'Fail to add Quotation'});
+  } else {
+    res.json({success:true, msg:'Quotation saved'});
+  }
+});
 
 });
+
 
 router.get('/quotations',(req,res)=>{
   Quotation.getQuotations((err,quotes)=>{
@@ -49,6 +55,6 @@ router.get('/quotations/:category', (req,res)=>{
         res.json(data);
       }
     })
-  })
+})
 
 module.exports = router;

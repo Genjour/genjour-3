@@ -24,9 +24,6 @@ module.exports.removeSupporters = function(userId, supportId, callback){
     Support.remove({genjouristId:userId,supportId:supportId},callback)
 }
 
-module.exports.slop = function(userId,callback){
-    Support.find({genjouristId:userId},callback);
-}
 
 module.exports.getSupporting = function(userId,callback){
     //Support.find({genjouristId:userId},callback);

@@ -110,9 +110,11 @@
                                     <img class="m-widget7__img" src="{{journal.profileImg}}" alt="">
                                     </div>
                                     <div class="m-widget7__info">
-                                    <span class="m-widget7__username">
-                                        {{journal.genjourist}}
-                                    </span>
+                                    <a [routerLink]="['/genjourist',journal.genjouristId]" >
+                                        <span class="m-widget7__username">
+                                            {{journal.genjourist}}
+                                        </span>
+                                    </a>
                                     <br>
                                     <span class="m-widget7__time">
                                         3 days ago

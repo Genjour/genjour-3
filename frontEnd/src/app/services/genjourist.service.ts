@@ -21,7 +21,7 @@ export class GenjouristService {
   }
 
   quotation(genjouristId){
-      return this.http.get(`http://localhost:3000/genjourist/quotation/'${genjouristId}`).map(response=>response.json())
+      return this.http.get(`http://localhost:3000/genjourist/quotation/${genjouristId}`).map(response=>response.json());
   }
 
 

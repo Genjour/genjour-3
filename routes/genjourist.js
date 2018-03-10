@@ -3,7 +3,10 @@ const router = express.Router();
 const User = require('../models/user');
 const Article = require('../models/article');
 const Quotation = require('../models/quotation');
+const Journal = require('../models/journal');
 const Support = require('../models/support');
+
+
 
 router.get('/genjourist/:id',function(req,res){
     User.findOne({ 'genjouristId' : req.params.id }, function(err, genjourist) {
@@ -12,22 +15,32 @@ router.get('/genjourist/:id',function(req,res){
     });
 });
 
+
 router.get('/genjourist/article/:id', function(req,res){
-    Article.find({'genjouristId':req.params.id}, function(err,genjouristArticles){
+    Journal.find({'genjouristId':req.params.id}, function(err,genjouristArticles){
         if(err) throw err;
-        res.json(genjouristArticles);
+        else{
+            genjouristArticles = genjouristArticles.filter( x=> x.type == 1 );
+            res.json(genjouristArticles);
+        }
+        
     });
 });
 
+
 router.get('/genjourist/quotation/:id', function(req,res){
-    Quotation.find({'genjouristId':req.params.id}, function(err,genjouristQuotation){
+    Journal.find({'genjouristId':req.params.id}, function(err,genjouristQuotation){
         if(err) throw err;
-        res.json(genjouristQuotation);
+        else{
+            genjouristQuotation = genjouristQuotation.filter( x=> x.type == 0 );
+            res.json(genjouristQuotation);
+        }
+        
     });
 });
 
 //=============================================================================
-//============================== SUPPORT Genjourist ===================================
+//============================== SUPPORT Genjourist ===========================
 //=============================================================================
 
 router.post('/support/genjourist/:userId/:supportId',function(req,res) {

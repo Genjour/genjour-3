@@ -15,10 +15,6 @@ const  UserSchema = mongoose.Schema({
   dob              : String,
   imgUrl           : String,
   createdOn        : String,
-  supporters       : [],
-  supporting       : [],
-  supportersNumber : Number,
-  supportingNumber : Number,
   status           : Boolean,
   mobile           : String,
   
@@ -38,6 +34,10 @@ module.exports.getUserByUsername = function (username,callback) {
 
 }
 
+//=============================================================================
+//============================== add new user =================================
+//=============================================================================
+
 module.exports.addUser = function(newUser, callback){
   bcrypt.genSalt(10,(err,salt)=>{
     bcrypt.hash(newUser.password, salt, (err,hash)=>{
@@ -49,6 +49,10 @@ module.exports.addUser = function(newUser, callback){
 }
 
 
+//=============================================================================
+//============================== compare password =============================
+//=============================================================================
+
 module.exports.comparePassword = function(candiadatePassword, hash, callback){
   bcrypt.compare(candiadatePassword,hash,(err,isMatch)=>{
     if(err) throw err;
@@ -58,50 +62,20 @@ module.exports.comparePassword = function(candiadatePassword, hash, callback){
 
 
 //=============================================================================
+//============================== find user by name ============================
+//=============================================================================
+
+module.exports.findUserByName = function(name, callback){
+  User.find({name:name},{name:1, genjouristId:1, dob:1, profileImg:1 },callback);
+}
+
+//=============================================================================
 //============================== find user by genjouristId ====================
 //=============================================================================
 
 module.exports.findUser = function(userId, callback){
         const query = {genjouristId: userId}
         User.findOne(query, callback);
-}
-
-//=============================================================================
-//============================== SUPPORTERS ===================================
-//=============================================================================
-
-module.exports.addSupporter = function(userId, supporters, callback){ 
-  User.findOneAndUpdate({genjouristId:supporters}, {$push:{supporters:userId}}, callback);
-}
-
-module.exports.removeSupporter = function(userId, supporters, callback){
-  User.findOneAndUpdate({genjouristId:supporters}, {$pop:{supporters:userId}}, callback);
-}
-
-
-//=============================================================================
-//============================== SUPPORTING ===================================
-//=============================================================================
-
-
-module.exports.addSupporting = function(userId, supporting, callback){ 
-  User.findOneAndUpdate({genjouristId:userId}, {$push:{supporting:supporting}}, callback);
-}
-
-module.exports.removeSupporting = function(userId, supporting, callback){
-  User.findOneAndUpdate({genjouristId:userId}, {$pop:{supporting:supporting}}, callback);
-}
-
-//=============================================================================
-//========================= UPDATING SUPPORTERS AND SUPPORTING ================
-//=============================================================================
-
-module.exports.updateSupporterNumber = function(userId, supportersNumber, callback){
-  User.updateOne({genjouristId:userId},{$set:{ supportNumber : supportersNumber }}, callback);  
-}
-
-module.exports.updateSupportingNumber = function(userId, supportersNumber, callback){
-  User.updateOne({genjouristId:userId},{$set:{ supportingNumber : supportersNumber }}, callback);  
 }
 
 
@@ -113,6 +87,10 @@ module.exports.recommendedUsers = function(arr,callback){
   User.find({genjouristId:{$nin:arr}},callback);
 }
 
+
+//=============================================================================
+//====================== get supporters and supporting ========================
+//=============================================================================
 
 module.exports.getSupporting = function(arr,callback){
   User.find(
