@@ -7,6 +7,18 @@ const config = require('../config/database');
 const uniqueId = require('unique-id-generator');
 
 router.post('/register',(req,res,next)=>{
+	
+	let profileValue;
+	if(req.body.gender == "Female"){
+		profileValue = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultGirl.png";
+	}else if(req.body.gender == "Male"){
+		profileValue = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultBoy.png";
+	}else if(req.body.gender == "Other"){
+		profileValue = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520726450/profile.png";
+	}else{
+		profileValue = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520726450/profile.png";
+	}
+
 	let newUser = new User({
 		name 			: req.body.name,
 		email			: req.body.email,
@@ -15,7 +27,7 @@ router.post('/register',(req,res,next)=>{
 		gender   		: req.body.gender,
 		genjouristId	: "10"+uniqueId(),
 		dob 			: req.body.dob,
-		profileImg 		: "No",
+		profileImg 		: profileValue,
 		status			: true,
 		createdOn 		: Date(),
 		
@@ -73,7 +85,20 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req,res,n
 	res.json({user : req.user});
 });
 
-
+router.put('/genjourist/profileImage/:genjouristId',(req,res)=>{
+	User.findUser(req.params.genjouristId,(err,doc)=>{
+		if(err) throw err;
+		if(!doc) {res.json({success:false, msg:'User not found'})}
+		else{
+			User.changeProfileImg(req.params.genjouristId, req.body.imgAddress, (err,doc)=>{
+				if(err) throw err;
+				else{
+					res.json({success:true, msg:'Successfully change and uploaded'});
+				}
+			})
+		}
+	})
+})
 
 router.get('/search/user=:name', (req,res)=>{
 	const name = req.params.name;

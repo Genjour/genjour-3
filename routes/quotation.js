@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Quotation = require('../models/quotation');
 const Journal = require('../models/journal');
 const uniqid     = require('uniqid');
 const passport = require('passport');

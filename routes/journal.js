@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const Article = require('../models/article');
 const User = require('../models/user');
 const uniqid     = require('uniqid');
-const Quotation = require('../models/quotation');
 const Journal = require('../models/journal');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');

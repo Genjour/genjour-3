@@ -108,5 +108,10 @@ module.exports.getSupporters = function(arr,callback){
             );
 }
 
-
+module.exports.changeProfileImg = function(genjouristId,imgAddress,callback){
+  User.findOneAndUpdate(
+                          {genjouristId:genjouristId},
+                          {$set: {profileImg:imgAddress}}, callback
+  )
+}
 

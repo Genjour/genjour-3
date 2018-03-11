@@ -28,6 +28,7 @@ export class JournalsComponent implements OnInit {
     });
     this.journalService.getJournal().subscribe(data=>{
       this.journals = data;
+      console.log(this.journals);
     })
   }
 

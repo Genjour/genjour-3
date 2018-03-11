@@ -20,7 +20,7 @@ supportersLists : any[] = [];
 supportingLists : any[] = [];
 supportingNumber : number;
 supportersNumber : number;
-
+profileImg:String;
 supportersListsStatus:String;
 supportGenjouristId : String;
 
@@ -37,6 +37,7 @@ supportGenjouristId : String;
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
+
                 this.profileService.articles(this.user.genjouristId).subscribe(article=>{
                    this.journals = article;
                 });

@@ -57,4 +57,8 @@ export class GenjouristService {
     return this.http.get(`http://localhost:3000/recommended/users/${userId}`).map(res=>res.json());
   }
 
+  changeProfileImage(genjouristId,imgAddress){
+    return this.http.put(`http://localhost:3000/genjourist/profileImage/${genjouristId}`,imgAddress).map(res=>res.json());
+  }
+
 }

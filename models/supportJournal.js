@@ -24,6 +24,12 @@ module.exports.removeSupporters = function(userId, supportId, callback){
     SupportJournal.remove({journalId:userId,supportId:supportId},callback)
 }
 
+//==========================================================================================
+//================================== GET SUPPORTERS OF JOURNALS ============================
+//==========================================================================================
+
+//CURRENTLY NOT IN USE this api
+
 module.exports.getSupporters = function(journalId, callback){
 
     SupportJournal.aggregate([
@@ -35,21 +41,24 @@ module.exports.getSupporters = function(journalId, callback){
                 from:"users",
                 localField:"supportId",
                 foreignField:"genjouristId",
-                as:"fromItems"
+                as:"details"
             }
         },
         {
-            $replaceRoot:{newRoot: {$mergeObjects: [ { $arrayElemAt: ["$fromItems", 0 ] }, "$$ROOT" ] } }
+            $unwind:"$details"
         },
         { $project : 
+
             { 
+                details: {
+                    createdOn:1,
+                    dob:1,
+                    email:1,
+                    gender:1,
+                    profileImg:1
+                 },
                 genjouristId : "$supportId",
-                name: 1,
-                email: 1,
-                gender:1,
-                dob:1,
-                profileImg:1,
-                createdOn:1 
+                _id:0
             } 
         }
     ], callback)

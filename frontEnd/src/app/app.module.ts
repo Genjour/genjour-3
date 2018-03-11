@@ -14,7 +14,6 @@ import { ArticleComponent } from './components/article/article.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { JournalsComponent } from './components/journals/journals.component';
-import { ArticlesComponent } from './components/journals/articles/articles.component';
 import { GenjouristComponent } from './components/genjourist/genjourist.component';
 import { SupportArticleComponent } from './components/support/support-article/support-article.component';
 import { SupportQuotationComponent } from './components/support/support-quotation/support-quotation.component';
@@ -41,7 +40,7 @@ import { ProtectedGaurd } from './gaurds/protected.gaurd';
 
 import { WriteArticleComponent } from './components/write-article/write-article.component';
 import { WriteQuotationComponent } from './components/write-quotation/write-quotation.component';
-import { SummaryPipe } from './components/journals/articles/summary.pipe';
+import { SummaryPipe } from './directives/pipes/summary.pipe';
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { AgeCategoryPipe } from './components/profile/age-category.pipe';
 import { EditArticleComponent } from './components/edit/article/edit-article/edit-article.component';
@@ -49,11 +48,12 @@ import { EditQuotationComponent } from './components/edit/quotation/edit-quotati
 import { RecommendUserComponent } from './components/feeds/new user/recommend-user/recommend-user.component';
 import { SupportBtnComponent } from './components/support/supportbtn/support-btn/support-btn.component';
 import { ArticleRecommendationComponent } from './components/feeds/new user/article-recommendation/article-recommendation.component';
-import { QuotationsComponent } from './components/journals/quotations/quotations.component';
+
 import { SearchComponent } from './components/navbar/search/search.component';
 
 import { Ng2CloudinaryModule } from './../../node_modules/ng2-cloudinary';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ProfileImgPipe } from './directives/pipes/profile-img.pipe';
 
 
 const appRoutes: Routes = [
@@ -83,7 +83,6 @@ const appRoutes: Routes = [
     SidenavComponent,
     RegisterComponent,
     JournalsComponent,
-    ArticlesComponent,
     WriteArticleComponent,
     WriteQuotationComponent,
     SummaryPipe,
@@ -98,8 +97,8 @@ const appRoutes: Routes = [
     RecommendUserComponent,
     SupportBtnComponent,
     ArticleRecommendationComponent,
-    QuotationsComponent,
     SearchComponent,
+    ProfileImgPipe,
     
   ],
   imports: [

@@ -344,12 +344,12 @@
                                     <div>{{supportingListsStatus}}</div>
                                     <div class="m-widget4__item">
                                       <div class="m-widget4__img m-widget4__img--pic">
-                                        <img src="../../assets/app/media/img/users/100_4.jpg" alt="">
+                                        <img src="{{supportersList.details.profileImg}}" alt="">
                                       </div>
                                       <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                          <a [routerLink]="['/genjourist',supportersList.genjouristId]" (click)="refreshUser()">
-                                            {{supportersList.name}}
+                                          <a [routerLink]="['/genjourist',supportersList.details.genjouristId]" (click)="refreshUser()">
+                                            {{supportersList.details.name}}
                                           </a>
                                         </span>
                                         <br>
@@ -374,12 +374,12 @@
                                   <div class="m-widget4" *ngFor = "let supportingList of supportingLists">
                                     <div class="m-widget4__item">
                                       <div class="m-widget4__img m-widget4__img--pic">
-                                        <img src="../../assets/app/media/img/users/100_4.jpg" alt="">
+                                        <img src="{{supportingList.details.profileImg}}" alt="">
                                       </div>
                                       <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                          <a [routerLink]="['/genjourist',supportingList.genjouristId]" (click)="refreshUser()">
-                                            {{supportingList.name}}
+                                          <a [routerLink]="['/genjourist',supportingList.details.genjouristId]" (click)="refreshUser()">
+                                            {{supportingList.details.name}}
                                           </a>
                                         </span>
                                         <br>

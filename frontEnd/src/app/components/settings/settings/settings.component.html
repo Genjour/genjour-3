@@ -25,9 +25,10 @@
                     Profile Image
                   </label>
                       <div class="col-6 col-xs-12 col-sm-12" style="text-align:center;">
-                        <img src="{{profileImg}}" alt="profile pic">
+                        <img src="{{user.profileImg}}" alt="profile pic">
                         <br>
-                        <input type="file" class="m--margin-10">
+                        <input type="file" ng2FileSelect [uploader]="uploader" class="m--margin-10">
+                        <button class="btn btn-accent m-btn" (click)=upload()>Upload</button>
                       </div>
                 </div>
             <div class="form-group m-form__group row">

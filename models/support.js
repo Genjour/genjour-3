@@ -37,21 +37,24 @@ module.exports.getSupporting = function(userId,callback){
                 from:"users",
                 localField:"supportId",
                 foreignField:"genjouristId",
-                as:"fromItems"
+                as:"details"
             }
         },
         {
-            $replaceRoot:{newRoot: {$mergeObjects: [ { $arrayElemAt: ["$fromItems", 0 ] }, "$$ROOT" ] } }
+            $unwind:"$details"
         },
         { $project : 
-            { 
-                genjouristId : "$supportId",
-                name: 1,
-                email: 1,
-                gender:1,
+            { details: {
+                createdOn:1,
+                genjouristId:1,
+                name:1,
                 dob:1,
-                profileImg:1,
-                createdOn:1 
+                email:1,
+                gender:1,
+                profileImg:1
+            },
+                
+                genjouristId : "$supportId",
             } 
         }
     ], callback)
@@ -69,21 +72,24 @@ module.exports.getSupporters = function(userId, callback){
                 from:"users",
                 localField:"genjouristId",
                 foreignField:"genjouristId",
-                as:"fromItems"
+                as:"details"
             }
         },
         {
-            $replaceRoot:{newRoot: {$mergeObjects: [ { $arrayElemAt: ["$fromItems", 0 ] }, "$$ROOT" ] } }
+            $unwind:"$details"
         },
         { $project : 
-            { 
-                genjouristId : "$supportId",
-                name: 1,
-                email: 1,
-                gender:1,
+            { details: {
+                createdOn:1,
+                genjouristId:1,
+                name:1,
                 dob:1,
-                profileImg:1,
-                createdOn:1 
+                email:1,
+                gender:1,
+                profileImg:1
+            },
+                
+                genjouristId : "$supportId",
             } 
         }
     ], callback)

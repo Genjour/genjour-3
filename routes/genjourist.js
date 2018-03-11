@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const Article = require('../models/article');
-const Quotation = require('../models/quotation');
 const Journal = require('../models/journal');
 const Support = require('../models/support');
 
@@ -75,70 +73,6 @@ router.post('/support/genjourist/:userId/:supportId',function(req,res) {
 
 })
 
-
-
-//=============================================================================
-//============================== SUPPORTING ===================================
-//=============================================================================
-
-
-
-router.post('/supporting/genjourist/:userId/:genjouristId',function(req,res) {
-    const userId = req.params.userId;
-    const genjouristId = req.params.genjouristId;
-    
-    User.findUser(userId, (err,user)=>{
-        if(err) throw err;
-        if(!user){
-            return res.json({success:false, msg:"user not found"});
-        }
-        else 
-            {
-                const array = user.supporting;
-                //array.includes(genjouristId);
-                if(array.includes(genjouristId) == true)
-                {
-                    User.removeSupporting(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporting cannot pop"});
-                        } else {    
-                                    //console.log(array.length); 
-                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      }); 
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporting pop"});
-                                }
-                    });
-                    
-                }
-                else{
-                    User.addSupporting(userId, genjouristId , (err,status)=>{
-                        if(err) throw err;
-                        if(!status){
-                            return res.json({success:false, msg:"supporting cannot push"});
-                        } else 
-                                {
-                                    //console.log(array.length);
-                                    User.updateSupportingNumber(genjouristId,array.length, function(err,doc) {
-                                        if (err) { throw err; }
-                                        else { console.log("Updated"); }
-                                      });  
-                                    console.log(array.length);
-                                    return res.json({success:true, msg:"supporting push"});
-                                    
-                                }
-                                
-                    });
-                    
-                }
-
-            } 
-    })
-
-})
 
 //=============================================================================
 //============================== SUPPORTING LIST ==============================

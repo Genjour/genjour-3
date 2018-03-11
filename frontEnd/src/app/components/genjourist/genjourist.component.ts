@@ -1,3 +1,4 @@
+import { genjouristData } from './../models/genjouristData';
 import { LoginComponent } from './../login/login.component';
 import { AgeCategoryPipe } from './../profile/age-category.pipe';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ import { user } from '../models/user';
 })
 export class GenjouristComponent implements OnInit {
 
-  genjouristData : any[]=[]; // genjourist profile which user is seeing
+  genjouristData : genjouristData // genjourist profile which user is seeing
   journals: Object;
   quotations :Object;
   user : user;
@@ -29,6 +30,7 @@ export class GenjouristComponent implements OnInit {
   supportersLists : any[] = [];
   supportingLists : any[] = [];
   supportingListsStatus: String;
+  profileImg:String;
 
   constructor(
     private genjouristService: GenjouristService,
@@ -45,12 +47,14 @@ export class GenjouristComponent implements OnInit {
       user=> {
                 this.user = user;
                //console.log(this.user);       
-               
+
           
 
     this.genjouristService.genjouristProfile(this.route.snapshot.params.id).subscribe(genjourist=>{
       this.genjouristData = genjourist;
+      // console.log(this.genjouristData);
 
+      //======================================================================================================
       // ========================================= Support Status ============================================
       
         let n = this.user.supporting;

@@ -38,17 +38,36 @@ module.exports.addJournal = function(journal, callback){
 module.exports.getJournal = function(callback){
     Journal.aggregate([
         {
-           $lookup: {
-              from: "users",
-              localField: "genjouristId",    // field in the orders collection
-              foreignField: "genjouristId",  // field in the items collection
-              as: "fromItems"
-           }
-        },
-        {
-           $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromItems", 0 ] }, "$$ROOT" ] } }
-        },
-        { $project: { fromItems: 0 } }
+            $lookup: {
+               from: "users",
+               localField: "genjouristId",    // field in the orders collection
+               foreignField: "genjouristId",  // field in the items collection
+               as: "details"
+            }
+         },
+         {
+             $unwind:"$details"
+         },
+         { $project: { details: {
+            createdOn:1,
+            dob:1,
+            email:1,
+            gender:1,
+            profileImg:1
+         },
+             genjouristId: "$genjouristId",
+             journalId:1,         
+             content:1,
+             category:1, 
+             imgUrl:1,
+             status:1,
+             type:1,
+             date:1,
+             title:1,
+             tags:1,
+             genjourist:1,                      
+             } 
+        }
      ],callback)
 }
 

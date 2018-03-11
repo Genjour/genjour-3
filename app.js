@@ -76,8 +76,6 @@ app.set('port', port);
 
 server.listen(port, () => console.log(`APIs are running on localhost:${port}`));
 
-const Article    = require('./models/article');
-
 io.on('connection', function (socket){
 
 	console.log('user is connected');

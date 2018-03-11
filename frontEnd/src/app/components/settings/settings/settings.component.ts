@@ -1,6 +1,8 @@
+import { GenjouristService } from './../../../services/genjourist.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../../services/auth.service';
 import { user } from '../../models/user';
+import {CloudinaryOptions, CloudinaryUploader} from 'ng2-cloudinary';
 
 @Component({
   selector: 'app-settings',
@@ -9,8 +11,21 @@ import { user } from '../../models/user';
 })
 export class SettingsComponent implements OnInit {
 
+  cloudinaryImage: any;
+ 
+  uploader: CloudinaryUploader = new CloudinaryUploader(
+    new CloudinaryOptions({ cloudName: 'dzmob0mk9', uploadPreset: 'yezel8lw' })
+  );
 
-  constructor( private authService : AuthService ) { }
+  constructor( 
+    private authService : AuthService,
+    private genjouristService:GenjouristService,
+   ) { 
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
+      this.cloudinaryImage = JSON.parse(response);
+      return {item, response, status, headers};
+    };
+  }
 
   user : user;
   profileImg: String;
@@ -19,20 +34,24 @@ export class SettingsComponent implements OnInit {
     this.authService.userSubject.subscribe(
       data=> {
                 this.user = data;
-                if(this.user.profileImg == "No"){
-                  if(this.user.gender=="Female"){
-                    this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultGirl.png";
-                  }else if(this.user.gender = "Male"){
-                    this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultBoy.png";
-                  }else if(this.user.gender = "Other"){
-                    this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520726450/profile.png";
-                  }
-                }else{
-                  this.profileImg = this.user.profileImg
-                }
           })
   }
 
+  upload(){
 
+    this.uploader.uploadAll();
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
+    let res: any = JSON.parse(response);
+    console.log(res);
+    this.profileImg=res.url;
+    this.genjouristService.changeProfileImage(this.user.genjouristId,res.url).subscribe(data=>{
+      if(data.sucess){
+        console.log('successfully uploaded')
+      }else{
+        console.log('something is wrong')
+      }
+    })
+    }
+  }
 
 }

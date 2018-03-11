@@ -19,17 +19,6 @@ profileImg:String;
   ngOnInit() {
       this.authService.getGenjourist().subscribe(profile=>{
       this.user = profile.user;
-      if(this.user.profileImg == "No"){
-        if(this.user.gender=="Female"){
-          this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultGirl.png";
-        }else if(this.user.gender = "Male"){
-          this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520725961/defaultBoy.png";
-        }else if(this.user.gender = "Other"){
-          this.profileImg = "https://res.cloudinary.com/dzmob0mk9/image/upload/v1520726450/profile.png";
-        }
-      }else{
-        this.profileImg = this.user.profileImg
-      }
       this.authService.userDataBridge(this.user);
       },
       err => {
