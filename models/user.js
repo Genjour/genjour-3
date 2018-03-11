@@ -13,7 +13,7 @@ const  UserSchema = mongoose.Schema({
   genjouristId     : String,
   gender           : String,
   dob              : String,
-  imgUrl           : String,
+  profileImg       : String,
   createdOn        : String,
   status           : Boolean,
   mobile           : String,

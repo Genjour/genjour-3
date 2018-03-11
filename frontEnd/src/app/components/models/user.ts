@@ -6,7 +6,7 @@ export class user {
   genjouristId     : String;
   gender           : String;
   dob              : String;
-  imgUrl           : String;
+  profileImg       : String;
   createdOn        : String;
   supporters       : any[] = [];
   supporting       : any[] = [];

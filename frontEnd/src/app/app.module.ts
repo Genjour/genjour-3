@@ -52,7 +52,8 @@ import { ArticleRecommendationComponent } from './components/feeds/new user/arti
 import { QuotationsComponent } from './components/journals/quotations/quotations.component';
 import { SearchComponent } from './components/navbar/search/search.component';
 
-
+import { Ng2CloudinaryModule } from './../../node_modules/ng2-cloudinary';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 const appRoutes: Routes = [
@@ -107,6 +108,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     InfiniteScrollModule,
+    Ng2CloudinaryModule,
+    FileUploadModule,
   ],
   providers: [
     ValidateService,

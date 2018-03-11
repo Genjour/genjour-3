@@ -15,9 +15,10 @@ router.post('/register',(req,res,next)=>{
 		gender   		: req.body.gender,
 		genjouristId	: "10"+uniqueId(),
 		dob 			: req.body.dob,
+		profileImg 		: "No",
 		status			: true,
 		createdOn 		: Date(),
-		profileImg 			: "assets/uploads/user/defaultBoy",
+		
 
 	});
 

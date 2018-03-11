@@ -191,29 +191,29 @@ router.get('/supportersList/:userid', function(req,res){
 //============================== Recommended Users ============================
 //=============================================================================
 
-router.get('/recommended/users/:userid', (req,res)=>{
-    var userId = req.params.userid;
-    User.findUser(userId, (err,user)=>{
-        if(err) throw err;
-        if(!user){
-            res.json({success:false, msg:'Sorry user not found'});
-        }else{
-            var arr = [];
-            arr.push(userId);
-            for(var i=0; i<user.supporting.length; i++){
-                arr.push(user.supporting[i].genjouristId);
-            }
-            console.log(arr);
-            User.recommendedUsers(arr,(err,docs)=>{
-                if(err) throw err;
-                if(!docs){
-                    res.json({success:false, msg:'You are supporting everyone'});
-                }else{
-                    res.json(docs);
-                }
-            })
-        }
-    })
-})
+// router.get('/recommended/users/:userid', (req,res)=>{
+//     var userId = req.params.userid;
+//     User.findUser(userId, (err,user)=>{
+//         if(err) throw err;
+//         if(!user){
+//             res.json({success:false, msg:'Sorry user not found'});
+//         }else{
+//             var arr = [];
+//             arr.push(userId);
+//             for(var i=0; i<user.supporting.length; i++){
+//                 arr.push(user.supporting[i].genjouristId);
+//             }
+//             console.log(arr);
+//             User.recommendedUsers(arr,(err,docs)=>{
+//                 if(err) throw err;
+//                 if(!docs){
+//                     res.json({success:false, msg:'You are supporting everyone'});
+//                 }else{
+//                     res.json(docs);
+//                 }
+//             })
+//         }
+//     })
+// })
 
 module.exports = router;

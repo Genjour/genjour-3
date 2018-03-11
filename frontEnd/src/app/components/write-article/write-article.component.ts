@@ -3,6 +3,9 @@ import { AuthService } from '../../services/auth.service';
 import {Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { ScriptLoaderService } from '../../services/script-loader.service';
+
+import {CloudinaryOptions, CloudinaryUploader} from 'ng2-cloudinary';
+
 //import * as $ from "jquery";
 declare let $:any;
 @Component({
@@ -12,7 +15,12 @@ declare let $:any;
 })
 export class WriteArticleComponent implements OnInit {
 
+  cloudinaryImage: any;
  
+  uploader: CloudinaryUploader = new CloudinaryUploader(
+    new CloudinaryOptions({ cloudName: 'dzmob0mk9', uploadPreset: 'yezel8lw' })
+  );
+
   constructor(
     private authService : AuthService,
     private router : Router,
@@ -20,7 +28,16 @@ export class WriteArticleComponent implements OnInit {
     private el : ElementRef ,
     private script: ScriptLoaderService,
        
-  ) { }
+  ) { 
+    //Override onSuccessItem function to record cloudinary response data
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
+      //response is the cloudinary response
+      //see http://cloudinary.com/documentation/upload_images#upload_response
+      this.cloudinaryImage = JSON.parse(response);
+      
+      return {item, response, status, headers};
+    };
+  }
 
   imgUrl   : String;
   title    : String;
@@ -44,29 +61,22 @@ export class WriteArticleComponent implements OnInit {
 
 }
 
- upload() {
-    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
-    let fileCount: number = inputEl.files.length;
-    let formData = new FormData();
-    if (fileCount > 0) { // a file was selected
-        for (let i = 0; i < fileCount; i++) {
-            formData.append('photo', inputEl.files.item(i));
-        }
-        this.postService.PostImage(formData).subscribe((success) => {
-         //alert(success._body);
-         //console.log(success._body);
-         this.imgUrl = success._body;
-         this.imgStatus =  true;
-         //console.log(this.imgUrl);
-       },
-         (error) => alert(error))
-    }
-  }
+upload(){
 
+  this.uploader.uploadAll();
+  this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
+  let res: any = JSON.parse(response);
+  console.log(res);
+  this.imgUrl=res.url;
+  this.imgStatus = true;
+  }
+}
   articleSubmit(){
     
     //var markup = $('.summernote').summernote('code');  //this is summercode editor code
 
+//this.upload();
+    
     const article = {
       title    : this.title,
       tags     : this.tags,

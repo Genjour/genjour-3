@@ -56,6 +56,7 @@
 													<label class="custom-file">
 														<!-- <input [(ngModel)]="image" type="file" name="image" >		-->											
 													</label>
+													<input type="file" ng2FileSelect [uploader]="uploader"/>
 													<input  id="photo" type="file" />
 													<button type="button" class="btn btn-success btn-s" [disabled]="imgStatus" (click)="upload()">
 														Upload

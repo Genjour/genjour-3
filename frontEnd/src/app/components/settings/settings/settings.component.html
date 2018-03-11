@@ -25,9 +25,9 @@
                     Profile Image
                   </label>
                       <div class="col-6 col-xs-12 col-sm-12" style="text-align:center;">
-                        <img src="assets/{{user.imgUrl}}" alt="profile pic">
+                        <img src="{{profileImg}}" alt="profile pic">
                         <br>
-                        <input type="file" class="btn btn-accent m-btn m-btn--metal m--margin-10">
+                        <input type="file" class="m--margin-10">
                       </div>
                 </div>
             <div class="form-group m-form__group row">
@@ -44,9 +44,6 @@
               </label>
               <div class="col-6">
                 <input class="form-control m-input" [disabled]="usernameEdit == true" type="text" value="{{user.username}}">
-              </div>
-              <div class="col">
-                  <button class="btn btn-accent m-btn m-btn--metal" (click)="editUsername()" >Edit</button>
               </div>
             </div>
             <div class="form-group m-form__group row">
